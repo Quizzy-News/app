@@ -12,9 +12,9 @@ This project is useful because it leads it's users to truthful news sources and 
 
 To get set up for development, ensure that you are using the correct versions for the devleopment tools:
 
-Node: 18.16.0
-Watchman: 2023.04.17.00
-Yarn: 1.22.19
+- Node: 18.16.0
+- Watchman: 2023.04.17.00
+- Yarn: 1.22.19
 
 Then, follow these steps:
 

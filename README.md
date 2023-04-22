@@ -1,5 +1,6 @@
 # Quizzy-News
-[![Frame-14.png](https://i.postimg.cc/y8VmVWHP/Frame-14.png)](https://postimg.cc/9rnRbmzR)
+[![Frame-14-1.png](https://i.postimg.cc/1zPnPd1N/Frame-14-1.png)](https://postimg.cc/NKJfkpMg)
+
 This repository holds the source files for the mobile app https://quizzy.news
 
 Quizzy.news is a daily trivia game designed to engage users with the world around us and lead them to reputable news sources.

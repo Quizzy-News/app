@@ -1,2 +1,2 @@
 # Quizzy-News
-[![Frame-449.png](https://i.postimg.cc/FsTZk9zx/Frame-449.png)](https://postimg.cc/VdbM3PjS)
+[![Frame-14.png](https://i.postimg.cc/y8VmVWHP/Frame-14.png)](https://postimg.cc/9rnRbmzR)

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 
 export default function App() {
@@ -15,18 +15,87 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: 'KGHappy', fontSize: 46, marginTop: 40 }}>QUIZZY.NEWS</Text>
-      <StatusBar style="auto" />
+    <View style={styles.screenContainer}>
+      <View style={styles.topContainer}>
+        <Text style={styles.topTextPrimary}>QUIZZY.NEWS</Text>
+        <Text style={styles.topTextSecondary}>a daily quiz game on current events</Text>
+        <Text style={styles.topTextSecondary}>from stories published very recently</Text>
+      </View>
+      <View style={styles.middleContainer}>
+        <Text style={styles.middleText}>Ready?</Text>
+        <Pressable style={styles.playButton}>
+          <Text style={styles.playButtonText}>PLAY</Text>
+        </Pressable>        
+      </View>
+      <View style={styles.bottomContainer}>
+        <Text style={ styles.bottomText }>QUIZZY.NEWS</Text>
+        <Text style={ styles.bottomText }>ABOUT</Text>
+        <Text style={ [styles.bottomText, {marginBottom: 20}] }>Ⓒ 2022 EMISQWE</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screenContainer: {
     flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+  topContainer: {
+    flex: 2,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  middleContainer: {
+    flex: 6,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  bottomContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start'
+  },
+  topTextPrimary: {
+    fontFamily: 'KGHappy',
+    fontSize: 46, 
+    marginTop: 80
+  },
+  topTextSecondary: {
+    fontFamily: 'Lexend',
+    fontSize: 14, 
+    marginLeft: -80,
+  },
+  middleText: {
+    fontFamily: 'Lexend',
+    fontSize: 14, 
+    marginLeft: -270,
+    marginTop: -40
+  },
+  playButton: {
+    width: 350,
+    marginTop: 10,
+    backgroundColor: '#80C9FA',
     alignItems: 'center',
-    // justifyContent: 'center',
+    borderRadius: 6,
+    // shadowColor: '#53ADF0',
+    // shadowOffset: { width: 0, height: 12 }
+  },
+  playButtonText: {
+    fontFamily: 'Lexend',
+    fontSize: 35,
+    paddingVertical: 3,
+    color: '#fff',
+  },
+  bottomText: {
+    fontFamily: 'Lexend',
+    fontSize: 12, 
+    color: '#909090', 
+    marginLeft: 40
   },
 });

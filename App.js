@@ -6,7 +6,8 @@ export default function App() {
 
   const [loaded] = useFonts({
     KGHappy: require('./assets/fonts/KGHAPPY.ttf'),
-    Lexend: require('./assets/fonts/Lexend-VariableFont_wght.ttf')
+    Lexend: require('./assets/fonts/Lexend-VariableFont_wght.ttf'),
+    Questrial: require('./assets/fonts/Questrial-Regular.ttf'), // Potential alternative to Futura
   });
 
   if (!loaded) {

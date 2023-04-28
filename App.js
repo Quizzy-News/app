@@ -6,6 +6,7 @@ export default function App() {
 
   const [loaded] = useFonts({
     KGHappy: require('./assets/fonts/KGHAPPY.ttf'),
+    Lexend: require('./assets/fonts/Lexend-VariableFont_wght.ttf')
   });
 
   if (!loaded) {

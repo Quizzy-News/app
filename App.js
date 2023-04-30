@@ -1,6 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
+
+
+// 
+
+const Stack = createNativeStackNavigator();
+
+const AppStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Question" component={QuestionScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+// 
 
 export default function App() {
 
@@ -15,6 +35,12 @@ export default function App() {
   }
 
   return (
+    AppStack()
+  );
+}
+
+const HomeScreen = ({navigation}) => {
+  return (
     <View style={styles.screenContainer}>
       <View style={styles.homeHeaderContainer}>
         <Text style={styles.homeHeaderTextPrimary}>QUIZZY.NEWS</Text>
@@ -23,7 +49,7 @@ export default function App() {
       </View>
       <View style={styles.mainContainer}>
         <Text style={styles.middleText}>Ready?</Text>
-        <Pressable style={styles.playButton}>
+        <Pressable style={styles.playButton} onPress={() => navigation.navigate('Question')}>
           <Text style={styles.playButtonText}>PLAY</Text>
         </Pressable>        
       </View>
@@ -34,7 +60,11 @@ export default function App() {
       </View>
     </View>
   );
-}
+};
+
+const QuestionScreen = ({navigation, route}) => {
+  return <Text>1 + 1 = ?</Text>;
+};
 
 const styles = StyleSheet.create({
   screenContainer: {

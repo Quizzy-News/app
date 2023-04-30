@@ -41,40 +41,63 @@ export default function App() {
 
 const HomeScreen = ({navigation}) => {
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.homeHeaderContainer}>
-        <Text style={styles.homeHeaderTextPrimary}>QUIZZY.NEWS</Text>
-        <Text style={styles.homeHeaderTextSecondary}>a daily quiz game on current events</Text>
-        <Text style={styles.homeHeaderTextSecondary}>from stories published very recently</Text>
+    <View style={commonStyles.screenContainer}>
+      <View style={homeStyles.headerContainer}>
+        <Text style={homeStyles.headerTextPrimary}>QUIZZY.NEWS</Text>
+        <Text style={homeStyles.headerTextSecondary}>a daily quiz game on current events</Text>
+        <Text style={homeStyles.headerTextSecondary}>from stories published very recently</Text>
       </View>
-      <View style={styles.mainContainer}>
-        <Text style={styles.middleText}>Ready?</Text>
-        <Pressable style={styles.playButton} onPress={() => navigation.navigate('Question')}>
-          <Text style={styles.playButtonText}>PLAY</Text>
+      <View style={homeStyles.mainContainer}>
+        <Text style={homeStyles.middleText}>Ready?</Text>
+        <Pressable style={homeStyles.playButton} onPress={() => navigation.navigate('Question')}>
+          <Text style={homeStyles.playButtonText}>PLAY</Text>
         </Pressable>        
       </View>
-      <View style={styles.footerContainer}>
-        <Text style={ styles.footerText }>QUIZZY.NEWS</Text>
-        <Text style={ styles.footerText }>ABOUT</Text>
-        <Text style={ [styles.footerText, {marginBottom: 20}] }>Ⓒ 2022 EMISQWE</Text>
+      <View style={homeStyles.footerContainer}>
+        <Text style={commonStyles.footerText}>QUIZZY.NEWS</Text>
+        <Text style={commonStyles.footerText}>ABOUT</Text>
+        <Text style={[commonStyles.footerText, {marginBottom: 20}]}>Ⓒ 2022 EMISQWE</Text>
       </View>
     </View>
-  );
+ );
 };
 
 const QuestionScreen = ({navigation, route}) => {
-  return <Text>1 + 1 = ?</Text>;
+  return (
+    <View style={commonStyles.screenContainer}>
+      <View style={questionStyles.headerContainer}>
+        <Text>Quiz Header</Text>
+      </View>
+      <View style={questionStyles.mainContainer}>
+        <Text>1 + 1 = ?</Text>
+      </View>
+      <View style={questionStyles.footerContainer}>
+        <Pressable onPress={() => navigation.navigate('Home')}>
+          <Text style={commonStyles.footerText}>QUIZZY.NEWS</Text>
+        </Pressable>
+        <Text style={[commonStyles.footerText, {marginBottom: 20}]}>Ⓒ 2022 EMISQWE</Text>
+      </View>
+    </View>
+  )
 };
 
-const styles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
+  footerText: {
+    fontFamily: 'Lexend',
+    fontSize: 12, 
+    color: '#909090', 
+    marginLeft: 40
+  }
+});
 
-  homeHeaderContainer: {
+const homeStyles = StyleSheet.create({
+  headerContainer: {
     flex: 2,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
@@ -92,13 +115,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
   },
-  
-  homeHeaderTextPrimary: {
+
+  headerTextPrimary: {
     fontFamily: 'KGHappy',
     fontSize: 46, 
     marginTop: 80
   },
-  homeHeaderTextSecondary: {
+  headerTextSecondary: {
     fontFamily: 'Lexend',
     fontSize: 14, 
     marginLeft: -80,
@@ -124,10 +147,31 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     color: '#fff',
   },
-  footerText: {
-    fontFamily: 'Lexend',
-    fontSize: 12, 
-    color: '#909090', 
-    marginLeft: 40
+});
+
+const questionStyles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+  headerContainer: {
+    flex: 2,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  mainContainer: {
+    flex: 6,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start'
   },
 });

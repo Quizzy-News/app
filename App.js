@@ -16,21 +16,21 @@ export default function App() {
 
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.topContainer}>
-        <Text style={styles.topTextPrimary}>QUIZZY.NEWS</Text>
-        <Text style={styles.topTextSecondary}>a daily quiz game on current events</Text>
-        <Text style={styles.topTextSecondary}>from stories published very recently</Text>
+      <View style={styles.homeHeaderContainer}>
+        <Text style={styles.homeHeaderTextPrimary}>QUIZZY.NEWS</Text>
+        <Text style={styles.homeHeaderTextSecondary}>a daily quiz game on current events</Text>
+        <Text style={styles.homeHeaderTextSecondary}>from stories published very recently</Text>
       </View>
-      <View style={styles.middleContainer}>
+      <View style={styles.mainContainer}>
         <Text style={styles.middleText}>Ready?</Text>
         <Pressable style={styles.playButton}>
           <Text style={styles.playButtonText}>PLAY</Text>
         </Pressable>        
       </View>
-      <View style={styles.bottomContainer}>
-        <Text style={ styles.bottomText }>QUIZZY.NEWS</Text>
-        <Text style={ styles.bottomText }>ABOUT</Text>
-        <Text style={ [styles.bottomText, {marginBottom: 20}] }>Ⓒ 2022 EMISQWE</Text>
+      <View style={styles.footerContainer}>
+        <Text style={ styles.footerText }>QUIZZY.NEWS</Text>
+        <Text style={ styles.footerText }>ABOUT</Text>
+        <Text style={ [styles.footerText, {marginBottom: 20}] }>Ⓒ 2022 EMISQWE</Text>
       </View>
     </View>
   );
@@ -43,30 +43,32 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
-  topContainer: {
+
+  homeHeaderContainer: {
     flex: 2,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
-  middleContainer: {
+  mainContainer: {
     flex: 6,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  bottomContainer: {
+  footerContainer: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
   },
-  topTextPrimary: {
+  
+  homeHeaderTextPrimary: {
     fontFamily: 'KGHappy',
     fontSize: 46, 
     marginTop: 80
   },
-  topTextSecondary: {
+  homeHeaderTextSecondary: {
     fontFamily: 'Lexend',
     fontSize: 14, 
     marginLeft: -80,
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     color: '#fff',
   },
-  bottomText: {
+  footerText: {
     fontFamily: 'Lexend',
     fontSize: 12, 
     color: '#909090', 

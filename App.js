@@ -1,7 +1,7 @@
 // import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 
 
@@ -24,18 +24,21 @@ const AppStack = () => {
 
 export default function App() {
 
-  const [loaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     KGHappy: require('./assets/fonts/KGHAPPY.ttf'),
-    Lexend: require('./assets/fonts/Lexend-VariableFont_wght.ttf'),
-    Jost: require('./assets/fonts/Jost-VariableFont_wght.ttf'),
+    Lexend_Regular: require('./assets/fonts/Lexend-Regular.ttf'),
+    Lexend_SemiBold: require('./assets/fonts/Lexend-SemiBold.ttf'),
+    Lexend_Bold: require('./assets/fonts/Lexend-Bold.ttf'),
+    Lexend_ExtraBold: require('./assets/fonts/Lexend-ExtraBold.ttf'),
+    Jost_Regular: require('./assets/fonts/Jost-Regular.ttf'),
   });
 
-  if (!loaded) {
+  if (!fontsLoaded) {
     return null;
   }
 
   return (
-    AppStack()
+    <AppStack />
   );
 }
 
@@ -54,9 +57,11 @@ const HomeScreen = ({navigation}) => {
         </Pressable>        
       </View>
       <View style={homeStyles.footerContainer}>
+        <Pressable onPress={() => navigation.navigate('Home')}>
+          <Text style={commonStyles.footerText}>ABOUT</Text>
+        </Pressable>
         <Text style={commonStyles.footerText}>QUIZZY.NEWS</Text>
-        <Text style={commonStyles.footerText}>ABOUT</Text>
-        <Text style={[commonStyles.footerText, {marginBottom: 20}]}>Ⓒ 2022 EMISQWE</Text>
+        <Text style={[commonStyles.footerCopyrightText, {marginBottom: 20}]}>Ⓒ 2023 EMISQWE</Text>
       </View>
     </View>
  );
@@ -75,7 +80,7 @@ const QuestionScreen = ({navigation, route}) => {
         <Pressable onPress={() => navigation.navigate('Home')}>
           <Text style={commonStyles.footerText}>QUIZZY.NEWS</Text>
         </Pressable>
-        <Text style={[commonStyles.footerText, {marginBottom: 20}]}>Ⓒ 2022 EMISQWE</Text>
+        <Text style={[commonStyles.footerCopyrightText, {marginBottom: 20}]}>Ⓒ 2023 EMISQWE</Text>
       </View>
     </View>
   )
@@ -89,10 +94,18 @@ const commonStyles = StyleSheet.create({
     alignItems: 'stretch',
   },
   footerText: {
-    fontFamily: 'Lexend',
+    fontFamily: 'Lexend_ExtraBold',
+    fontSize: 16,
+    color: '#909090',
+    marginLeft: 40,
+    lineHeight: 25
+  },
+  footerCopyrightText: {
+    fontFamily: 'Lexend_Regular',
     fontSize: 12, 
     color: '#909090', 
-    marginLeft: 40
+    marginLeft: 40,
+    lineHeight: 25
   }
 });
 
@@ -112,6 +125,9 @@ const homeStyles = StyleSheet.create({
   footerContainer: {
     flex: 1,
     backgroundColor: '#fff',
+    borderTopColor: 'grey',
+    borderTopWidth: StyleSheet.hairlineWidth, 
+    paddingTop: 10,
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
   },
@@ -122,19 +138,19 @@ const homeStyles = StyleSheet.create({
     marginTop: 80
   },
   headerTextSecondary: {
-    fontFamily: 'Lexend',
+    fontFamily: 'Lexend_SemiBold',
     fontSize: 14, 
     marginLeft: -80,
   },
   middleText: {
-    fontFamily: 'Lexend',
-    fontSize: 14, 
+    fontFamily: 'Lexend_Bold',
+    fontSize: 16, 
     marginLeft: -270,
     marginTop: -40
   },
   playButton: {
     width: 350,
-    marginTop: 10,
+    marginTop: 20,
     backgroundColor: '#80C9FA',
     alignItems: 'center',
     borderRadius: 6,
@@ -142,8 +158,9 @@ const homeStyles = StyleSheet.create({
     // shadowOffset: { width: 0, height: 12 }
   },
   playButtonText: {
-    fontFamily: 'Lexend',
+    fontFamily: 'Lexend_ExtraBold',
     fontSize: 35,
+    letterSpacing: 1,
     paddingVertical: 3,
     color: '#fff',
   },
@@ -165,12 +182,15 @@ const questionStyles = StyleSheet.create({
   mainContainer: {
     flex: 6,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   footerContainer: {
-    flex: 1,
+    flex: .8,
     backgroundColor: '#fff',
+    borderTopColor: 'grey',
+    borderTopWidth: StyleSheet.hairlineWidth, 
+    paddingTop: 5,
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
   },

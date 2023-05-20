@@ -127,7 +127,7 @@ const homeStyles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopColor: 'grey',
     borderTopWidth: StyleSheet.hairlineWidth, 
-    paddingTop: 10,
+    paddingTop: 14,
     justifyContent: 'flex-end',
     alignItems: 'flex-start'
   },

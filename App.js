@@ -6,8 +6,8 @@ import CountDownPage from './pages/CountDownPage';
 import Home from './pages/Home';
 import Navigator from './routes/homeStack';
 import List from './pages/List';
-import HomeStack from './routes/homeStack';
-
+import HomeStack from './routes/homeStack'
+import ScorePage from './pages/ScorePage';
 // import CountDownCircleTimer from 'react-native-countdown-circle-timer';
 
 export default function App() {
@@ -19,6 +19,7 @@ export default function App() {
     //   </View>
     // <Navigator />
     // <List />
+    // <ScorePage />
     <HomeStack />
   );
 }

@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as Sharing from 'expo-sharing';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
+import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
 export default function ScorePage() {
     return (

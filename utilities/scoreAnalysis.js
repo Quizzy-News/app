@@ -1,32 +1,20 @@
 export const scoreAnalysis = {
-    100: {
-        message: 'Hmmmm... Try reading more news?'
+    0: {
+        message: 'You tried! Check out the links to learn more about each news story.'
     },
-    200: {
-        message: 'Try reading more news?',
+    1: {
+        message: 'Alright! Hopefully that was fun. Check out the links to learn more about each news story.',
     },
-    300: {
-        message: 'Keep working on it!',
+    2: {
+        message: 'I know, it was tough today. Click the links to learn more about each news story.',
     },
-    400: {
-        message: "Almost there",
+    3: {
+        message: "You’re getting there! Click the links to learn more about each news story.",
     },
-    500: {
-        message: "Perfect Score",
+    4: {
+        message: 'So close! Click the links to learn more about each news story.',
     },
-    600: {
-        message: "Exceptional",
-    },
-    700: {
-        message: "Going above and beyond",
-    },
-    800: {
-        message: "Running the extra mile",
-    },
-    900: {
-        message: "somethign",
-    },
-    1000: {
-        message: "Something",
-    },
+    5: {
+        message: 'Yasss! Are you a journalist or something? Click the links to read up on each news story.',
+    }
 }

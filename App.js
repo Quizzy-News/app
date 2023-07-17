@@ -19,8 +19,8 @@ export default function App() {
     //   </View>
     // <Navigator />
     // <List />
-    <ScorePage />
-    // <HomeStack />
+    // <ScorePage />
+    <HomeStack />
   );
 }
 

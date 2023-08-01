@@ -6,6 +6,8 @@ export default function GamePage() {
   const [georgePressed, setGeorgePressed] = useState(false);
   const [button1Pressed, setButton1Pressed] = useState(false);
   const [button2Pressed, setButton2Pressed] = useState(false);
+  const [score, setScore] = useState(0);
+  // let obj = Object.freeze({ score: 0 });
 
 
   const handlePress = (button) => {
@@ -13,6 +15,8 @@ export default function GamePage() {
       setGeorgePressed(true);
       setButton1Pressed(false);
       setButton2Pressed(false);
+      // obj = { score: 1 };
+      setScore(score + 1);
     } else if (button === 'Button 1') {
       setGeorgePressed(false);
       setButton1Pressed(true);
@@ -30,6 +34,7 @@ export default function GamePage() {
         <Text style={styles.questionText}>
           Who was the first president of the US
         </Text>
+        <Text>{score}</Text>
       </View>
 
       <View style={styles.buttonContainer}>

@@ -5,13 +5,15 @@ import * as Sharing from 'expo-sharing';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
-export default function ScorePage() {
+export default function ScorePage({ score }) {
+
     return (
         <View style={styles.screenContainer}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerTextPrimary}>QUIZZY.NEWS</Text>
             </View>
             <View>
+                <Text style={styles.Analysis}> {scoreAnalysis[4].message} </Text>
                 <Text style={styles.Analysis}>
                     Hmmmm... Try reading
                 </Text>
@@ -20,7 +22,7 @@ export default function ScorePage() {
                 </Text>
             </View>
             <View style={styles.score}>
-                <Text style={styles.number}>130</Text>
+                <Text style={styles.number}>{score}</Text>
                 <Text style={styles.scoreText}>Total Score</Text>
             </View>
             <View style={styles.Review}>
@@ -105,7 +107,8 @@ const styles = StyleSheet.create({
     },
     Review: {
         flex: 6,
-        marginBottom: 40
+        marginBottom: 40,
+        alignItems: 'center',
     },
     reviewHeader: {
         textAlign: 'center',
@@ -117,8 +120,9 @@ const styles = StyleSheet.create({
     },
     question: {
         flexDirection: 'row',
+        padding: 5,
         marginTop: 10,
-        width: 320,
+        width: 380,
         height: 40,
         borderRadius: 6,
         alignItems: 'center',

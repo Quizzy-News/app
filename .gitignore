@@ -33,3 +33,4 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+.yarn/releases/yarn-1.22.19.cjs

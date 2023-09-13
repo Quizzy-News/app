@@ -14,37 +14,58 @@ export default function GamePage({navigation}) {
   const [question, setQuestion] = useState(data);
   const [score, setScore] = useState(0);
   const [choices, setChoices] = useState([]);
+  const [userRecord, setUserRecord] = useState([]);
+  const [inProgress, setInProgress] = useState(true);
 
   useEffect(() => {
     setQuestion(data[currentQuestion]);
     setChoices([...data[currentQuestion].choices]);
 
     if (countdown === 0) {
-      navigation.navigate("ScorePage");
-      return;
+      setInProgress(false);
     }
 
     const timeout = setTimeout(() => {
       setCountdown(countdown - 1);
     }, 1000);
 
+    // console.log(userRecord)
+    // console.log(score)
+    if(!inProgress) {
+      clearTimeout(timeout);
+      let remainder = countdown;
+      navigation.navigate("ScorePage", {score: score, record: userRecord, time: remainder})
+    }
     return () => clearTimeout(timeout);
-  }, [countdown, navigation, currentQuestion]);
+  }, [countdown, navigation, currentQuestion, score, userRecord]);
 
-  const handleAnswer = (choice) => {
+  const handleRecord = (record) => {
+    setUserRecord([...userRecord,record])
+    // console.log(userRecord);
+
+  }
+
+  const handleAnswer = (choice, currentQuestion) => {
+    console.log('question #:' + `${currentQuestion}`)
     console.log(question.answer);
     if (choice === question.answer) {
-      setSelectedAnswer("correct");
+      handleRecord("correct");
       setScore(score + 1);
     } else {
-      setSelectedAnswer("incorrect");
+      handleRecord("incorrect");
     }
+
     if (currentQuestion + 1 < data.length) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      console.log("score page");
+      // Note: Trigger navigation from useEffect hook to ensure State updates
+      
+      setInProgress(false);
+      
     }
   };
+
+
 
   if (!question) {
     return <Text>Loading...</Text>;
@@ -67,7 +88,7 @@ export default function GamePage({navigation}) {
             <Pressable
               key={idx}
               className="w-[335px] h-[95px] bg-white hover:bg-[#80C9FA] rounded-[10px] shadow-[0 35px 60px -15px rgba(0,0,0,0.3)]"
-              onPress={() => handleAnswer(choice)}
+              onPress={() => handleAnswer(choice, currentQuestion)}
             >
               <StyledText className="text-center font-bold justify-center items-center content-center">
                 {choice}

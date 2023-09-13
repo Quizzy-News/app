@@ -1,11 +1,25 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 // import { useFonts } from 'expo-font';
 // import * as Sharing from 'expo-sharing';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
-export default function ScorePage({ score }) {
+export default function ScorePage({ route }) {
+    // const [finalScore, setFinalScore] = useState(score)
+    const [score, setScore] = useState(route.params.score);
+    const [record,setRecord] = useState(route.params.record);
+    const [time, setTime] = useState(route.params.time);
+    
+    useEffect(()=> {
+        setScore(route.params.score);
+        setRecord(route.params.record);
+        setTime(route.params.time);
+
+        console.log(score);
+        console.log(record);
+        console.log(time);
+    }, [route.params.score, route.params.record, route.params.time])
 
     return (
         <View style={styles.screenContainer}>
@@ -22,6 +36,7 @@ export default function ScorePage({ score }) {
                 </Text>
             </View>
             <View style={styles.score}>
+                {console.log(score)}
                 <Text style={styles.number}>{score}</Text>
                 <Text style={styles.scoreText}>Total Score</Text>
             </View>

@@ -2,19 +2,20 @@
   "expo": {
     "name": "Quizzy.News",
     "slug": "quizzy-news",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "owner": "Quizzy-News",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "web": {
+      "bundler": "metro"
+    },
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,9 +24,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

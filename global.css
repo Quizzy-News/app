@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "KGHappy";
+    src: url("./assets/fonts/KGHAPPY.ttf");
+}
+
+@font-face {
+    font-family: "Lexend";
+    src: url("./assets/fonts/Lexend-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Jost";
+    src: url("./assets/fonts/Jost-VariableFont_wght.ttf");
+}

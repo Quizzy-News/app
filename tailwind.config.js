@@ -6,16 +6,8 @@ module.exports = {
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
         'lexend': ['Lexend', 'sans-serif'],
-        'lexend-thin': ['Lexend-Thin', 'sans-serif'],
-        'lexend-extralight': ['Lexend-ExtraLight', 'sans-serif'],
-        'lexend-light': ['Lexend-Light', 'sans-serif'],
-        'lexend-regular': ['Lexend-Regular', 'sans-serif'],
-        'lexend-medium': ['Lexend-Medium', 'sans-serif'],
-        'lexend-semibold': ['Lexend-SemiBold', 'sans-serif'],
-        'lexend-bold': ['Lexend-Bold', 'sans-serif'],
-        'lexend-extrabold': ['Lexend-ExtraBold', 'sans-serif'],
-        'lexend-black': ['Lexend-Black', 'sans-serif'],
         'jost': ['Jost', 'sans-serif'],
+        'futura-medium': ['Futura-Medium', 'sans-serif'],
       },
       colors: {
         "grey-1": "var(--grey-1)",

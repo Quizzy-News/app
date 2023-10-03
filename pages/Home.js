@@ -11,7 +11,7 @@ export default function Home({ navigation }) {
     <View className="h-screen flex items-center bg-white">
       <View className="mt-6 p-3 w-auto flex items-center">
         <Text className="text-[44px] font-kghappy color-[#3D3D3D]">QUIZZY.NEWS</Text>
-        <Text className="pl-3 font-lexend-black self-start text-[#3D3D3D]">
+        <Text className="pl-3 font-lexend font-bold self-start text-[#3D3D3D]">
           a daily quiz game on current events{"\n"}
           from stories published very recently
         </Text>
@@ -23,7 +23,7 @@ export default function Home({ navigation }) {
         <Pressable onPress={pressHandler} className="group h-12 mt-6 w-full flex items-center justify-center rounded-lg active:h-16">
           <View className="h-12 bg-[#53ADF0] w-full rounded-lg absolute top-3" />
           <View className="h-12 bg-[#80C9FA] w-full rounded-lg absolute" />
-          <Text className="text-white text-4xl font-jost font-bold">
+          <Text className="text-white text-4xl font-lexend font-bold">
             PLAY
           </Text>
         </Pressable>

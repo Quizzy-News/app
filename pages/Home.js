@@ -20,10 +20,10 @@ export default function Home({ navigation }) {
         <Text className="pl-3 text-xl font-bold font-lexend text-[#3D3D3D]">
           Ready?
         </Text>
-        <Pressable onPress={pressHandler} className="group h-12 file:mt-6 w-full flex items-center justify-center rounded-lg active:h-16">
+        <Pressable onPress={pressHandler} className="group h-12 mt-6 w-full flex items-center justify-center rounded-lg active:h-16">
           <View className="h-12 bg-[#53ADF0] w-full rounded-lg absolute top-3" />
           <View className="h-12 bg-[#80C9FA] w-full rounded-lg absolute" />
-          <Text className="text-white text-4xl font-black">
+          <Text className="text-white text-4xl font-jost font-bold">
             PLAY
           </Text>
         </Pressable>

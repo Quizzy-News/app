@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
+        'lexend': ['Lexend', 'sans-serif'],
         'lexend-thin': ['Lexend-Thin', 'sans-serif'],
         'lexend-extralight': ['Lexend-ExtraLight', 'sans-serif'],
         'lexend-light': ['Lexend-Light', 'sans-serif'],

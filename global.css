@@ -8,6 +8,11 @@
 }
 
 @font-face {
+    font-family: "Lexend";
+    src: url("./assets/fonts/Lexend-VariableFont_wght.ttf");
+}
+
+@font-face {
     font-family: "Lexend-Thin";
     src: url("./assets/fonts/Lexend-Thin.ttf");
 }

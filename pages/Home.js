@@ -2,15 +2,6 @@ import { Pressable, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 
 export default function Home({ navigation }) {
-  const [loaded] = useFonts({
-    KGHappy: require("../assets/fonts/KGHAPPY.ttf"),
-    Lexend: require("../assets/fonts/Lexend-VariableFont_wght.ttf"),
-    Jost: require("../assets/fonts/Jost-VariableFont_wght.ttf"),
-  });
-
-  if (!loaded) {
-    return null;
-  }
 
   const pressHandler = () => {
     navigation.navigate("CountDownPage");

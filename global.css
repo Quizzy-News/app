@@ -8,11 +8,70 @@
 }
 
 @font-face {
-    font-family: "Lexend";
-    src: url("./assets/fonts/Lexend-VariableFont_wght.ttf");
+    font-family: "Lexend-Thin";
+    src: url("./assets/fonts/Lexend-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-ExtraLight";
+    src: url("./assets/fonts/Lexend-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Light";
+    src: url("./assets/fonts/Lexend-Light.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Regular";
+    src: url("./assets/fonts/Lexend-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Medium";
+    src: url("./assets/fonts/Lexend-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-SemiBold";
+    src: url("./assets/fonts/Lexend-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Bold";
+    src: url("./assets/fonts/Lexend-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-ExtraBold";
+    src: url("./assets/fonts/Lexend-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Black";
+    src: url("./assets/fonts/Lexend-Black.ttf");
 }
 
 @font-face {
     font-family: "Jost";
     src: url("./assets/fonts/Jost-VariableFont_wght.ttf");
+}
+
+
+:root {
+    --gray-1: #B3B3B3;
+    --gray-2: #909090;
+    --gray-3: #646464;
+    --gray-4: #3D3D3D;
+    --light-yellow: #F6C443;
+    --dark-yellow: #E69535;
+    --light-red: #FAD1D1;
+    --dark-red: #EE807C;
+    --darker-red: #E95750;
+    --light-purple: #DED1E4;
+    --light-blue: #80C9FA;
+    --dark-blue: #53ADF0;
+    --light-green: #DEFEBF;
+    --dark-green: #78C93C;
+    --darker-green: #6BA530;
 }

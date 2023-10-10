@@ -1,5 +1,4 @@
 import { Pressable, Text, View } from "react-native";
-import { useFonts } from "expo-font";
 
 export default function Home({ navigation }) {
 

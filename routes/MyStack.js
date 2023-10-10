@@ -20,7 +20,7 @@ function MyStack() {
         <Stack.Screen name="ScorePage" component={ScorePage} />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="MyModal" component={AboutModal} />
+        <Stack.Screen name="AboutModal" component={AboutModal} />
       </Stack.Group>
     </Stack.Navigator>
   );

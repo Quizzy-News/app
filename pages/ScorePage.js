@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
-export default function ScorePage({ route }) {
+export default function ScorePage({ route, navigation }) {
     // const [finalScore, setFinalScore] = useState(score)
     const [score, setScore] = useState(route.params.score);
     const [record, setRecord] = useState(route.params.record);
@@ -83,8 +83,10 @@ export default function ScorePage({ route }) {
                     Next news quiz in <Text className="font-bold">12:19:00</Text>
                 </Text>
             </View>
-            <View className="w-full mt-auto flex flex-row justify-between">
-                <Pressable className="flex flex-col items-center">
+            <View
+                className="w-full mt-auto flex flex-row justify-between"
+            >
+                <Pressable className="flex flex-col items-center" onPress={() => navigation.navigate('AboutModal')}>
                     <View className="w-16 h-9 flex flex-col items-center justify-center">
                         <View className="h-full bg-[#646464] w-full rounded-md absolute top-1" />
                         <View className="h-full bg-[#909090] w-full rounded-md absolute" />

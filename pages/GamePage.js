@@ -7,7 +7,7 @@ import { styled } from "nativewind";
 const StyledView = styled(View);
 const StyledText = styled(Text);
 
-export default function GamePage({navigation}) {
+export default function GamePage({ navigation }) {
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -31,16 +31,16 @@ export default function GamePage({navigation}) {
 
     // console.log(userRecord)
     // console.log(score)
-    if(!inProgress) {
+    if (!inProgress) {
       clearTimeout(timeout);
       let remainder = countdown;
-      navigation.navigate("ScorePage", {score: score, record: userRecord, time: remainder})
+      navigation.navigate("ScorePage", { score: score, record: userRecord, time: remainder })
     }
     return () => clearTimeout(timeout);
   }, [countdown, navigation, currentQuestion, score, userRecord]);
 
   const handleRecord = (record) => {
-    setUserRecord([...userRecord,record])
+    setUserRecord([...userRecord, record])
     // console.log(userRecord);
 
   }
@@ -59,9 +59,9 @@ export default function GamePage({navigation}) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Note: Trigger navigation from useEffect hook to ensure State updates
-      
+
       setInProgress(false);
-      
+
     }
   };
 

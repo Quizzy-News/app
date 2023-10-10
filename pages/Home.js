@@ -29,7 +29,10 @@ export default function Home({ navigation }) {
       </View>
       <View className="w-screen mt-auto">
         <View className="h-[1px] w-screen bg-[#909090]" />
-        <Text className="pl-3 pt-4 text-[#909090] font-bold" onPress={() => navigation.navigate('MyModal')}>ABOUT</Text>
+        <Text
+          className="pl-3 pt-4 text-[#909090] font-bold"
+          onPress={() => navigation.navigate('AboutModal')}
+        >ABOUT</Text>
         <Text className="pl-3 pt-2 text-[#909090] font-bold">QUIZZY.NEWS</Text>
         <Text className="pl-3 pt-2 pb-5 text-[#909090]">
           Ⓒ 2022 EMISQWE

@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { View, Text, StyleSheet } from "react-native";
 import { styled } from "nativewind";
@@ -16,30 +16,21 @@ export default function CountDownPage({ navigation }) {
     }
 
     const timeout = setTimeout(() => {
-      setCountdown(countdown - 1);
+        setCountdown(countdown - 1);
     }, 1000);
 
     return () => clearTimeout(timeout);
   }, [countdown, navigation]);
 
   return (
-    <StyledView className="flex-1 items-center justify-center bg-[#ded1e4]">
-      <StyledView className="w-[363px] h-[363px] rounded-full border-[40px] border-white flex items-center justify-center">
-        <StyledText className="text-center text-white text-[200px] font-bold leading-normal">
-          {countdown}
-        </StyledText>
-      </StyledView>
-    </StyledView>
+    <View className="h-screen flex justify-center items-center">
+      <View className="h-4/5 w-screen rounded-xl flex items-center justify-center bg-[#ded1e4]">
+        <View className="w-[363px] h-[363px] rounded-full border-[40px] border-white flex items-center justify-center">
+          <Text className="text-center text-white text-[200px] font-lexend font-bold leading-none">
+            {countdown}
+          </Text>
+        </View>
+      </View>
+    </View>
   );
 }
-
-// const styles = StyleSheet.create({
-//   timer: {
-//     backgroundColor: '#DED1E4',
-//     display: 'flex',
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-
-//   },
-// });

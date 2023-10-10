@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, Button } from "react-native";
 
 export default function Home({ navigation }) {
 
@@ -19,7 +19,7 @@ export default function Home({ navigation }) {
         <Text className="pl-3 text-xl font-bold font-lexend text-[#3D3D3D]">
           Ready?
         </Text>
-        <Pressable onPress={pressHandler} className="group h-12 mt-6 w-full flex items-center justify-center rounded-lg active:h-16">
+        <Pressable onPress={pressHandler} className="h-12 mt-6 w-full flex items-center justify-center rounded-lg">
           <View className="h-12 bg-[#53ADF0] w-full rounded-lg absolute top-3" />
           <View className="h-12 bg-[#80C9FA] w-full rounded-lg absolute" />
           <Text className="text-white text-4xl font-lexend font-bold">
@@ -29,7 +29,7 @@ export default function Home({ navigation }) {
       </View>
       <View className="w-screen mt-auto">
         <View className="h-[1px] w-screen bg-[#909090]" />
-        <Text className="pl-3 pt-4 text-[#909090] font-bold">ABOUT</Text>
+        <Text className="pl-3 pt-4 text-[#909090] font-bold" onPress={() => navigation.navigate('MyModal')}>ABOUT</Text>
         <Text className="pl-3 pt-2 text-[#909090] font-bold">QUIZZY.NEWS</Text>
         <Text className="pl-3 pt-2 pb-5 text-[#909090]">
           Ⓒ 2022 EMISQWE

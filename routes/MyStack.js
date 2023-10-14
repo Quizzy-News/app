@@ -10,9 +10,10 @@ const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator screenOptions={{
-      headerShown: false
-    }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
       <Stack.Group>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="CountDownPage" component={CountDownPage} />

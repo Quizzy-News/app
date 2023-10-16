@@ -99,4 +99,4 @@ export default function GamePage({ navigation }) {
       </StyledView>
     </StyledView>
   );
-}
+};

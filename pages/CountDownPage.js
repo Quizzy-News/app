@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native";
-import { Colors, Buttons, Typography } from "../styles"
+import { Colors, Containers, Typography } from "../styles"
 
 export default function CountDownPage({ navigation }) {
   const [countdown, setCountdown] = useState(3);
@@ -40,12 +40,7 @@ const styles = StyleSheet.create({
   },
   container1: {
     ...Colors.backgroundColors.lightPurple,
-    height: "80%",
-    margin: 10,
-    borderRadius: 10,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    ...Containers.contentContainer
   },
   circle: {
     width: 300,

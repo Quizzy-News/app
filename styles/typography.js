@@ -4,6 +4,11 @@ export const title = {
     textTransform: "uppercase"
 };
 
+export const countdownText = {
+    fontFamily: "LexendBold",
+    fontSize: 250,
+};
+
 export const h1 = {
     fontFamily: "LexendBold",
     fontSize: 48,

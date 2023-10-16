@@ -33,3 +33,21 @@ export const backgroundColors = {
     darkGreen: { backgroundColor: "#78C93C" },
     darkerGreen: { backgroundColor: "#6BA530" },
 };
+
+export const shadowColors = {
+    gray1: { shadowColor: "#B3B3B3" },
+    gray2: { shadowColor: "#909090" },
+    gray3: { shadowColor: "#646464" },
+    gray4: { shadowColor: "#3D3D3D" },
+    lightYellow: { shadowColor: "#F6C443" },
+    darkYellow: { shadowColor: "#E69535" },
+    lightRed: { shadowColor: "#FAD1D1" },
+    darkRed: { shadowColor: "#EE807C" },
+    darkerRed: { shadowColor: "#E95750" },
+    lightPurple: { shadowColor: "#DED1E4" },
+    lightBlue: { shadowColor: "#80C9FA" },
+    darkBlue: { shadowColor: "#53ADF0" },
+    lightGreen: { shadowColor: "#DEFEBF" },
+    darkGreen: { shadowColor: "#78C93C" },
+    darkerGreen: { shadowColor: "#6BA530" },
+};

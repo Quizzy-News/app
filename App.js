@@ -8,8 +8,9 @@ export default function App() {
 
   const [loaded] = useFonts({
     KGHappy: require("./assets/fonts/KGHAPPY.ttf"),
-    LexendMedium: require("./assets/fonts/Lexend-Medium.ttf"),
+    LexendRegular: require("./assets/fonts/Lexend-Regular.ttf"),
     LexendBold: require("./assets/fonts/Lexend-Bold.ttf"),
+    LexendBlack: require("./assets/fonts/Lexend-Black.ttf"),
     FuturaMedium: require("./assets/fonts/Futura-Medium.otf"),
   });
 

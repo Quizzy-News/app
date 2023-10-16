@@ -1,16 +1,18 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Colors, Buttons, Typography } from "../styles"
 import { AntDesign } from '@expo/vector-icons';
 
 export default function AboutModal({ navigation }) {
 
     return (
-        <View className="h-screen p-3 flex items-center justify-center bg-[#DED1E4]">
-            <View className="top-20 right-5 absolute">
+        <View style={styles.screen}>
+            <View style={styles.x}>
                 <AntDesign
                     onPress={() => navigation.goBack()}
-                    name="close" size={24} color="black" />
+                    name="close" size={24} color="#3D3D3D" />
             </View>
-            <Text className="font-lexend text-2xl">
+            <Text style={styles.text}>
                 Quizzy.news gives you a quick quiz on the latest top headlines, everyday!
                 {"\n"}
                 {"\n"}
@@ -19,3 +21,24 @@ export default function AboutModal({ navigation }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    screen: {
+        ...Colors.backgroundColors.lightPurple,
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    x: {
+        position: "absolute",
+        top: 100,
+        right: 20,
+    },
+    text: {
+        ...Colors.fontColors.gray4,
+        ...Typography.body1,
+        padding: 10,
+    }
+});

@@ -1,34 +1,50 @@
 import { Pressable, Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
 import { Colors, Buttons, Typography } from "../styles"
 
 export default function Home({ navigation }) {
 
+  const [ buttonActive, setButtonActive ] = useState(false);
+
+  const pressInHandler = () => {
+    setButtonActive(true);
+  };
+
+  const pressOutHandler = () => {
+    setButtonActive(false);
+    navigation.navigate("CountDownPage");
+  };
+
+
   return (
-    <View>
-      <View>
-        <Text style={styles.h1}>QUIZZY.NEWS</Text>
-        <Text>
+    <View style={styles.screen}>
+      <View style={styles.container1}>
+        <Text style={styles.title}>Quizzy.News</Text>
+        <Text style={styles.subH1}>
           a daily quiz game on current events{"\n"}
           from stories published very recently
         </Text>
       </View>
-      <View>
-        <Text>
+      <View style={styles.container2}>
+        <Text style={styles.h2}>
           Ready?
         </Text>
         <Pressable
-          onPress={() => navigation.navigate("CountDownPage")}
-          title={"PLAY"}
+          onPressIn={pressInHandler}
+          onPressOut={pressOutHandler}
+          style={buttonActive ? styles.buttonActive : styles.button}
         >
+          <Text style={styles.buttonText}>Play</Text>
         </Pressable>
       </View>
-      <View>
-        <View />
+      <View style={styles.container3}>
+        <View style={styles.divider} />
         <Text
           onPress={() => navigation.navigate('AboutModal')}
+          style={styles.subH2}
         >ABOUT</Text>
-        <Text>QUIZZY.NEWS</Text>
-        <Text>
+        <Text style={styles.subH2}>QUIZZY.NEWS</Text>
+        <Text style={styles.footer}>
           Ⓒ 2022 EMISQWE
         </Text>
       </View>
@@ -37,14 +53,66 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  h1: {
-    ...Typography.h1,
-    ...Colors.fontColors.darkBlue
+  title: {
+    ...Typography.title,
+    ...Colors.fontColors.gray4,
+    paddingTop: 20,
+  },
+  subH1: {
+    ...Typography.subH1,
+    ...Colors.fontColors.gray4
   },
   h2: {
-    fontFamily: "LexendBold"
-  }
-
+    ...Typography.h2,
+    ...Colors.fontColors.gray4
+  },
+  button: {
+    ...Colors.backgroundColors.lightBlue,
+    ...Colors.shadowColors.darkBlue,
+    ...Buttons.button,
+  },
+  buttonActive: {
+    ...Colors.backgroundColors.lightBlue,
+    ...Buttons.buttonActive,
+  },
+  divider: {
+    ...Colors.backgroundColors.gray2,
+    height: 1,
+    marginBottom: 10
+  },
+  subH2: {
+    ...Typography.subH1,
+    ...Colors.fontColors.gray2,
+    fontSize: 16,
+    paddingLeft: 10,
+    paddingTop: 5,
+  },
+  footer: {
+    ...Typography.subH2,
+    ...Colors.fontColors.gray2,
+    fontSize: 12,
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 15,
+  },
+  buttonText: {
+    ...Typography.buttonText,
+    color: "white",
+  },
+  screen: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
+  },
+  container1: {
+    padding: 10
+  },
+  container2: {
+    padding: 10,
+  },
+  container3: {
+  },
 });
 
 

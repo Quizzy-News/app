@@ -1,19 +1,10 @@
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { Colors, Buttons, Typography } from "../styles"
+import { Buttons, Colors, Containers, Typography } from "../styles"
 
 export default function Home({ navigation }) {
 
   const [ buttonActive, setButtonActive ] = useState(false);
-
-  const pressInHandler = () => {
-    setButtonActive(true);
-  };
-
-  const pressOutHandler = () => {
-    setButtonActive(false);
-    navigation.navigate("CountDownPage");
-  };
 
 
   return (
@@ -30,8 +21,13 @@ export default function Home({ navigation }) {
           Ready?
         </Text>
         <Pressable
-          onPressIn={pressInHandler}
-          onPressOut={pressOutHandler}
+          onPressIn={() => {
+            setButtonActive(true);
+          }}
+          onPressOut={() => {
+            setButtonActive(false);
+            navigation.navigate("CountDownPage");
+          }}
           style={buttonActive ? styles.buttonActive : styles.button}
         >
           <Text style={styles.buttonText}>Play</Text>
@@ -70,10 +66,14 @@ const styles = StyleSheet.create({
     ...Colors.backgroundColors.lightBlue,
     ...Colors.shadowColors.darkBlue,
     ...Buttons.button,
+    height: 50,
+    marginTop: 20,
   },
   buttonActive: {
     ...Colors.backgroundColors.lightBlue,
     ...Buttons.buttonActive,
+    height: 50,
+    marginTop: 20,
   },
   divider: {
     ...Colors.backgroundColors.gray2,
@@ -100,10 +100,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   screen: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    ...Containers.screenBetween
   },
   container1: {
     padding: 10
@@ -114,68 +111,3 @@ const styles = StyleSheet.create({
   container3: {
   },
 });
-
-
-// screenContainer: {
-//   flex: 1,
-//     backgroundColor: "#fff",
-//       justifyContent: "flex-start",
-//         alignItems: "stretch",
-//   },
-// topContainer: {
-//   flex: 2,
-//     backgroundColor: "#fff",
-//       justifyContent: "flex-start",
-//         alignItems: "center",
-//           marginBottom: 50,
-//   },
-// middleContainer: {
-//   flex: 6,
-//     backgroundColor: "#fff",
-//       justifyContent: "center",
-//         alignItems: "center",
-//   },
-// secondContainer: {
-//   marginTop: 30,
-//     alignItems: "center",
-//       justifyContent: "center",
-//   },
-// bottomContainer: {
-//   marginTop: 20,
-//     flex: 1,
-//       backgroundColor: "#fff",
-//         justifyContent: "flex-end",
-//           alignItems: "flex-start",
-//   },
-// topTextSecondary: {
-//   fontFamily: "Lexend",
-//     fontSize: 14,
-//       marginLeft: -80,
-//   },
-// middleText: {
-//   fontFamily: "Lexend",
-//     fontSize: 14,
-//       marginLeft: -270,
-//         marginTop: -40,
-//   },
-// playButton: {
-//   width: 350,
-//     marginTop: 10,
-//       backgroundColor: "#80C9FA",
-//         alignItems: "center",
-//           borderRadius: 6,
-//     // shadowColor: '#53ADF0',
-//     // shadowOffset: { width: 0, height: 12 }
-//   },
-// playButtonText: {
-//   fontFamily: "Lexend",
-//     fontSize: 35,
-//       paddingVertical: 3,
-//         color: "#fff",
-//   },
-// bottomText: {
-//   fontFamily: "Lexend",
-//     fontSize: 12,
-//       color: "#909090",
-//         marginLeft: 40,
-//   },

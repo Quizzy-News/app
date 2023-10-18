@@ -41,7 +41,7 @@ export const body2 = {
 
 export const body3 = {
     fontFamily: "FuturaMedium",
-    fontSize: 22,
+    fontSize: 20,
 };
 
 export const buttonText = {

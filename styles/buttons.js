@@ -1,5 +1,4 @@
 export const button = {
-    height: 50,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -7,15 +6,55 @@ export const button = {
     shadowOffset: { height: 10 },
     shadowOpacity: 1,
     shadowRadius: 0,
-    marginTop: 20,
 };
 
 export const buttonActive = {
     top: 10,
-    height: 50,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    marginTop: 20,
+};
+
+export const smallButton = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    shadowOffset: { height: 5 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    padding: 1,
+    height: 40,
+    width: 50,
+};
+
+export const smallButtonActive = {
+    top: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    padding: 1,
+    height: 40,
+    width: 50,
+};
+
+export const answerButton = {
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    borderRadius: 5,
+    shadowOffset: { height: 8 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    padding: 20,
+};
+
+export const answerButtonActive = {
+    top: 8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
 };

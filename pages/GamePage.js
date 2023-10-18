@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
-import { Feather, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 import data from "../data.json";
@@ -17,13 +17,12 @@ export default function GamePage({ navigation }) {
   const [userRecord, setUserRecord] = useState([]);
   const [inProgress, setInProgress] = useState(true);
 
-  const [button1State, setButton1State] = useState("Disabled");
+  const [button1State, setButton1State] = useState("Idle");
   const [button2State, setButton2State] = useState("Idle");
   const [button3State, setButton3State] = useState("Idle");
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
 
-  // timer animation
   const timerFramesImport = require.context('../assets/timer-frames', true);
   const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
 
@@ -59,25 +58,33 @@ export default function GamePage({ navigation }) {
   }
 
   const handlePressIn = (choice, currentQuestion) => {
-
-    // if (currentQuestion === 0) {
-    //   setButton1State("Active");
-    //   setButton2State("Disabled");
-    //   setButton3State("Disabled");
-    // } else if (currentQuestion === 1) {
-    //   setButton1State("Disabled");
-    //   setButton2State("Active");
-    //   setButton3State("Disabled");
-    // } else if (currentQuestion === 2) {
-    //   setButton1State("Disabled");
-    //   setButton2State("Disabled");
-    //   setButton3State("Active");
-    // };
+    let index = choices.indexOf(choice);
+    
+    switch (index) {
+      case 0:
+        setButton1State("Active");
+        setButton2State("Disabled");
+        setButton3State("Disabled");
+        break;
+      case 1:
+        setButton1State("Disabled");
+        setButton2State("Active");
+        setButton3State("Disabled");
+        break;
+      case 2:
+        setButton1State("Disabled");
+        setButton2State("Disabled");
+        setButton3State("Active");
+        break;
+      default:
+        break;
+    };
 
   };
 
   const handlePressOut = (choice, currentQuestion) => {
-    console.log('question #:' + `${currentQuestion}`)
+    console.log('CHOICE:', choice)
+    console.log('question #:', currentQuestion)
     console.log(question.answer);
     if (choice === question.answer) {
       handleRecord("correct");
@@ -88,6 +95,9 @@ export default function GamePage({ navigation }) {
 
     if (currentQuestion + 1 < data.length) {
       setCurrentQuestion(currentQuestion + 1);
+      setButton1State("Idle");
+      setButton2State("Idle");
+      setButton3State("Idle");
     } else {
       // Note: Trigger navigation from useEffect hook to ensure State updates
 
@@ -139,20 +149,20 @@ export default function GamePage({ navigation }) {
             </Text>
           </Pressable>
           <Pressable
-            style={styles.answerIdle}
+            style={styles[`answer${button2State}`]}
             onPressIn={() => handlePressIn(choices[1], currentQuestion)}
             onPressOut={() => handlePressOut(choices[1], currentQuestion)}
           >
-            <Text style={styles.answerText}>
+            <Text style={styles[`answerText${button2State}`]}>
               {choices[1]}
             </Text>
           </Pressable>
           <Pressable
-            style={styles.answerIdle}
+            style={styles[`answer${button3State}`]}
             onPressIn={() => handlePressIn(choices[2], currentQuestion)}
             onPressOut={() => handlePressOut(choices[2], currentQuestion)}
           >
-            <Text style={styles.answerText}>
+            <Text style={styles[`answerText${button3State}`]}>
               {choices[2]}
             </Text>
           </Pressable>

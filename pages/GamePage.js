@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { Feather, AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import data from "../data.json";
 
@@ -21,6 +22,10 @@ export default function GamePage({ navigation }) {
   const [button3State, setButton3State] = useState("Idle");
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
+
+  const timerFramesImport = require.context('../assets/timer-frames', true);
+  const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
+
 
 
   useEffect(() => {
@@ -66,7 +71,7 @@ export default function GamePage({ navigation }) {
       setButton1State("disabled");
       setButton2State("disabled");
       setButton3State("active");
-    }
+    };
 
   };
 
@@ -113,7 +118,7 @@ export default function GamePage({ navigation }) {
         </View>
         <View style={styles.scoreHeader}>
           <Text style={styles.headerIndex}>1/5</Text>
-          <Text >{countdown}</Text>
+          <Image source={timerFrames[countdown]} style={styles.timer}/>
           <Text style={styles.headerScore}>{score}</Text>
         </View>
       </View>
@@ -226,6 +231,11 @@ const styles = StyleSheet.create({
   headerIndex: {
     ...Typography.subH2,
     color: "white",
+  },
+  timer: {
+    height: 60,
+    width: 60,
+
   },
   headerScore: {
     ...Typography.subH1,

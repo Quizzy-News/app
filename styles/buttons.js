@@ -49,12 +49,19 @@ export const answerButton = {
     shadowOpacity: 1,
     shadowRadius: 0,
     padding: 20,
+    width: "100%",
+    height: 80,
+    marginTop: 15,
 };
 
 export const answerButtonActive = {
     top: 8,
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
     borderRadius: 5,
+    padding: 20,
+    width: "100%",
+    height: 80,
+    marginTop: 15,
 };

@@ -17,12 +17,13 @@ export default function GamePage({ navigation }) {
   const [userRecord, setUserRecord] = useState([]);
   const [inProgress, setInProgress] = useState(true);
 
-  const [button1State, setButton1State] = useState("Active");
+  const [button1State, setButton1State] = useState("Disabled");
   const [button2State, setButton2State] = useState("Idle");
   const [button3State, setButton3State] = useState("Idle");
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
 
+  // timer animation
   const timerFramesImport = require.context('../assets/timer-frames', true);
   const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
 
@@ -59,19 +60,19 @@ export default function GamePage({ navigation }) {
 
   const handlePressIn = (choice, currentQuestion) => {
 
-    if (currentQuestion === 0) {
-      setButton1State("active");
-      setButton2State("disabled");
-      setButton3State("disabled");
-    } else if (currentQuestion === 1) {
-      setButton1State("disabled");
-      setButton2State("active");
-      setButton3State("disabled");
-    } else if (currentQuestion === 2) {
-      setButton1State("disabled");
-      setButton2State("disabled");
-      setButton3State("active");
-    };
+    // if (currentQuestion === 0) {
+    //   setButton1State("Active");
+    //   setButton2State("Disabled");
+    //   setButton3State("Disabled");
+    // } else if (currentQuestion === 1) {
+    //   setButton1State("Disabled");
+    //   setButton2State("Active");
+    //   setButton3State("Disabled");
+    // } else if (currentQuestion === 2) {
+    //   setButton1State("Disabled");
+    //   setButton2State("Disabled");
+    //   setButton3State("Active");
+    // };
 
   };
 
@@ -133,7 +134,7 @@ export default function GamePage({ navigation }) {
             onPressIn={() => handlePressIn(choices[0], currentQuestion)}
             onPressOut={() => handlePressOut(choices[0], currentQuestion)}
           >
-            <Text style={styles.answerText}>
+            <Text style={styles[`answerText${button1State}`]}>
               {choices[0]}
             </Text>
           </Pressable>
@@ -201,19 +202,45 @@ const styles = StyleSheet.create({
   },
   answerIdle: {
     ...Buttons.answerButton,
-    backgroundColor: "white",
+    ...Colors.backgroundColors.white,
     shadowColor: "#00000015",
-    width: "100%",
-    height: 80,
-    marginTop: 15,
+  },
+  answerTextIdle: {
+    ...Typography.body3,
+    ...Colors.fontColors.gray4,
   },
   answerActive: {
-    ...Buttons.answerButton,
-    width: "100%",
-    height: 80,
-    marginTop: 15,
+    ...Buttons.answerButtonActive,
+    ...Colors.backgroundColors.darkBlue,
   },
-  answerText: {
+  answerTextActive: {
+    ...Typography.body3,
+    ...Colors.fontColors.white,
+  },
+  answerCorrect: {
+    ...Buttons.answerButton,
+    ...Colors.backgroundColors.darkGreen,
+    ...Colors.shadowColors.darkerGreen,
+  },
+  answerTextCorrect: {
+    ...Typography.body3,
+    ...Colors.fontColors.lightGreen,
+  },
+  answerIncorrect: {
+    ...Buttons.answerButton,
+    ...Colors.backgroundColors.darkRed,
+    ...Colors.shadowColors.darkerRed,
+  },
+  answerTextIncorrect: {
+    ...Typography.body3,
+    ...Colors.fontColors.lightRed,
+  },
+  answerDisabled: {
+    ...Buttons.answerButton,
+    ...Colors.backgroundColors.gray2,
+    ...Colors.shadowColors.gray3,
+  },
+  answerTextDisabled: {
     ...Typography.body3,
     ...Colors.fontColors.gray4,
   },

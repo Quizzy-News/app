@@ -14,6 +14,8 @@ export const fontColors = {
     lightGreen: {color: "#DEFEBF"},
     darkGreen: {color: "#78C93C"},
     darkerGreen: {color: "#6BA530"},
+    white: { color: "#FFFFFF" },
+
 };
 
 export const backgroundColors = {
@@ -32,6 +34,7 @@ export const backgroundColors = {
     lightGreen: { backgroundColor: "#DEFEBF" },
     darkGreen: { backgroundColor: "#78C93C" },
     darkerGreen: { backgroundColor: "#6BA530" },
+    white: { backgroundColor: "#FFFFFF" },
 };
 
 export const shadowColors = {
@@ -50,4 +53,5 @@ export const shadowColors = {
     lightGreen: { shadowColor: "#DEFEBF" },
     darkGreen: { shadowColor: "#78C93C" },
     darkerGreen: { shadowColor: "#6BA530" },
+    white: { shadowColor: "#FFFFFF" },
 };

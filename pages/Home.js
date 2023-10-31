@@ -1,134 +1,113 @@
-import { StatusBar } from "expo-status-bar";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useFonts } from "expo-font";
-import { NavigationContainer } from "@react-navigation/native";
-import { createAppContainer } from "@react-navigation/native";
-import { styled } from "nativewind";
-// const StyledView = styled(View);
-const StyledText = styled(Text);
+import { Pressable, Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Buttons, Colors, Containers, Typography } from "../styles"
 
 export default function Home({ navigation }) {
-  const [loaded] = useFonts({
-    KGHappy: require("../assets/fonts/KGHAPPY.ttf"),
-    Lexend: require("../assets/fonts/Lexend-VariableFont_wght.ttf"),
-    Jost: require("../assets/fonts/Jost-VariableFont_wght.ttf"),
-  });
 
-  if (!loaded) {
-    return null;
-  }
+  const [ buttonActive, setButtonActive ] = useState(false);
 
-  const pressHandler = () => {
-    navigation.navigate("CountDownPage");
-  };
+
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.topContainer}>
-        <Text style={styles.topTextPrimary}>QUIZZY.NEWS</Text>
-      </View>
-      <View style={styles.secondContainer}>
-        <Text style={styles.topTextSecondary}>
-          a daily quiz game on current events
-        </Text>
-        <Text style={styles.topTextSecondary}>
+    <View style={styles.screen}>
+      <View style={styles.container1}>
+        <Text style={styles.title}>Quizzy.News</Text>
+        <Text style={styles.subH1}>
+          a daily quiz game on current events{"\n"}
           from stories published very recently
         </Text>
       </View>
-      <View style={styles.middleContainer}>
-        <Text style={styles.middleText}>Ready?</Text>
-        <Pressable style={styles.playButton} onPress={pressHandler}>
-          <StyledText
-            className="text-white text-[35px] font-bold tracking-[4px]"
-          >
-            PLAY
-          </StyledText>
+      <View style={styles.container2}>
+        <Text style={styles.h2}>
+          Ready?
+        </Text>
+        <Pressable
+          onPressIn={() => {
+            setButtonActive(true);
+          }}
+          onPressOut={() => {
+            setButtonActive(false);
+            navigation.navigate("CountDownPage");
+          }}
+          style={buttonActive ? styles.buttonActive : styles.button}
+        >
+          <Text style={styles.buttonText}>Play</Text>
         </Pressable>
       </View>
-      <View
-        style={{
-          borderBottomColor: "#909090",
-          borderBottomWidth: StyleSheet.hairlineWidth,
-          marginBottom: 15,
-        }}
-      />
-      <View style={styles.bottomContainer}>
-        <Text style={styles.bottomText}>QUIZZY.NEWS</Text>
-        <Text style={styles.bottomText}>ABOUT</Text>
-        <Text style={[styles.bottomText, { marginBottom: 20 }]}>
+      <View style={styles.container3}>
+        <View style={styles.divider} />
+        <Text
+          onPress={() => navigation.navigate('AboutModal')}
+          style={styles.subH2}
+        >ABOUT</Text>
+        <Text style={styles.subH2}>QUIZZY.NEWS</Text>
+        <Text style={styles.footer}>
           Ⓒ 2022 EMISQWE
         </Text>
       </View>
-    </View>
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "flex-start",
-    alignItems: "stretch",
+  title: {
+    ...Typography.title,
+    ...Colors.fontColors.gray4,
+    paddingTop: 20,
   },
-  topContainer: {
-    flex: 2,
-    backgroundColor: "#fff",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: 50,
+  subH1: {
+    ...Typography.subH1,
+    ...Colors.fontColors.gray4
   },
-  middleContainer: {
-    flex: 6,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
+  h2: {
+    ...Typography.h2,
+    ...Colors.fontColors.gray4
   },
-  secondContainer: {
-    marginTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  bottomContainer: {
+  button: {
+    ...Colors.backgroundColors.lightBlue,
+    ...Colors.shadowColors.darkBlue,
+    ...Buttons.button,
+    height: 50,
     marginTop: 20,
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
   },
-  topTextPrimary: {
-    fontFamily: "KGHappy",
-    fontSize: 46,
-    marginTop: 70,
+  buttonActive: {
+    ...Colors.backgroundColors.lightBlue,
+    ...Buttons.buttonActive,
+    height: 50,
+    marginTop: 20,
   },
-  topTextSecondary: {
-    fontFamily: "Lexend",
-    fontSize: 14,
-    marginLeft: -80,
+  divider: {
+    ...Colors.backgroundColors.gray2,
+    height: 1,
+    marginBottom: 10
   },
-  middleText: {
-    fontFamily: "Lexend",
-    fontSize: 14,
-    marginLeft: -270,
-    marginTop: -40,
+  subH2: {
+    ...Typography.subH1,
+    ...Colors.fontColors.gray2,
+    fontSize: 16,
+    paddingLeft: 10,
+    paddingTop: 5,
   },
-  playButton: {
-    width: 350,
-    marginTop: 10,
-    backgroundColor: "#80C9FA",
-    alignItems: "center",
-    borderRadius: 6,
-    // shadowColor: '#53ADF0',
-    // shadowOffset: { width: 0, height: 12 }
-  },
-  playButtonText: {
-    fontFamily: "Lexend",
-    fontSize: 35,
-    paddingVertical: 3,
-    color: "#fff",
-  },
-  bottomText: {
-    fontFamily: "Lexend",
+  footer: {
+    ...Typography.subH2,
+    ...Colors.fontColors.gray2,
     fontSize: 12,
-    color: "#909090",
-    marginLeft: 40,
+    paddingLeft: 10,
+    paddingTop: 5,
+    paddingBottom: 15,
+  },
+  buttonText: {
+    ...Typography.buttonText,
+    color: "white",
+  },
+  screen: {
+    ...Containers.screenBetween
+  },
+  container1: {
+    padding: 10
+  },
+  container2: {
+    padding: 10,
+  },
+  container3: {
   },
 });

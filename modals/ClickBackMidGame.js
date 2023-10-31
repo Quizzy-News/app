@@ -1,6 +1,6 @@
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { Colors, Buttons, Typography } from "../styles";
+import { Colors, Buttons, Typography, Containers } from "../styles";
 
 const ClickBackMidGame = ( { navigation }) => {
     
@@ -17,6 +17,8 @@ const ClickBackMidGame = ( { navigation }) => {
             
             {/* Button: Yes, go back  */}
             <Pressable 
+                style={styles.button}
+                
                 onPressIn= {() => {
                     setButtonActive(true);
                     
@@ -26,13 +28,15 @@ const ClickBackMidGame = ( { navigation }) => {
                     navigation.navigate("Home");
                 }}
           
-                style={buttonActive ? styles.buttonActive : styles.button}
+
             >
-            <Text style={styles.buttonText}>Yes, go back.</Text>
+            <Text style={styles.text}>Yes, go back.</Text>
             </Pressable>
             
             {/* Button: No, continue playing  */}
             <Pressable 
+                style={styles.button}
+                
                 onPressIn= {() => {
                     setButtonActive(true);
                 }}
@@ -41,9 +45,9 @@ const ClickBackMidGame = ( { navigation }) => {
                     navigation.goBack();
                 }}
           
-                style={buttonActive ? styles.buttonActive : styles.button}
+
             >
-            <Text style={styles.buttonText}>No, continue playing!</Text>
+            <Text style={styles.text}>No, continue playing!</Text>
             </Pressable>
 
         </View>
@@ -62,14 +66,16 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    x: {
-        position: "absolute",
-        top: 100,
-        right: 20,
-    },
     text: {
         ...Colors.fontColors.gray4,
         ...Typography.body1,
         padding: 10,
+    },
+    button: {
+        ...Colors.backgroundColors.white,
+        ...Colors.shadowColors.gray1,
+        ...Buttons.button,
+        ...Buttons.buttonActive,
+        margin: 10,
     }
 });

@@ -112,6 +112,7 @@ export default function GamePage({ navigation }) {
 
   return (
     <View style={styles.screen}>
+
       <View style={styles.header}>
         <View style={styles.exit}>
           <Pressable
@@ -133,10 +134,12 @@ export default function GamePage({ navigation }) {
           <Text style={styles.headerScore}>{score}</Text>
         </View>
       </View>
+
       <View style={styles.container1}>
         <Text style={styles.question}>
           {question.question}
         </Text>
+
         {/* Write unique id for json  */}
         <View style={styles.answerContainer}>
           <Pressable
@@ -148,6 +151,7 @@ export default function GamePage({ navigation }) {
               {choices[0]}
             </Text>
           </Pressable>
+
           <Pressable
             style={styles[`answer${button2State}`]}
             onPressIn={() => handlePressIn(choices[1], currentQuestion)}
@@ -157,6 +161,7 @@ export default function GamePage({ navigation }) {
               {choices[1]}
             </Text>
           </Pressable>
+
           <Pressable
             style={styles[`answer${button3State}`]}
             onPressIn={() => handlePressIn(choices[2], currentQuestion)}
@@ -168,6 +173,7 @@ export default function GamePage({ navigation }) {
           </Pressable>
         </View>
       </View>
+      
       <View style={styles.footer}>
         <View style={styles.divider} />
         <Text style={styles.footText1}>QUIZZY.NEWS</Text>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import ClickBackMidGame from '../modals/ClickBackMidGame';
 
 import data from "../data.json";
 
@@ -120,7 +120,7 @@ export default function GamePage({ navigation }) {
             }}
             onPressOut={() => {
               setExitButtonActive(false);
-              // navigation.navigate("Home");
+              navigation.navigate("ClickBackMidGame");
             }}
             style={exitButtonActive ? styles.buttonActive : styles.button}
           >

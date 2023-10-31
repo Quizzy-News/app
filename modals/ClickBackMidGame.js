@@ -4,7 +4,8 @@ import { Colors, Buttons, Typography, Containers } from "../styles";
 
 const ClickBackMidGame = ( { navigation }) => {
     
-    const [ buttonActive, setButtonActive ] = useState(false);
+    const [ yesButtonActive, setYesButtonActive ] = useState(false);
+    const [ noButtonActive, setNoButtonActive ] = useState(false);
 
     return (
         <View style={styles.screen}>
@@ -17,35 +18,31 @@ const ClickBackMidGame = ( { navigation }) => {
             
             {/* Button: Yes, go back  */}
             <Pressable 
-                style={styles.button}
+                style={yesButtonActive ? styles.buttonActive : styles.button}
                 
                 onPressIn= {() => {
-                    setButtonActive(true);
+                    setYesButtonActive(true);
                     
                 }}
                 onPressOut= {() => {
-                    setButtonActive(false);
+                    setYesButtonActive(false);
                     navigation.navigate("Home");
                 }}
-          
-
             >
             <Text style={styles.text}>Yes, go back.</Text>
             </Pressable>
             
             {/* Button: No, continue playing  */}
             <Pressable 
-                style={styles.button}
+                style={noButtonActive ? styles.buttonActive : styles.button}
                 
                 onPressIn= {() => {
-                    setButtonActive(true);
+                    setNoButtonActive(true);
                 }}
                 onPressOut= {() => {
-                    setButtonActive(false);
+                    setNoButtonActive(false);
                     navigation.goBack();
                 }}
-          
-
             >
             <Text style={styles.text}>No, continue playing!</Text>
             </Pressable>
@@ -75,7 +72,11 @@ const styles = StyleSheet.create({
         ...Colors.backgroundColors.white,
         ...Colors.shadowColors.gray1,
         ...Buttons.button,
-        ...Buttons.buttonActive,
         margin: 10,
+    },
+    buttonActive: {
+        ...Colors.backgroundColors.white,
+        ...Buttons.buttonActive,
+        margin: 10
     }
 });

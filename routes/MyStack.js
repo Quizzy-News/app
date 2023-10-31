@@ -5,6 +5,7 @@ import CountDownPage from '../pages/CountDownPage';
 import GamePage from '../pages/GamePage';
 import ScorePage from '../pages/ScorePage';
 import AboutModal from '../modals/About';
+import ClickBackMidGame from '../modals/ClickBackMidGame';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ function MyStack() {
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="AboutModal" component={AboutModal} />
+        <Stack.Screen name="ClickBackMidGame" component={ClickBackMidGame} />
       </Stack.Group>
     </Stack.Navigator>
   );

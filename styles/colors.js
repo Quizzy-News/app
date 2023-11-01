@@ -48,6 +48,7 @@ export const shadowColors = {
     darkRed: { shadowColor: "#EE807C" },
     darkerRed: { shadowColor: "#E95750" },
     lightPurple: { shadowColor: "#DED1E4" },
+    darkPurple: {shadowColor: "#BEB2C2"},
     lightBlue: { shadowColor: "#80C9FA" },
     darkBlue: { shadowColor: "#53ADF0" },
     lightGreen: { shadowColor: "#DEFEBF" },

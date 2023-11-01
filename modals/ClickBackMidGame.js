@@ -26,7 +26,8 @@ const ClickBackMidGame = ( { navigation }) => {
                 }}
                 onPressOut= {() => {
                     setYesButtonActive(false);
-                    navigation.navigate("Home");
+                    navigation.navigate("Home"); 
+                    // TODO: Ensure that score is resetting to 0 when redirected to home
                 }}
             >
             <Text style={styles.text}>Yes, go back.</Text>
@@ -70,10 +71,24 @@ const styles = StyleSheet.create({
     },
     button: {
         ...Colors.backgroundColors.white,
-        ...Colors.shadowColors.gray1,
         ...Buttons.button,
         margin: 10,
-    },
+        borderBottomWidth: 5,
+        borderColor: Colors.shadowColors.gray1,
+        //    elevation:30,
+        //  shadowRadius: 15,
+        //  shadowOffset : { width: 1, height: 13},
+         
+        },
+        pressableArea:{
+        flexDirection:"row",
+        justifyContent: 'center',
+         alignItems: 'center',
+        width:"100%",
+        height:"100%"
+     
+        }
+    ,
     buttonActive: {
         ...Colors.backgroundColors.white,
         ...Buttons.buttonActive,

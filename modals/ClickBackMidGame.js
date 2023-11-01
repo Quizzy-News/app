@@ -1,7 +1,10 @@
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { Pressable, Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { Colors, Buttons, Typography, Containers } from "../styles";
 
+// TODO: Ensure that score is resetting to 0 when redirected to home
+// TODO: Button needs to "pop" back up before redirecting
+// TODO: Styling - add dark purple shadow / dark purple container? 
 const ClickBackMidGame = ( { navigation }) => {
     
     const [ yesButtonActive, setYesButtonActive ] = useState(false);
@@ -22,15 +25,16 @@ const ClickBackMidGame = ( { navigation }) => {
                 
                 onPressIn= {() => {
                     setYesButtonActive(true);
+
                     
                 }}
                 onPressOut= {() => {
-                    setYesButtonActive(false);
-                    navigation.navigate("Home"); 
-                    // TODO: Ensure that score is resetting to 0 when redirected to home
+                    setNoButtonActive(false);
+                    navigation.navigate("Home");
                 }}
             >
-            <Text style={styles.text}>Yes, go back.</Text>
+
+                <Text style={styles.text}>Yes, go back.</Text>
             </Pressable>
             
             {/* Button: No, continue playing  */}
@@ -73,25 +77,11 @@ const styles = StyleSheet.create({
         ...Colors.backgroundColors.white,
         ...Buttons.button,
         margin: 10,
-        borderBottomWidth: 5,
-        borderColor: Colors.shadowColors.gray1,
-        //    elevation:30,
-        //  shadowRadius: 15,
-        //  shadowOffset : { width: 1, height: 13},
-         
-        },
-        pressableArea:{
-        flexDirection:"row",
-        justifyContent: 'center',
-         alignItems: 'center',
-        width:"100%",
-        height:"100%"
-     
-        }
-    ,
+    },
+    
     buttonActive: {
         ...Colors.backgroundColors.white,
         ...Buttons.buttonActive,
-        margin: 10
+        margin: 10,
     }
 });

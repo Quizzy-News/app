@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ClickBackMidGame from '../modals/ClickBackMidGame';
-
 import data from "../data.json";
+import ChoiceButton from "./ChoiceButton";
 
-export default function GamePage({ navigation }) {
+// GamePage is the container for questions and answer buttons. Handles game and points
+
+const GamePage = ( { navigation }) =>  {
 
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -173,7 +174,7 @@ export default function GamePage({ navigation }) {
           </Pressable>
         </View>
       </View>
-      
+
       <View style={styles.footer}>
         <View style={styles.divider} />
         <Text style={styles.footText1}>QUIZZY.NEWS</Text>
@@ -184,6 +185,8 @@ export default function GamePage({ navigation }) {
     </View >
   );
 };
+
+export default GamePage;
 
 const styles = StyleSheet.create({
   screen: {

@@ -5,6 +5,7 @@ import { Colors, Buttons, Typography, Containers } from "../styles";
 // TODO: Ensure that score is resetting to 0 when redirected to home
 // TODO: Button needs to "pop" back up before redirecting
 // TODO: Styling - add dark purple shadow / dark purple container? 
+
 const ClickBackMidGame = ( { navigation }) => {
     
     const [ yesButtonActive, setYesButtonActive ] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import data from "../data.json";
+import sampleQuiz from "../sampleQuiz.json";
 import ChoiceButton from "./ChoiceButton";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
@@ -12,15 +12,15 @@ const GamePage = ( { navigation }) =>  {
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [question, setQuestion] = useState(data);
+  const [question, setQuestion] = useState(sampleQuiz);
   const [score, setScore] = useState(0);
-  const [choices, setChoices] = useState([]);
+  const [choices, setChoices] = useState([]); // TODO: How do I map a single element to each Pressable component without hardcoding the indices?
   const [userRecord, setUserRecord] = useState([]);
   const [inProgress, setInProgress] = useState(true);
 
-  const [button1State, setButton1State] = useState("Idle");
-  const [button2State, setButton2State] = useState("Idle");
-  const [button3State, setButton3State] = useState("Idle");
+  const [firstChoice, setFirstChoice] = useState("Idle");
+  const [secondChoice, setSecondChoice] = useState("Idle");
+  const [thirdChoice, setThirdChoice] = useState("Idle");
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
 
@@ -28,10 +28,38 @@ const GamePage = ( { navigation }) =>  {
   const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
 
 
+  // getChoiceState() reads the current state of choices and returns the appropriate state respectively.
+  const getChoiceState = ((index)=>{
+    switch(index) {
+      case 0:
+        return firstChoice;
+      case 1:
+        return secondChoice;
+      case 2:
+        return thirdChoice;
+      default:
+        return "Idle";
+    };
+  });
+  
+  useEffect(() => {
+    // Assuming sampleQuiz[currentQuestion] is not undefined
+    const newQuestion = sampleQuiz[currentQuestion];
+    const newChoices = newQuestion.choices;
+  
+    // Only update if there's a change
+    if (question !== newQuestion) {
+      setQuestion(newQuestion);
+    }
+  
+    if (choices.join('') !== newChoices.join('')) {
+      setChoices(newChoices);
+    }
+  }, [currentQuestion]);
 
   useEffect(() => {
-    setQuestion(data[currentQuestion]);
-    setChoices([...data[currentQuestion].choices]);
+    setQuestion(sampleQuiz[currentQuestion]);
+    setChoices([...sampleQuiz[currentQuestion].choices]);
 
 
     if (countdown === 0) {
@@ -63,19 +91,19 @@ const GamePage = ( { navigation }) =>  {
     
     switch (index) {
       case 0:
-        setButton1State("Active");
-        setButton2State("Disabled");
-        setButton3State("Disabled");
+        setFirstChoice("Active");
+        setSecondChoice("Disabled");
+        setThirdChoice("Disabled");
         break;
       case 1:
-        setButton1State("Disabled");
-        setButton2State("Active");
-        setButton3State("Disabled");
+        setFirstChoice("Disabled");
+        setSecondChoice("Active");
+        setThirdChoice("Disabled");
         break;
       case 2:
-        setButton1State("Disabled");
-        setButton2State("Disabled");
-        setButton3State("Active");
+        setFirstChoice("Disabled");
+        setSecondChoice("Disabled");
+        setThirdChoice("Active");
         break;
       default:
         break;
@@ -83,6 +111,7 @@ const GamePage = ( { navigation }) =>  {
 
   };
 
+  // TODO: Separate these into four helper functions. 
   const handlePressOut = (choice, currentQuestion) => {
     console.log('CHOICE:', choice)
     console.log('question #:', currentQuestion)
@@ -94,11 +123,11 @@ const GamePage = ( { navigation }) =>  {
       handleRecord("incorrect");
     }
 
-    if (currentQuestion + 1 < data.length) {
+    if (currentQuestion + 1 < sampleQuiz.length) {
       setCurrentQuestion(currentQuestion + 1);
-      setButton1State("Idle");
-      setButton2State("Idle");
-      setButton3State("Idle");
+      setFirstChoice("Idle");
+      setSecondChoice("Idle");
+      setThirdChoice("Idle");
     } else {
       // Note: Trigger navigation from useEffect hook to ensure State updates
 
@@ -143,32 +172,41 @@ const GamePage = ( { navigation }) =>  {
 
         {/* Write unique id for json  */}
         <View style={styles.answerContainer}>
+            {/* {choices.map((choice, index) => {
+              <ChoiceButton
+                key= {index} // Used by React under the hood.
+                choice={choice}
+                onPressIn={handlePressIn(choice, currentQuestion)}
+                onPressOut={handlePressOut(choice, currentQuestion)}
+                choiceState={getChoiceState(index)}
+              />
+            })} */}
           <Pressable
-            style={styles[`answer${button1State}`]}
+            style={styles[`answer${firstChoice}`]}
             onPressIn={() => handlePressIn(choices[0], currentQuestion)}
             onPressOut={() => handlePressOut(choices[0], currentQuestion)}
           >
-            <Text style={styles[`answerText${button1State}`]}>
+            <Text style={styles[`answerText${firstChoice}`]}>
               {choices[0]}
             </Text>
           </Pressable>
 
           <Pressable
-            style={styles[`answer${button2State}`]}
+            style={styles[`answer${secondChoice}`]}
             onPressIn={() => handlePressIn(choices[1], currentQuestion)}
             onPressOut={() => handlePressOut(choices[1], currentQuestion)}
           >
-            <Text style={styles[`answerText${button2State}`]}>
+            <Text style={styles[`answerText${secondChoice}`]}>
               {choices[1]}
             </Text>
           </Pressable>
 
           <Pressable
-            style={styles[`answer${button3State}`]}
+            style={styles[`answer${thirdChoice}`]}
             onPressIn={() => handlePressIn(choices[2], currentQuestion)}
             onPressOut={() => handlePressOut(choices[2], currentQuestion)}
           >
-            <Text style={styles[`answerText${button3State}`]}>
+            <Text style={styles[`answerText${thirdChoice}`]}>
               {choices[2]}
             </Text>
           </Pressable>

@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import sampleQuiz from "../sampleQuiz.json";
-import ChoiceButton from "./ChoiceButton";
+import ChoiceButton from "./ChoiceDisplay";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
-const GamePage = ( { navigation }) =>  {
+export default function GamePage ( { navigation }) {
 
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0); // int represents index 
@@ -224,7 +224,6 @@ const GamePage = ( { navigation }) =>  {
   );
 };
 
-export default GamePage;
 
 const styles = StyleSheet.create({
   screen: {

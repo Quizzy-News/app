@@ -6,7 +6,7 @@ import GamePage from "./GamePage";
 // ChoiceButton is the container for individual choice buttons.
 // This component will be mapped in GamePage.
 
-const ChoiceButton = ({choice, onPressIn, onPressOut, choiceState}) => {
+export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
     return (
         <Pressable 
             style={styles[`answer${choiceState}`]} // TODO: in GamePage, how do I ensure that choiceState corresponds to firstChoice, secondChoice, or thirdChoice?
@@ -35,4 +35,3 @@ const styles = StyleSheet.create({
       },
 });
 
-export default ChoiceButton;

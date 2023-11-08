@@ -67,6 +67,7 @@ export default function GamePage ( { navigation }) {
       setInProgress(false);
     }
 
+    // TODO: Create Timer component
     const timeout = setTimeout(() => {
       // setCountdown(countdown - 1);
     }, 1000);

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import GamePage from "./GamePage";
 
-// ChoiceButton is the container for individual choice buttons.
+// ChoiceDisplay is the container for individual choice elements.
 // This component will be mapped in GamePage.
 
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {

@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import sampleQuiz from "../sampleQuiz.json";
-import ChoiceButton from "./ChoiceDisplay";
+import ChoiceDisplay from "./ChoiceDisplay";
+import QuestionDisplay from "./QuestionDisplay";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
@@ -89,7 +90,7 @@ export default function GamePage ( { navigation }) {
   const handlePressIn = (choice, currentQuestion) => {
     let index = choices.indexOf(choice);
     
-    switch (index) {
+    switch (index) { // switch statements are to ensure that choices changes colors (blue for chosen, grey for not chosen), for styling only.
       case 0:
         setFirstChoice("Active");
         setSecondChoice("Disabled");
@@ -166,14 +167,14 @@ export default function GamePage ( { navigation }) {
       </View>
 
       <View style={styles.container1}>
-        <Text style={styles.question}>
+        <Text style={styles.question}> {/* TODO: update this view with QuestionDisplay component */}
           {question.question}
         </Text>
 
         {/* Write unique id for json  */}
-        <View style={styles.answerContainer}>
+        <View style={styles.answerContainer}> {/* TODO: update this view with ChoiceDisplay component */}
             {/* {choices.map((choice, index) => {
-              <ChoiceButton
+              <ChoiceDisplay
                 key= {index} // Used by React under the hood.
                 choice={choice}
                 onPressIn={handlePressIn(choice, currentQuestion)}

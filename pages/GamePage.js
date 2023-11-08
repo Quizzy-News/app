@@ -10,12 +10,12 @@ import ChoiceButton from "./ChoiceButton";
 const GamePage = ( { navigation }) =>  {
 
   const [countdown, setCountdown] = useState(60);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0); // int represents index 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [question, setQuestion] = useState(sampleQuiz);
+  const [question, setQuestion] = useState(sampleQuiz); // sampleQuiz is an array of objects
   const [score, setScore] = useState(0);
   const [choices, setChoices] = useState([]); // TODO: How do I map a single element to each Pressable component without hardcoding the indices?
-  const [userRecord, setUserRecord] = useState([]);
+  const [userRecord, setUserRecord] = useState([]);  // TODO: Change the data structure to object? {0: "correct", 1: "incorrect", etc.}
   const [inProgress, setInProgress] = useState(true);
 
   const [firstChoice, setFirstChoice] = useState("Idle");
@@ -29,23 +29,23 @@ const GamePage = ( { navigation }) =>  {
 
 
   // getChoiceState() reads the current state of choices and returns the appropriate state respectively.
-  const getChoiceState = ((index)=>{
-    switch(index) {
-      case 0:
-        return firstChoice;
-      case 1:
-        return secondChoice;
-      case 2:
-        return thirdChoice;
-      default:
-        return "Idle";
-    };
-  });
+  // const getChoiceState = ((index)=>{
+  //   switch(index) {
+  //     case 0:
+  //       return firstChoice;
+  //     case 1:
+  //       return secondChoice;
+  //     case 2:
+  //       return thirdChoice;
+  //     default:
+  //       return "Idle";
+  //   };
+  // });
   
   useEffect(() => {
     // Assuming sampleQuiz[currentQuestion] is not undefined
-    const newQuestion = sampleQuiz[currentQuestion];
-    const newChoices = newQuestion.choices;
+    const newQuestion = sampleQuiz[currentQuestion]; // This is an object {"question": "...", "choices": ["...", "...", "..."], "answer": "..."}
+    const newChoices = newQuestion.choices; // This is an array
   
     // Only update if there's a change
     if (question !== newQuestion) {

@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import sampleQuiz from "../sampleQuiz.json";
-import ChoiceDisplay from "./GamePageChildren/ChoiceDisplay";
-import QuestionDisplay from "./GamePageChildren/QuestionDisplay";
-import Timer from "./GamePageChildren/Timer"
+// import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
+// import QuestionDisplay from './GamePageChildren/QuestionDisplay';
+import Timer from './GamePageChildren/Timer.js';
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
@@ -311,11 +311,11 @@ const styles = StyleSheet.create({
     ...Typography.subH2,
     color: "white",
   },
-  timer: {
-    height: 60,
-    width: 60,
+  // timer: {
+  //   height: 60,
+  //   width: 60,
 
-  },
+  // },
   headerScore: {
     ...Typography.subH1,
     color: "white",

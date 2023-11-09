@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Image } from "react-native";
-import { Colors, Containers, Typography } from "../styles"
+import { Colors, Containers, Typography } from "../../styles"
 
 
 // This component encapsulates timer/countdown logic.
 
 export default function Timer({ initialCountdown, onTimeOut }) {
     const [countdown, setCountdown] = useState(initialCountdown); 
-    const timerFramesImport = require.context('../assets/timer-frames', true);
+    const timerFramesImport = require.context('../../assets/timer-frames', true);
     const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
   
 

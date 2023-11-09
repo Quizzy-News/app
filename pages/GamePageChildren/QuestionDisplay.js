@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Buttons, Colors, Containers, Typography } from "../styles"
+import { Buttons, Colors, Containers, Typography } from "../../styles"
 import GamePage from "./GamePage";
 
 // QuestionDisplay is a container for the question text.

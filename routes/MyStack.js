@@ -6,6 +6,7 @@ import GamePage from '../pages/GamePage';
 import ScorePage from '../pages/ScorePage';
 import AboutModal from '../modals/About';
 import ClickBackMidGame from '../modals/ClickBackMidGame';
+import Timer from '../pages/GamePageChildren/Timer';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,9 @@ function MyStack() {
         <Stack.Screen name="CountDownPage" component={CountDownPage} />
         <Stack.Screen name="GamePage" component={GamePage} />
         <Stack.Screen name="ScorePage" component={ScorePage} />
+      </Stack.Group>
+      <Stack.Group>
+        <Stack.Screen name="Timer" component={Timer}/>
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="AboutModal" component={AboutModal} />

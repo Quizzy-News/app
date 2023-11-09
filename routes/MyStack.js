@@ -22,9 +22,6 @@ function MyStack() {
         <Stack.Screen name="GamePage" component={GamePage} />
         <Stack.Screen name="ScorePage" component={ScorePage} />
       </Stack.Group>
-      <Stack.Group>
-        <Stack.Screen name="Timer" component={Timer}/>
-      </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="AboutModal" component={AboutModal} />
         <Stack.Screen name="ClickBackMidGame" component={ClickBackMidGame} />

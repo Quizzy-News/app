@@ -62,20 +62,13 @@ export default function GamePage ( { navigation }) {
 
   }, [navigation, currentQuestion, score, userRecord]);
 
-  // ====
-  // When the timer runs out or when the user completes the quiz
+  // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
       setInProgress(false);
       navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0})
   }
 
-  // TODO: Call handleQuizComplete when user answers last question in quiz and countdown > 0
-  const handleQuizComplete = () => {
-    setInProgress(false);
-    navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown});
-  }
-
-// ====
+  // == end: REDIRECT TO SCOREPAGE ==
 
   const handleRecord = (record) => {
     setUserRecord([...userRecord, record])
@@ -107,30 +100,42 @@ export default function GamePage ( { navigation }) {
 
   };
 
-  // TODO: Separate these into four helper functions. 
-  const handlePressOut = (choice, currentQuestion) => {
-    console.log('CHOICE:', choice)
-    console.log('question #:', currentQuestion)
-    console.log(question.answer);
-    if (choice === question.answer) {
+
+  // == start: HELPER FUNCTIONS FOR handlePressOut ==
+
+  const isCorrect = (choice) => {
+    if ( choice === question.answer ) {
       handleRecord("correct");
-      setScore(score + 1);
+      setScore(score + 1) 
     } else {
       handleRecord("incorrect");
     }
-
-    if (currentQuestion + 1 < sampleQuiz.length) {
-      setCurrentQuestion(currentQuestion + 1);
-      setFirstChoice("Idle");
-      setSecondChoice("Idle");
-      setThirdChoice("Idle");
-    } else {
-      // Note: Trigger navigation from useEffect hook to ensure State updates
-
-      setInProgress(false);
-
-    }
   };
+
+  const getNextQuestion = () => {  
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < sampleQuiz.length) {
+      setCurrentQuestion(nextQuestion);
+      resetChoices();
+    } else { 
+      navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown});
+    }; 
+  }
+
+  const resetChoices = () => {
+    setFirstChoice("Idle");
+    setSecondChoice("Idle");
+    setThirdChoice("Idle");
+  }
+
+  // == end: HELPER FUNCTIONS FOR handlePressOut ==
+
+  const handlePressOut = (choice) => {    
+    isCorrect(choice);
+    getNextQuestion();
+  };
+
 
   if (!question) {
     return <Text>Loading...</Text>;

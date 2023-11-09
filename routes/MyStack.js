@@ -6,7 +6,6 @@ import GamePage from '../pages/GamePage';
 import ScorePage from '../pages/ScorePage';
 import AboutModal from '../modals/About';
 import ClickBackMidGame from '../modals/ClickBackMidGame';
-import Timer from '../pages/GamePageChildren/Timer';
 
 const Stack = createStackNavigator();
 

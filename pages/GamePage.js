@@ -59,20 +59,23 @@ export default function GamePage ( { navigation }) {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
 
- 
-    if (!inProgress) {
-      clearTimeout(timeout);
-      let remainder = countdown;
-      navigation.navigate("ScorePage", { score: score, record: userRecord, time: remainder })
-    };
 
-    return () => clearTimeout(timeout);
-  }, [countdown, navigation, currentQuestion, score, userRecord]);
+  }, [navigation, currentQuestion, score, userRecord]);
 
+  // ====
+  // When the timer runs out or when the user completes the quiz
   const handleTimeOut = () => {
       setInProgress(false);
       navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0})
   }
+
+  // TODO: Call handleQuizComplete when user answers last question in quiz and countdown > 0
+  const handleQuizComplete = () => {
+    setInProgress(false);
+    navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown});
+  }
+
+// ====
 
   const handleRecord = (record) => {
     setUserRecord([...userRecord, record])

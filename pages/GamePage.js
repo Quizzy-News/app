@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import sampleQuiz from "../sampleQuiz.json";
-import ChoiceDisplay from "./ChoiceDisplay";
-import QuestionDisplay from "./QuestionDisplay";
+import ChoiceDisplay from "./GamePageChildren/ChoiceDisplay";
+import QuestionDisplay from "./GamePageChildren/QuestionDisplay";
+import Timer from "./GamePageChildren/Timer"
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
@@ -24,10 +25,6 @@ export default function GamePage ( { navigation }) {
   const [thirdChoice, setThirdChoice] = useState("Idle");
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
-
-  const timerFramesImport = require.context('../assets/timer-frames', true);
-  const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
-
 
   // getChoiceState() reads the current state of choices and returns the appropriate state respectively.
   // const getChoiceState = ((index)=>{
@@ -62,18 +59,7 @@ export default function GamePage ( { navigation }) {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
 
-
-    if (countdown === 0) {
-      setInProgress(false);
-    }
-
-    // TODO: Create Timer component
-    const timeout = setTimeout(() => {
-      // setCountdown(countdown - 1);
-    }, 1000);
-
-    // console.log(userRecord)
-    // console.log(score)
+ 
     if (!inProgress) {
       clearTimeout(timeout);
       let remainder = countdown;
@@ -82,6 +68,11 @@ export default function GamePage ( { navigation }) {
 
     return () => clearTimeout(timeout);
   }, [countdown, navigation, currentQuestion, score, userRecord]);
+
+  const handleTimeOut = () => {
+      setInProgress(false);
+      navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0})
+  }
 
   const handleRecord = (record) => {
     setUserRecord([...userRecord, record])
@@ -162,7 +153,7 @@ export default function GamePage ( { navigation }) {
         </View>
         <View style={styles.scoreHeader}>
           <Text style={styles.headerIndex}>1/5</Text>
-          <Image source={timerFrames[countdown]} style={styles.timer}/>
+          <Timer initialCountdown={60} onTimeOut={handleTimeOut}/>
           <Text style={styles.headerScore}>{score}</Text>
         </View>
       </View>

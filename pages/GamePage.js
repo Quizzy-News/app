@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import sampleQuiz from "../sampleQuiz.json";
-// import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
+import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 // import QuestionDisplay from './GamePageChildren/QuestionDisplay';
 import Timer from './GamePageChildren/Timer.js';
 
@@ -20,25 +20,10 @@ export default function GamePage ( { navigation }) {
   const [userRecord, setUserRecord] = useState([]);  // TODO: Change the data structure to object? {0: "correct", 1: "incorrect", etc.}
   const [inProgress, setInProgress] = useState(true);
 
-  const [firstChoice, setFirstChoice] = useState("Idle");
-  const [secondChoice, setSecondChoice] = useState("Idle");
-  const [thirdChoice, setThirdChoice] = useState("Idle");
+  const [choiceStates, setChoiceStates] = useState(["Idle", "Idle", "Idle"]); // Each element in choiceStates corresponds to a choice button.
+
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
-
-  // getChoiceState() reads the current state of choices and returns the appropriate state respectively.
-  // const getChoiceState = ((index)=>{
-  //   switch(index) {
-  //     case 0:
-  //       return firstChoice;
-  //     case 1:
-  //       return secondChoice;
-  //     case 2:
-  //       return thirdChoice;
-  //     default:
-  //       return "Idle";
-  //   };
-  // });
   
   useEffect(() => {
     // Assuming sampleQuiz[currentQuestion] is not undefined
@@ -53,14 +38,14 @@ export default function GamePage ( { navigation }) {
     if (choices.join('') !== newChoices.join('')) {
       setChoices(newChoices);
     }
-  }, [currentQuestion]);
+  }, []);
 
   useEffect(() => {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
 
 
-  }, [navigation, currentQuestion, score, userRecord]);
+  }, []);
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
@@ -70,43 +55,29 @@ export default function GamePage ( { navigation }) {
 
   // == end: REDIRECT TO SCOREPAGE ==
 
-  const handleRecord = (record) => {
-    setUserRecord([...userRecord, record])
-    // console.log(userRecord);
-  }
-
-  const handlePressIn = (choice, currentQuestion) => {
+  const handlePressIn = (choice) => {
     let index = choices.indexOf(choice);
-    
-    switch (index) { // switch statements are to ensure that choices changes colors (blue for chosen, grey for not chosen), for styling only.
-      case 0:
-        setFirstChoice("Active");
-        setSecondChoice("Disabled");
-        setThirdChoice("Disabled");
-        break;
-      case 1:
-        setFirstChoice("Disabled");
-        setSecondChoice("Active");
-        setThirdChoice("Disabled");
-        break;
-      case 2:
-        setFirstChoice("Disabled");
-        setSecondChoice("Disabled");
-        setThirdChoice("Active");
-        break;
-      default:
-        break;
-    };
 
-  };
+    setChoiceStates((previousStates) => { 
+      return previousStates.map((previousState, i) => { i === index ? "Active" : "Disabled" }) 
+    });
+  
+    };
+    
 
 
   // == start: HELPER FUNCTIONS FOR handlePressOut ==
 
+  const handleRecord = (record) => {
+    setUserRecord([...userRecord, record]);
+
+    // console.log(userRecord);
+  }
+
   const isCorrect = (choice) => {
     if ( choice === question.answer ) {
       handleRecord("correct");
-      setScore(score + 1) 
+      setScore(score + 1);
     } else {
       handleRecord("incorrect");
     }
@@ -124,10 +95,10 @@ export default function GamePage ( { navigation }) {
   }
 
   const resetChoices = () => {
-    setFirstChoice("Idle");
-    setSecondChoice("Idle");
-    setThirdChoice("Idle");
-  }
+    setChoiceStates((previousStates) => {
+      return previousStates.map(() =>  "Idle")
+    });
+  };
 
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
@@ -160,7 +131,7 @@ export default function GamePage ( { navigation }) {
           </Pressable>
         </View>
         <View style={styles.scoreHeader}>
-          <Text style={styles.headerIndex}>1/5</Text>
+          <Text style={styles.headerIndex}>1/5</Text> {/*TODO: Make this dynamic.*/}
           <Timer initialCountdown={60} onTimeOut={handleTimeOut}/>
           <Text style={styles.headerScore}>{score}</Text>
         </View>
@@ -173,44 +144,16 @@ export default function GamePage ( { navigation }) {
 
         {/* Write unique id for json  */}
         <View style={styles.answerContainer}> {/* TODO: update this view with ChoiceDisplay component */}
-            {/* {choices.map((choice, index) => {
-              <ChoiceDisplay
-                key= {index} // Used by React under the hood.
+            {choices.map((choice, i) => {
+               return <ChoiceDisplay
+                key= {i} // Used by React under the hood.
                 choice={choice}
-                onPressIn={handlePressIn(choice, currentQuestion)}
-                onPressOut={handlePressOut(choice, currentQuestion)}
-                choiceState={getChoiceState(index)}
+                onPressIn={() => handlePressIn(choice)}
+                onPressOut={() => handlePressOut(choice)}
+                choiceState={choiceStates[i]}
               />
-            })} */}
-          <Pressable
-            style={styles[`answer${firstChoice}`]}
-            onPressIn={() => handlePressIn(choices[0], currentQuestion)}
-            onPressOut={() => handlePressOut(choices[0], currentQuestion)}
-          >
-            <Text style={styles[`answerText${firstChoice}`]}>
-              {choices[0]}
-            </Text>
-          </Pressable>
-
-          <Pressable
-            style={styles[`answer${secondChoice}`]}
-            onPressIn={() => handlePressIn(choices[1], currentQuestion)}
-            onPressOut={() => handlePressOut(choices[1], currentQuestion)}
-          >
-            <Text style={styles[`answerText${secondChoice}`]}>
-              {choices[1]}
-            </Text>
-          </Pressable>
-
-          <Pressable
-            style={styles[`answer${thirdChoice}`]}
-            onPressIn={() => handlePressIn(choices[2], currentQuestion)}
-            onPressOut={() => handlePressOut(choices[2], currentQuestion)}
-          >
-            <Text style={styles[`answerText${thirdChoice}`]}>
-              {choices[2]}
-            </Text>
-          </Pressable>
+            }
+            )}
         </View>
       </View>
 
@@ -256,6 +199,7 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     paddingBottom: 10,
+    
   },
   answerIdle: {
     ...Buttons.answerButton,

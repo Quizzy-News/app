@@ -25,27 +25,12 @@ export default function GamePage ( { navigation }) {
 
   const [exitButtonActive, setExitButtonActive] = useState(false);
   
-  useEffect(() => {
-    // Assuming sampleQuiz[currentQuestion] is not undefined
-    const newQuestion = sampleQuiz[currentQuestion]; // This is an object {"question": "...", "choices": ["...", "...", "..."], "answer": "..."}
-    const newChoices = newQuestion.choices; // This is an array
-  
-    // Only update if there's a change
-    if (question !== newQuestion) {
-      setQuestion(newQuestion);
-    }
-  
-    if (choices.join('') !== newChoices.join('')) {
-      setChoices(newChoices);
-    }
-  }, []);
-
-  useEffect(() => {
+   useEffect(() => {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
 
 
-  }, []);
+  }, [currentQuestion]);
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
@@ -64,8 +49,6 @@ export default function GamePage ( { navigation }) {
   
     };
     
-
-
   // == start: HELPER FUNCTIONS FOR handlePressOut ==
 
   const handleRecord = (record) => {

@@ -9,7 +9,7 @@ import { Buttons, Colors, Containers, Typography } from "../../styles"
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
     const buttonStyle = choiceState === "Active" ? styles.buttonActive : styles.button;
     const textStyle = choiceState === "Active" ? styles.answerTextActive : styles.answerTextIdle;
-    
+
     return (
         <Pressable 
             style={buttonStyle}
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
       buttonActive: {
         ...Colors.backgroundColors.lightBlue,
         ...Buttons.button,
+        margin: 10,
+        padding: 20,
       },
 
       answerIdle: {

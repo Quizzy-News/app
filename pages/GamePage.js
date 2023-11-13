@@ -44,11 +44,10 @@ export default function GamePage ( { navigation }) {
     let index = choices.indexOf(choice);
 
     setChoiceStates((previousStates) => { 
-      return previousStates.map((previousState, i) => { i === index ? "Active" : "Disabled" }) 
+      return previousStates.map((previousState, i) => i === index ? "Active" : "Disabled" ) 
     });
-  
+
     };
-    
   // == start: HELPER FUNCTIONS FOR handlePressOut ==
 
   const handleRecord = (record) => {
@@ -68,7 +67,7 @@ export default function GamePage ( { navigation }) {
 
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
-
+    console.log({choiceStates})
     if (nextQuestion < sampleQuiz.length) {
       setCurrentQuestion(nextQuestion);
       resetChoices();
@@ -78,6 +77,7 @@ export default function GamePage ( { navigation }) {
   }
 
   const resetChoices = () => {
+
     setChoiceStates((previousStates) => {
       return previousStates.map(() =>  "Idle")
     });

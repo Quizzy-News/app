@@ -1,22 +1,43 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../../styles"
+import { button } from "../../styles/buttons";
 
 
 // ChoiceDisplay is the container for individual choice elements.
 // This component will be mapped in GamePage.
 
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
-    const buttonStyle = choiceState === "Active" ? styles.buttonActive : styles.button;
-    const textStyle = choiceState === "Active" ? styles.answerTextActive : styles.answerTextIdle;
+  const getButtonStyle = () => {
+    if (choiceState === "Active") {
+      return styles.buttonActive;
+    } else if (choiceState === "Disabled") {
+       return styles.buttonDisabled;
+    } else {
+      return styles.button;
+    }
+  }
 
+    const getTextStyle = () => {
+      if (choiceState === "Active") {
+        return styles.answerTextActive;
+      } else if (choiceState === "Disabled") {
+        return styles.answerTextDisabled
+      } else {
+        return styles.answerTextIdle;
+      }
+
+
+    }
+ 
     return (
         <Pressable 
-            style={buttonStyle}
+            style={getButtonStyle()}
             onPressIn={onPressIn}
             onPressOut={onPressOut}
+       
         >
-            <Text style={textStyle}>
+            <Text style={getTextStyle()}>
                 {choice}
             </Text>
         </Pressable>
@@ -35,6 +56,13 @@ const styles = StyleSheet.create({
       },
       buttonActive: {
         ...Colors.backgroundColors.lightBlue,
+        ...Buttons.button,
+        margin: 10,
+        padding: 20,
+      },
+      buttonDisabled: {
+        ...Colors.backgroundColors.gray2,
+        ...Colors.shadowColors.gray3,
         ...Buttons.button,
         margin: 10,
         padding: 20,

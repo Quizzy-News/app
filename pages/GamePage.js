@@ -32,6 +32,9 @@ export default function GamePage ( { navigation }) {
 
   }, [currentQuestion]);
 
+
+
+
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
       setInProgress(false);
@@ -85,7 +88,7 @@ export default function GamePage ( { navigation }) {
 
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
-  const handlePressOut = (choice) => {    
+  const handlePressOut = (choice) => {
     isCorrect(choice);
     getNextQuestion();
   };
@@ -126,7 +129,7 @@ export default function GamePage ( { navigation }) {
         </Text>
 
         {/* Write unique id for json  */}
-        <View style={styles.answerContainer}> {/* TODO: update this view with ChoiceDisplay component */}
+        <View style={styles.answerContainer}> 
             {choices.map((choice, i) => {
                return <ChoiceDisplay
                 key= {i} // Used by React under the hood.

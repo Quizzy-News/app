@@ -72,11 +72,11 @@ export default function GamePage ( { navigation }) {
     const newChoiceState = choice === question.answer ? "Correct" : "Incorrect";
 
     handleRecord(newChoiceState === "Correct" ? "correct" : "incorrect");
-    handleScore(newChoiceState === "Correct" ? score++ : score);
+    handleScore(newChoiceState === "Correct" ? score + 1 : score);
 
 
     setChoiceStates((previousChoiceStates) => { 
-      return previousChoiceStates.map((previousChoiceStates, i) => i === index ? newState : "Disabled" ); 
+      return previousChoiceStates.map((previousChoiceStates, i) => i === index ? newChoiceState : "Disabled" ); 
     });
 
   };
@@ -109,7 +109,7 @@ export default function GamePage ( { navigation }) {
     const newTimeOutId = setTimeout(() => {
       getNextQuestion();
 
-    }, 5000);
+    }, 500);
 
     setTimeout(newTimeOutId);
     console.log(choiceStates)

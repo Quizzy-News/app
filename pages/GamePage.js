@@ -13,17 +13,14 @@ export default function GamePage ( { navigation }) {
 
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0); // int represents index 
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [question, setQuestion] = useState(sampleQuiz); // sampleQuiz is an array of objects
   const [score, setScore] = useState(0);
-  const [choices, setChoices] = useState([]); // TODO: How do I map a single element to each Pressable component without hardcoding the indices?
+  const [choices, setChoices] = useState([]); 
   const [userRecord, setUserRecord] = useState([]);  // TODO: Change the data structure to object? {0: "correct", 1: "incorrect", etc.}
   const [inProgress, setInProgress] = useState(true);
-
   const [choiceStates, setChoiceStates] = useState(["Idle", "Idle", "Idle"]); // Each element in choiceStates corresponds to a choice button.
-
-
   const [exitButtonActive, setExitButtonActive] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
   
    useEffect(() => {
     setQuestion(sampleQuiz[currentQuestion]);
@@ -32,7 +29,14 @@ export default function GamePage ( { navigation }) {
 
   }, [currentQuestion]);
 
-
+  // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
+  useEffect(() => {
+    return () => {
+      if (timeoutId) {
+         clearTimeout(timeoutId);
+      }
+    }
+  },[timeoutId])
 
 
   // == start: REDIRECT TO SCOREPAGE ==
@@ -55,19 +59,29 @@ export default function GamePage ( { navigation }) {
 
   const handleRecord = (record) => {
     setUserRecord([...userRecord, record]);
-
-    // console.log(userRecord);
   }
 
+  const handleScore = (newScore) => {
+    setScore(newScore);
+  }
+
+// TODO: create helper function for setChoiceStates
   const isCorrect = (choice) => {
-    if ( choice === question.answer ) {
-      handleRecord("correct");
-      setScore(score + 1);
-    } else {
-      handleRecord("incorrect");
-    }
+    let index = choices.indexOf(choice);
+
+    const newChoiceState = choice === question.answer ? "Correct" : "Incorrect";
+
+    handleRecord(newChoiceState === "Correct" ? "correct" : "incorrect");
+    handleScore(newChoiceState === "Correct" ? score++ : score);
+
+
+    setChoiceStates((previousChoiceStates) => { 
+      return previousChoiceStates.map((previousChoiceStates, i) => i === index ? newState : "Disabled" ); 
+    });
+
   };
 
+  // console.log(choiceStates)
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
     console.log({choiceStates})
@@ -88,9 +102,17 @@ export default function GamePage ( { navigation }) {
 
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
-  const handlePressOut = (choice) => {
+  const handlePressOut = (choice) => { // Need to introduce a delay so that user can see if answer is correct/incorrect before getNextQuestion 
     isCorrect(choice);
-    getNextQuestion();
+    console.log(choiceStates)
+
+    const newTimeOutId = setTimeout(() => {
+      getNextQuestion();
+
+    }, 5000);
+
+    setTimeout(newTimeOutId);
+    console.log(choiceStates)
   };
 
 

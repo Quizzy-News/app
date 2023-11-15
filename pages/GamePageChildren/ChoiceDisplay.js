@@ -13,6 +13,10 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
       return styles.buttonActive;
     } else if (choiceState === "Disabled") {
        return styles.buttonDisabled;
+    } else if (choiceState === "Correct") {
+      return styles.answerCorrect;
+    } else if (choiceState === "Incorrect") {
+      return styles.answerIncorrect;
     } else {
       return styles.button;
     }
@@ -23,6 +27,10 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
         return styles.answerTextActive;
       } else if (choiceState === "Disabled") {
         return styles.answerTextDisabled
+      } else if (choiceState === "Correct") {
+        return styles.answerTextCorrect;
+      } else if (choiceState === "Incorrect") {
+        return styles.answerTextIncorrect;
       } else {
         return styles.answerTextIdle;
       }

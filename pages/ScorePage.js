@@ -8,18 +8,18 @@ import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 export default function ScorePage({ route, navigation }) {
     // const [finalScore, setFinalScore] = useState(score)
     const [score, setScore] = useState(route.params.score);
-    const [record, setRecord] = useState(route.params.record);
+    // const [record, setRecord] = useState(route.params.record);
     const [time, setTime] = useState(route.params.time);
 
     useEffect(() => {
         setScore(route.params.score);
-        setRecord(route.params.record);
+        // setRecord(route.params.record);
         setTime(route.params.time);
 
         console.log(score);
-        console.log(record);
+        // console.log(record);
         console.log(time);
-    }, [route.params.score, route.params.record, route.params.time])
+    }, [route.params.score,  route.params.time])
 
     const results = [
         {

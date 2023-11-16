@@ -23,6 +23,11 @@ export default function GamePage ( { navigation }) {
   const [exitButtonActive, setExitButtonActive] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
   
+   useEffect(() => {
+    setQuestion(sampleQuiz[currentQuestion]);
+    setChoices([...sampleQuiz[currentQuestion].choices]);
+  }, [currentQuestion]);
+
   // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
   useEffect(() => {
     return () => {

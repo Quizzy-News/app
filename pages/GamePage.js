@@ -23,13 +23,6 @@ export default function GamePage ( { navigation }) {
   const [exitButtonActive, setExitButtonActive] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
   
-   useEffect(() => {
-    setQuestion(sampleQuiz[currentQuestion]);
-    setChoices([...sampleQuiz[currentQuestion].choices]);
-
-
-  }, [currentQuestion]);
-
   // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
   useEffect(() => {
     return () => {
@@ -38,7 +31,6 @@ export default function GamePage ( { navigation }) {
       }
     }
   },[timeoutId])
-
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
@@ -93,7 +85,7 @@ export default function GamePage ( { navigation }) {
   }
 
   const resetChoices = () => {
-
+    setChoices([...sampleQuiz[currentQuestion].choices]);
     setChoiceStates((previousStates) => {
       return previousStates.map(() =>  "Idle")
     });
@@ -220,11 +212,6 @@ const styles = StyleSheet.create({
     ...Typography.subH2,
     color: "white",
   },
-  // timer: {
-  //   height: 60,
-  //   width: 60,
-
-  // },
   headerScore: {
     ...Typography.subH1,
     color: "white",

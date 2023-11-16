@@ -34,13 +34,9 @@ export default function Timer({ initialCountdown, onTimeOut }) {
 
 }
 
-// TODO: Is StyleSheet handled in here or in GamePage?
 const styles = StyleSheet.create({
-   
     timer: {
       height: 60,
       width: 60,
-  
     },
-    
   });

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Buttons, Colors, Containers, Typography } from "../styles"
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Image } from "react-native";
+import { Colors, Containers, Typography } from "../styles"
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
-// import QuestionDisplay from './GamePageChildren/QuestionDisplay';
-import Timer from './GamePageChildren/Timer.js';
+import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
@@ -23,7 +21,7 @@ export default function GamePage ( { navigation }) {
   const [exitButtonActive, setExitButtonActive] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
   
-   useEffect(() => {
+  useEffect(() => {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
   }, [currentQuestion]);
@@ -32,7 +30,7 @@ export default function GamePage ( { navigation }) {
   useEffect(() => {
     return () => {
       if (timeoutId) {
-         clearTimeout(timeoutId);
+        clearTimeout(timeoutId);
       }
     }
   },[timeoutId])
@@ -116,27 +114,12 @@ export default function GamePage ( { navigation }) {
   return (
     <View style={styles.screen}>
 
-      <View style={styles.header}>
-        <View style={styles.exit}>
-          <Pressable
-            onPressIn={() => {
-              setExitButtonActive(true);
-            }}
-            onPressOut={() => {
-              setExitButtonActive(false);
-              navigation.navigate("ClickBackMidGame");
-            }}
-            style={exitButtonActive ? styles.buttonActive : styles.button}
-          >
-            <MaterialCommunityIcons name="exit-to-app" size={36} color="white" />
-          </Pressable>
-        </View>
-        <View style={styles.scoreHeader}>
-          <Text style={styles.headerIndex}>1/5</Text> {/*TODO: Make this dynamic.*/}
-          <Timer initialCountdown={60} onTimeOut={handleTimeOut}/>
-          <Text style={styles.headerScore}>{score}</Text>
-        </View>
-      </View>
+
+      <Header 
+        initialCountdown={60} 
+        onTimeOut={handleTimeOut} 
+          
+        />
 
       <View style={styles.container1}>
          <QuestionDisplay 
@@ -174,61 +157,17 @@ const styles = StyleSheet.create({
   screen: {
     ...Containers.screenCenter
   },
-  header: {
-    height: "10%",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-    padding: 10,
-    marginTop: 20,
-  },
-  exit: {
-    paddingRight: 10
-  },
-  button: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Colors.shadowColors.darkBlue,
-    ...Buttons.smallButton,
-    top: -5,
-  },
-  buttonActive: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Buttons.smallButtonActive,
-  },
   answerContainer: {
     width: "100%",
     display: "flex",
     paddingBottom: 10,
     
   },
-  scoreHeader: {
-    ...Colors.backgroundColors.gray2,
-    height: 40,
-    flex: 1,
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderRadius: 5,
-    padding: 10,
-  },
-  headerIndex: {
-    ...Typography.subH2,
-    color: "white",
-  },
-  headerScore: {
-    ...Typography.subH1,
-    color: "white",
-  },
+
   footer: {
     marginTop: "auto",
   },
-  divider: {
-    ...Colors.backgroundColors.gray2,
-    height: 1,
-    marginBottom: 10
-  },
+
   footText1: {
     ...Typography.subH1,
     ...Colors.fontColors.gray2,

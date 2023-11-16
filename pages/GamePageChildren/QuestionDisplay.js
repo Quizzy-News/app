@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Buttons, Colors, Containers, Typography } from "../../styles"
-import GamePage from "./GamePage";
+import { Text, StyleSheet } from "react-native";
+import { Colors, Typography } from "../../styles"
+
 
 // QuestionDisplay is a container for the question text.
 
-export default function QuestionDisplay ({onPressIn, onPressOut, question}) {
+export default function QuestionDisplay ({currentQuestion}) {
     return (
 
-        <Text style={styles[question]}>
-            {question}
+        <Text style={styles.question}>
+            {currentQuestion}
         </Text>
 
     );

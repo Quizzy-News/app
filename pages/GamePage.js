@@ -6,6 +6,7 @@ import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 // import QuestionDisplay from './GamePageChildren/QuestionDisplay';
 import Timer from './GamePageChildren/Timer.js';
+import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
@@ -65,7 +66,6 @@ export default function GamePage ( { navigation }) {
     setScore(newScore);
   }
 
-// TODO: create helper function for setChoiceStates
   const isCorrect = (choice) => {
     let index = choices.indexOf(choice);
 
@@ -81,10 +81,9 @@ export default function GamePage ( { navigation }) {
 
   };
 
-  // console.log(choiceStates)
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
-    console.log({choiceStates})
+
     if (nextQuestion < sampleQuiz.length) {
       setCurrentQuestion(nextQuestion);
       resetChoices();
@@ -102,21 +101,23 @@ export default function GamePage ( { navigation }) {
 
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
+
+
   const handlePressOut = (choice) => { // Need to introduce a delay so that user can see if answer is correct/incorrect before getNextQuestion 
     isCorrect(choice);
-    console.log(choiceStates)
 
-    const newTimeOutId = setTimeout(() => {
+
+    const newTimeoutId = setTimeout(() => {
       getNextQuestion();
-
+  
     }, 500);
 
-    setTimeout(newTimeOutId);
-    console.log(choiceStates)
+    setTimeout(newTimeoutId);
+
   };
 
 
-  if (!question) {
+  if (!question) {  
     return <Text>Loading...</Text>;
   }
 
@@ -146,9 +147,9 @@ export default function GamePage ( { navigation }) {
       </View>
 
       <View style={styles.container1}>
-        <Text style={styles.question}> {/* TODO: update this view with QuestionDisplay component */}
-          {question.question}
-        </Text>
+         <QuestionDisplay 
+            currentQuestion={sampleQuiz[currentQuestion].question} // TODO: Make sampleQuiz dynamic
+          />
 
         {/* Write unique id for json  */}
         <View style={styles.answerContainer}> 
@@ -172,7 +173,7 @@ export default function GamePage ( { navigation }) {
           Ⓒ 2022 EMISQWE
         </Text>
       </View>
-    </View >
+    </View>
   );
 };
 

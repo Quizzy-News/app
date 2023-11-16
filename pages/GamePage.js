@@ -106,16 +106,11 @@ export default function GamePage ( { navigation }) {
   const handlePressOut = (choice) => { // Need to introduce a delay so that user can see if answer is correct/incorrect before getNextQuestion 
     isCorrect(choice);
 
-
     const newTimeoutId = setTimeout(() => {
       getNextQuestion();
-  
     }, 500);
-
     setTimeout(newTimeoutId);
-
   };
-
 
   if (!question) {  
     return <Text>Loading...</Text>;
@@ -210,50 +205,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     
   },
-  answerIdle: {
-    ...Buttons.answerButton,
-    ...Colors.backgroundColors.white,
-    shadowColor: "#00000015",
-  },
-  answerTextIdle: {
-    ...Typography.body3,
-    ...Colors.fontColors.gray4,
-  },
-  answerActive: {
-    ...Buttons.answerButtonActive,
-    ...Colors.backgroundColors.darkBlue,
-  },
-  answerTextActive: {
-    ...Typography.body3,
-    ...Colors.fontColors.white,
-  },
-  answerCorrect: {
-    ...Buttons.answerButton,
-    ...Colors.backgroundColors.darkGreen,
-    ...Colors.shadowColors.darkerGreen,
-  },
-  answerTextCorrect: {
-    ...Typography.body3,
-    ...Colors.fontColors.lightGreen,
-  },
-  answerIncorrect: {
-    ...Buttons.answerButton,
-    ...Colors.backgroundColors.darkRed,
-    ...Colors.shadowColors.darkerRed,
-  },
-  answerTextIncorrect: {
-    ...Typography.body3,
-    ...Colors.fontColors.lightRed,
-  },
-  answerDisabled: {
-    ...Buttons.answerButton,
-    ...Colors.backgroundColors.gray2,
-    ...Colors.shadowColors.gray3,
-  },
-  answerTextDisabled: {
-    ...Typography.body3,
-    ...Colors.fontColors.gray4,
-  },
   scoreHeader: {
     ...Colors.backgroundColors.gray2,
     height: 40,
@@ -277,10 +228,6 @@ const styles = StyleSheet.create({
   headerScore: {
     ...Typography.subH1,
     color: "white",
-  },
-  question: {
-    ...Colors.fontColors.gray4,
-    ...Typography.body2
   },
   footer: {
     marginTop: "auto",

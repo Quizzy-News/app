@@ -7,11 +7,9 @@ import { Colors, Typography } from "../../styles"
 
 export default function QuestionDisplay ({currentQuestion}) {
     return (
-
         <Text style={styles.question}>
             {currentQuestion}
         </Text>
-
     );
 
 };
@@ -20,5 +18,5 @@ const styles = StyleSheet.create({
     question: {
         ...Colors.fontColors.gray4,
         ...Typography.body2
-      }
+    }
 });

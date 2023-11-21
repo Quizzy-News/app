@@ -5,6 +5,7 @@ import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
+import Footer from "./GamePageChildren/Footer.js";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
@@ -102,8 +103,6 @@ export default function GamePage ( { navigation }) {
 }
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
-
-
   const handlePressOut = (choice) => { 
     isCorrect(choice);
 
@@ -129,36 +128,27 @@ export default function GamePage ( { navigation }) {
         />
 
       <View style={styles.container1}>
-         <QuestionDisplay 
-            currentQuestion={sampleQuiz[currentQuestion].question} // TODO: Make sampleQuiz dynamic
-          />
-
-        {/* Write unique id for json  */}
-        <View style={styles.answerContainer}> 
-            {choices.map((choice, i) => {
-               return <ChoiceDisplay
-                key= {i} // Used by React under the hood.
-                choice={choice}
-                onPressIn={() => handlePressIn(choice)}
-                onPressOut={() => handlePressOut(choice)}
-                choiceState={choiceStates[i]}
-              />
-            }
-            )}
-        </View>
+         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
+          
+          {/* Write unique id for json  */}
+          <View style={styles.answerContainer}> 
+              {choices.map((choice, i) => {
+                return <ChoiceDisplay
+                  key= {i} // Used by React under the hood.
+                  choice={choice}
+                  onPressIn={() => handlePressIn(choice)}
+                  onPressOut={() => handlePressOut(choice)}
+                  choiceState={choiceStates[i]}
+                />
+                }
+              )}
+          </View>
       </View>
 
-      <View style={styles.footer}>
-        <View style={styles.divider} />
-        <Text style={styles.footText1}>QUIZZY.NEWS</Text>
-        <Text style={styles.footText2}>
-          Ⓒ 2022 EMISQWE
-        </Text>
-      </View>
+      <Footer />
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   screen: {
@@ -168,30 +158,11 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     paddingBottom: 10,
-    
-  },
-
-  footer: {
-    marginTop: "auto",
-  },
-
-  footText1: {
-    ...Typography.subH1,
-    ...Colors.fontColors.gray2,
-    fontSize: 16,
-    paddingLeft: 10,
-    paddingTop: 5,
-  },
-  footText2: {
-    ...Typography.subH2,
-    ...Colors.fontColors.gray2,
-    fontSize: 12,
-    paddingLeft: 10,
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
+    alignItems: "stretch"
+  }, 
   container1: {
     ...Colors.backgroundColors.lightPurple,
     ...Containers.contentContainerBetween
   },
+
 });

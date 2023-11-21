@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text, StyleSheet } from "react-native";
 import { Typography } from "../../../styles";
 
@@ -15,6 +15,5 @@ const styles = StyleSheet.create({
     headerIndex: {
         ...Typography.subH2,
         color: "white",
-      },
- 
+    }
 });

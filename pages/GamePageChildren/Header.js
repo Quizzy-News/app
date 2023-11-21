@@ -6,15 +6,13 @@ import Timer from './HeaderChildren/Timer.js';
 import ExitButton from './HeaderChildren/ExitButton.js'
 import PageCount from './HeaderChildren/PageCount.js'
 
-export default function Header({onTimeOut, score, navigation}) {
+export default function Header({onTimeOut, score, navigation, onPressOut, page}) {
     return (
         <View style={styles.header}>
-            <ExitButton navigation={navigation}
-
-            />
-            <PageCount />
+            <ExitButton navigation={navigation} />
+        
             <View style={styles.scoreHeader}>
-
+                <PageCount onPressOut={onPressOut} page={page}/>
                 <Timer initialCountdown={60} onTimeOut={onTimeOut}/>
                 <Text style={styles.headerScore}>{score}</Text>
             </View>

@@ -20,7 +20,8 @@ export default function GamePage ( { navigation }) {
   const [choiceStates, setChoiceStates] = useState(["Idle", "Idle", "Idle"]); // Each element in choiceStates corresponds to a choice button.
 
   const [timeoutId, setTimeoutId] = useState(null);
-  
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     setQuestion(sampleQuiz[currentQuestion]);
     setChoices([...sampleQuiz[currentQuestion].choices]);
@@ -94,17 +95,23 @@ export default function GamePage ( { navigation }) {
     });
   };
 
+  const incrementPage = () => {
+    if (page < 5) {
+        setPage(page + 1);
+    }
+}
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
 
 
-  const handlePressOut = (choice) => { // Need to introduce a delay so that user can see if answer is correct/incorrect before getNextQuestion 
+  const handlePressOut = (choice) => { 
     isCorrect(choice);
 
     const newTimeoutId = setTimeout(() => {
       getNextQuestion();
     }, 500);
     setTimeout(newTimeoutId);
+    incrementPage();
   };
 
   if (!question) {  
@@ -115,8 +122,10 @@ export default function GamePage ( { navigation }) {
     <View style={styles.screen}>
       <Header 
         onTimeOut={handleTimeOut}
+        onPressOut={() => handlePressOut(choice)}
         score={score} 
         navigation={navigation}
+        page={page}
         />
 
       <View style={styles.container1}>

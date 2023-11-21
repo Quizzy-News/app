@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Colors, Typography } from "../../styles"
+import { Buttons, Colors, Typography } from "../../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Timer from './Timer.js';
+import Timer from './HeaderChildren/Timer.js';
+import ExitButton from './HeaderChildren/ExitButton.js'
 
-export default function Header({initialCountdown, onTimeOut}) {
+export default function Header({initialCountdown, onTimeOut, exitButtonActive, onPressIn, onPressOut, score}) {
     return (
         <View style={styles.header}>
-            <View style={styles.exit}>
-                <Pressable
-                    onPressIn={() => {
-                        setExitButtonActive(true);
-                    }}
-                    onPressOut={() => {
-                        setExitButtonActive(false);
-                        navigation.navigate("ClickBackMidGame");
-                    }}
-                    style={exitButtonActive ? styles.buttonActive : styles.button}
-                    >
-                    <MaterialCommunityIcons name="exit-to-app" size={36} color="white" />
-                </Pressable>
-            </View>
+            <ExitButton 
+                exitButtonActive={exitButtonActive}
+                onPressIn={onPressIn}
+                onPressOut={onPressOut}
+            />
             <View style={styles.scoreHeader}>
                 <Text style={styles.headerIndex}>1/5</Text> {/*TODO: Make this dynamic.*/}
                 <Timer initialCountdown={initialCountdown} onTimeOut={onTimeOut}/>
@@ -51,16 +43,7 @@ const styles = StyleSheet.create({
       exit: {
         paddingRight: 10
       },
-      button: {
-        ...Colors.backgroundColors.lightBlue,
-        ...Colors.shadowColors.darkBlue,
-        ...Buttons.smallButton,
-        top: -5,
-      },
-      buttonActive: {
-        ...Colors.backgroundColors.lightBlue,
-        ...Buttons.smallButtonActive,
-      },
+
       divider: {
         ...Colors.backgroundColors.gray2,
         height: 1,

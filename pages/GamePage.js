@@ -113,12 +113,17 @@ export default function GamePage ( { navigation }) {
 
   return (
     <View style={styles.screen}>
-
-
       <Header 
         initialCountdown={60} 
-        onTimeOut={handleTimeOut} 
-          
+        onTimeOut={handleTimeOut}
+        exitButtonActive={exitButtonActive}
+        score={score} 
+        onPressIn={() => {
+                    setExitButtonActive(true);}}
+        onPressOut={() => {
+          setExitButtonActive(false);
+          navigation.navigate("ClickBackMidGame");}}
+
         />
 
       <View style={styles.container1}>

@@ -5,7 +5,7 @@ import { StyleSheet, Image } from "react-native";
 
 export default function Timer({ initialCountdown, onTimeOut }) {
     const [countdown, setCountdown] = useState(initialCountdown); 
-    const timerFramesImport = require.context('../../assets/timer-frames', true);
+    const timerFramesImport = require.context('../../../assets/timer-frames', true);
     const timerFrames = timerFramesImport.keys().map(image => timerFramesImport(image));
   
     useEffect(() => {

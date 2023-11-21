@@ -18,7 +18,7 @@ export default function GamePage ( { navigation }) {
   const [userRecord, setUserRecord] = useState([]);  // TODO: Change the data structure to object? {0: "correct", 1: "incorrect", etc.}
   const [inProgress, setInProgress] = useState(true);
   const [choiceStates, setChoiceStates] = useState(["Idle", "Idle", "Idle"]); // Each element in choiceStates corresponds to a choice button.
-  const [exitButtonActive, setExitButtonActive] = useState(false);
+
   const [timeoutId, setTimeoutId] = useState(null);
   
   useEffect(() => {
@@ -114,16 +114,9 @@ export default function GamePage ( { navigation }) {
   return (
     <View style={styles.screen}>
       <Header 
-        initialCountdown={60} 
         onTimeOut={handleTimeOut}
-        exitButtonActive={exitButtonActive}
         score={score} 
-        onPressIn={() => {
-                    setExitButtonActive(true);}}
-        onPressOut={() => {
-          setExitButtonActive(false);
-          navigation.navigate("ClickBackMidGame");}}
-
+        navigation={navigation}
         />
 
       <View style={styles.container1}>

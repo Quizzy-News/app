@@ -1,18 +1,30 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Buttons, Colors, Typography } from "../../../styles"
+import { Buttons, Colors, Typography } from "../../../styles";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function ExitButton({exitButtonActive, onPressIn, onPressOut}) {
-    return (<View style={styles.exit}>
+export default function ExitButton({ navigation }) {
+  const [exitButton, setExitButton] = useState(false);
+  
+  const exitButtonActive  = () => {
+    setExitButton(true);
+  }
+  const exitButtonInactive = () => {
+      setExitButton(false);
+      navigation.navigate("ClickBackMidGame");
+  }
+  
+    return (
+      <View style={styles.exit}>
         <Pressable
-            onPressIn={onPressIn}
-            onPressOut={onPressOut}
-            style={exitButtonActive ? styles.buttonActive : styles.button}
+            onPressIn={exitButtonActive}
+            onPressOut={exitButtonInactive}
+            style={exitButton ? styles.buttonActive : styles.button}
         >
             <MaterialCommunityIcons name="exit-to-app" size={36} color="white" />
         </Pressable>
-    </View>)
+      </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -31,3 +43,6 @@ const styles = StyleSheet.create({
       },
  
 });
+
+
+

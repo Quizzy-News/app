@@ -4,18 +4,18 @@ import { Buttons, Colors, Typography } from "../../styles"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Timer from './HeaderChildren/Timer.js';
 import ExitButton from './HeaderChildren/ExitButton.js'
+import PageCount from './HeaderChildren/PageCount.js'
 
-export default function Header({initialCountdown, onTimeOut, exitButtonActive, onPressIn, onPressOut, score}) {
+export default function Header({onTimeOut, score, navigation}) {
     return (
         <View style={styles.header}>
-            <ExitButton 
-                exitButtonActive={exitButtonActive}
-                onPressIn={onPressIn}
-                onPressOut={onPressOut}
+            <ExitButton navigation={navigation}
+
             />
+            <PageCount />
             <View style={styles.scoreHeader}>
-                <Text style={styles.headerIndex}>1/5</Text> {/*TODO: Make this dynamic.*/}
-                <Timer initialCountdown={initialCountdown} onTimeOut={onTimeOut}/>
+
+                <Timer initialCountdown={60} onTimeOut={onTimeOut}/>
                 <Text style={styles.headerScore}>{score}</Text>
             </View>
         </View>
@@ -32,10 +32,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginTop: 20,
       },
-      headerIndex: {
-        ...Typography.subH2,
-        color: "white",
-      },
+
       headerScore: {
         ...Typography.subH1,
         color: "white",

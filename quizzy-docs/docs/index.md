@@ -1,17 +1,12 @@
-# Welcome to MkDocs
+# Quizzy.News Docs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+These are developer docs for the [Quizzy.News] (https://quizzy.news). To get set up for development, check out the [README](https://github.com/Quizzy-News/app/blob/main/README.md).
 
-## Commands
+## Frontend
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+The frontend is created using JavaScript, React Native, HTML, and Tailwind CSS.
 
-## Project layout
+## Backend
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+The backend will be created using Node.js and Firebase.
+

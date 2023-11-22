@@ -1,1 +1,5 @@
-site_name: My Docs
+site_name: Quizzy.News Docs
+nav:
+  - Home: index.md
+  - Frontend: frontend.md
+  - Backend: backend.md

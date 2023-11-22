@@ -1,9 +1,7 @@
-import { Pressable, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Pressable, Text, View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { Colors, Buttons, Typography, Containers } from "../styles";
+import { Colors, Buttons, Typography } from "../styles";
 
-// TODO: Ensure that score is resetting to 0 when redirected to home
-// TODO: Button needs to "pop" back up before redirecting
 // TODO: Styling - add dark purple shadow / dark purple container? 
 
 const ClickBackMidGame = ( { navigation }) => {
@@ -13,14 +11,12 @@ const ClickBackMidGame = ( { navigation }) => {
 
     return (
         <View style={styles.screen}>
-            {/* Modal Text */}
-             <Text style={styles.text}>
+            <Text style={styles.text}>
                 Are you sure you want to go back?
                 {"\n"}
                 Your game for the day will reset.
-             </Text>
-            
-            {/* Button: Yes, go back  */}
+            </Text>
+
             <Pressable 
                 style={yesButtonActive ? styles.buttonActive : styles.button}
                 
@@ -38,7 +34,6 @@ const ClickBackMidGame = ( { navigation }) => {
                 <Text style={styles.text}>Yes, go back.</Text>
             </Pressable>
             
-            {/* Button: No, continue playing  */}
             <Pressable 
                 style={noButtonActive ? styles.buttonActive : styles.button}
                 

@@ -7,8 +7,6 @@ import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 import Footer from "./GamePageChildren/Footer.js";
 
-// GamePage is the container for questions and answer buttons. Handles game and points
-
 export default function GamePage ( { navigation }) {
 
   const [countdown, setCountdown] = useState(60);

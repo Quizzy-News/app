@@ -10,3 +10,5 @@ The frontend is created using JavaScript, React Native, HTML, and Tailwind CSS.
 
 The backend will be created using Node.js and Firebase.
 
+## Appendix
+

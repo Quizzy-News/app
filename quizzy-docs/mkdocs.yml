@@ -3,3 +3,4 @@ nav:
   - Home: index.md
   - Frontend: frontend.md
   - Backend: backend.md
+  - Appendix: appendix.md

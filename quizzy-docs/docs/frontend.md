@@ -40,24 +40,22 @@ Container components for Quizzy.News
 
 ####CountDownPage
 `CountDownPage` is the component between `Home` and `GamePage`.
-<br><br>
+
 `useEffect` detects changes in `countdown`'s state. When `countdown` reaches `0`, `useEffect` triggers navigation to `GamePage`.
 
 ####GamePage
-`GamePage` is the container for question text and answer buttons. This component handles game and points logic.
-<br>
 
-Multiple `useState` hooks are in place to update the different pieces that help `GamePage` work. 
-<br>
+`GamePage` is like the control center for playing the quiz game in the app. Think of it as the game board where everything happens – from showing questions and choices to keeping track of scores and moving through the quiz.
 
-`useEffect` detects changes in `currentQuestion`'s state, which then triggers an update to the next question and its corresponding choices in the next re-render.
-<br>
+#####Key Features:
 
-`useEffect` also aids in tracking how much time is left to complete the game.
-<br>
+`Timer`: This counts down from 60. It's used to give the player a sense of time, possibly adding a bit of pressure to answer quickly.
 
-Helper functions are in place to detect user activity as well.
-<br> 
+`QuestionDisplay` and `ChoiceDisplay`: These presentation components shows the current question and possible answers (choices). Players select one of these choices as their answer.
+
+Scoring and Feedback: As players answer questions, `GamePage` keeps score. It also shows immediate feedback – if the answer was right or wrong.
+
+Navigation to `ScorePage`: When the quiz ends, either by answering all questions or when the timer runs out, `GamePage` takes the player to the ScorePage to see their final score and a summary of their answers.
 
 See the <a href="http://127.0.0.1:8000/#appendix">Appendix</a> for more detail.
 
@@ -67,13 +65,3 @@ Container component for the homepage.
 ####ScorePage
 Container component for final score page. This has a summary of results as well links to the news that was referenced in the game.      
 
-## GamePageChildren
-Presentation components for GamePage.js
-
-####ChoiceDisplay
-
-####Footer
-
-####Header
-
-####Question Display

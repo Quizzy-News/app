@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 // import { useFonts } from 'expo-font';
 // import * as Sharing from 'expo-sharing';
 import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
+import { getDailyQuiz } from '../firebase/firebaseConfig';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
 export default function ScorePage({ route, navigation }) {
@@ -10,8 +11,13 @@ export default function ScorePage({ route, navigation }) {
     const [score, setScore] = useState(route.params.score);
     // const [record, setRecord] = useState(route.params.record);
     const [time, setTime] = useState(route.params.time);
+    const [quiz, setQuiz] = useState(route.params.quiz);
+
+    //
+    const [record,setRecord] = useState(route.params.record);
 
     useEffect(() => {
+        setQuiz(route.params.quiz);
         setScore(route.params.score);
         // setRecord(route.params.record);
         setTime(route.params.time);
@@ -19,34 +25,45 @@ export default function ScorePage({ route, navigation }) {
         console.log(score);
         // console.log(record);
         console.log(time);
-    }, [route.params.score,  route.params.time])
+        console.log(record);
+    }, [route.params.score,  route.params.time, route.params.record, route.params.quiz])
 
     const results = [
-        {
-            id: 1,
-            answer: "France",
-            link: "https://www.google.com/"
-        },
-        {
-            id: 2,
-            answer: "China",
-            link: "https://www.google.com/"
-        },
-        {
-            id: 3,
-            answer: "Taylor Swift",
-            link: "https://www.google.com/"
-        },
-        {
-            id: 4,
-            answer: "Mauna Loa",
-            link: "https://www.google.com/"
-        },
-        {
-            id: 5,
-            answer: "Mpox",
-            link: "https://www.google.com/"
-        },
+        ...quiz.map(
+            (item, index) => {
+            return {
+                id: index + 1,
+                answer: item.correct_answer,
+                link: item.url
+            }
+            }
+        )
+        
+        // {
+        //     id: 1,
+        //     answer: "France",
+        //     link: "https://www.google.com/"
+        // },
+        // {
+        //     id: 2,
+        //     answer: "China",
+        //     link: "https://www.google.com/"
+        // },
+        // {
+        //     id: 3,
+        //     answer: "Taylor Swift",
+        //     link: "https://www.google.com/"
+        // },
+        // {
+        //     id: 4,
+        //     answer: "Mauna Loa",
+        //     link: "https://www.google.com/"
+        // },
+        // {
+        //     id: 5,
+        //     answer: "Mpox",
+        //     link: "https://www.google.com/"
+        // },
     ]
 
     return (
@@ -67,7 +84,9 @@ export default function ScorePage({ route, navigation }) {
                 <Text className="pb-3 text-sm font-lexend">Click on the answers to read more about each story.</Text>
                 {results.map(result => {
                     return (
-                        <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" key={result.id}>
+                        <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" 
+                            onPress={()=> window.open(result.link)}
+                            key={result.id}>
                             <View className="h-full bg-[#E3E3E3] w-[103%] rounded-md absolute top-2 right-[-5]" />
                             <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" />
                             <View className="h-full bg-[#78C93C] w-full rounded-md absolute" />

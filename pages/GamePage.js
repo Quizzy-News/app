@@ -9,11 +9,11 @@ import Footer from "./GamePageChildren/Footer.js";
 
 // GamePage is the container for questions and answer buttons. Handles game and points
 
-export default function GamePage ( { navigation }) {
+export default function GamePage ( { navigation, route }) {
 
   const [countdown, setCountdown] = useState(60);
   const [currentQuestion, setCurrentQuestion] = useState(0); // int represents index 
-  const [question, setQuestion] = useState(sampleQuiz); // sampleQuiz is an array of objects
+  const [question, setQuestion] = useState(route.params.quiz); // sampleQuiz is an array of objects
   const [score, setScore] = useState(0);
   const [choices, setChoices] = useState([]); 
   const [userRecord, setUserRecord] = useState([]);  // TODO: Change the data structure to object? {0: "correct", 1: "incorrect", etc.}
@@ -23,9 +23,15 @@ export default function GamePage ( { navigation }) {
   const [timeoutId, setTimeoutId] = useState(null);
   const [page, setPage] = useState(1);
 
+  const [quiz, setQuiz] = useState(route.params.quiz);
+
   useEffect(() => {
-    setQuestion(sampleQuiz[currentQuestion]);
-    setChoices([...sampleQuiz[currentQuestion].choices]);
+    console.log(quiz);
+  })
+
+  useEffect(() => {
+    setQuestion(quiz[currentQuestion]);
+    setChoices([...quiz[currentQuestion].choices]);
   }, [currentQuestion]);
 
   // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
@@ -36,6 +42,16 @@ export default function GamePage ( { navigation }) {
       }
     }
   },[timeoutId])
+
+
+  // Ensure that state variables are sync'd before navigating away from the gamepage
+  useEffect(() => {
+    if(!inProgress){
+      navigation.navigate("ScorePage", {
+        score, record: userRecord, time: countdown, quiz: quiz
+      })
+    }
+  }, [inProgress, navigation, score, userRecord, countdown, quiz])
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
@@ -66,7 +82,7 @@ export default function GamePage ( { navigation }) {
   const isCorrect = (choice) => {
     let index = choices.indexOf(choice);
 
-    const newChoiceState = choice === question.answer ? "Correct" : "Incorrect";
+    const newChoiceState = choice === question.correct_answer ? "Correct" : "Incorrect";
 
     handleRecord(newChoiceState === "Correct" ? "correct" : "incorrect");
     handleScore(newChoiceState === "Correct" ? score + 1 : score);
@@ -81,7 +97,7 @@ export default function GamePage ( { navigation }) {
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
 
-    if (nextQuestion < sampleQuiz.length) {
+    if (nextQuestion < quiz.length) {
       setCurrentQuestion(nextQuestion);
       resetChoices();
     } else { 
@@ -90,7 +106,7 @@ export default function GamePage ( { navigation }) {
   }
 
   const resetChoices = () => {
-    setChoices([...sampleQuiz[currentQuestion].choices]);
+    setChoices([...quiz[currentQuestion].choices]);
     setChoiceStates((previousStates) => {
       return previousStates.map(() =>  "Idle")
     });
@@ -128,7 +144,7 @@ export default function GamePage ( { navigation }) {
         />
 
       <View style={styles.container1}>
-         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
+         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
           
           {/* Write unique id for json  */}
           <View style={styles.answerContainer}> 

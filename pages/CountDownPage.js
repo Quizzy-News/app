@@ -1,13 +1,33 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { Colors, Containers, Typography } from "../styles"
+import { testFb, getDailyQuiz } from "../firebase/firebaseConfig.js"
 
 export default function CountDownPage({ navigation }) {
   const [countdown, setCountdown] = useState(3);
+  const [loaded, setLoaded] = useState(false);
+  const [quiz, setQuiz] = useState([]);
 
   useEffect(() => {
+    const load = async () => {
+      //const quiz = await testFb();
+      const quiz = await getDailyQuiz();
+      // for (let i = 0; i < quiz.length; i++) { 
+      //   console.log(quiz[i])
+      // }
+      setQuiz(quiz);
+      setLoaded(true);
+    }
+    load();
+  })
+
+
+  useEffect(() => {
+    if (!loaded) {
+      return
+    }
     if (countdown === 0) {
-      navigation.navigate("GamePage");
+      navigation.navigate("GamePage", { quiz });;
       return;
     }
 
@@ -16,7 +36,7 @@ export default function CountDownPage({ navigation }) {
     }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [countdown, navigation]);
+  }, [countdown, navigation, loaded]);
 
   return (
     <View style={styles.screen}>

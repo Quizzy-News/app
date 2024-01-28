@@ -36,4 +36,5 @@ yarn-error.*
 *.tsbuildinfo
 .yarn/releases/yarn-1.22.19.cjs
 
-./firebase/config.js
+
+firebase/config.js

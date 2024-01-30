@@ -25,11 +25,10 @@ export default function GamePage ( { navigation, route }) {
 
   const [quiz, setQuiz] = useState(route.params.quiz);
 
-  useEffect(() => {
-    console.log(quiz);
-  })
 
+  
   useEffect(() => {
+    console.log(quiz[currentQuestion]["question"]);
     setQuestion(quiz[currentQuestion]);
     setChoices([...quiz[currentQuestion].choices]);
   }, [currentQuestion]);
@@ -56,7 +55,7 @@ export default function GamePage ( { navigation, route }) {
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
       setInProgress(false);
-      navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0})
+      navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0, quiz: quiz})
   }
 
   // == end: REDIRECT TO SCOREPAGE ==
@@ -101,7 +100,7 @@ export default function GamePage ( { navigation, route }) {
       setCurrentQuestion(nextQuestion);
       resetChoices();
     } else { 
-      navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown});
+      navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown, quiz: quiz});
     }; 
   }
 

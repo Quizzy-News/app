@@ -7,6 +7,7 @@ export default function CountDownPage({ navigation }) {
   const [countdown, setCountdown] = useState(3);
   const [loaded, setLoaded] = useState(false);
   const [quiz, setQuiz] = useState([]);
+  const doOnce = true;
 
   useEffect(() => {
     const load = async () => {
@@ -15,11 +16,12 @@ export default function CountDownPage({ navigation }) {
       // for (let i = 0; i < quiz.length; i++) { 
       //   console.log(quiz[i])
       // }
+      console.log(quiz);
       setQuiz(quiz);
       setLoaded(true);
     }
     load();
-  })
+  }, [doOnce])
 
 
   useEffect(() => {

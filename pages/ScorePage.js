@@ -26,6 +26,7 @@ export default function ScorePage({ route, navigation }) {
         // console.log(record);
         console.log(time);
         console.log(record);
+        console.log(quiz);
     }, [route.params.score,  route.params.time, route.params.record, route.params.quiz])
 
     const results = [
@@ -65,7 +66,7 @@ export default function ScorePage({ route, navigation }) {
         //     link: "https://www.google.com/"
         // },
     ]
-
+    
     return (
         <View className="h-screen p-5 flex items-center bg-white">
             <Text className="pt-5 self-start font-lexend font-bold text-[#909090] uppercase">
@@ -86,7 +87,7 @@ export default function ScorePage({ route, navigation }) {
                     return (
                         <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" 
                             onPress={()=> window.open(result.link)}
-                            key={result.id}>
+                        key={result.id}>
                             <View className="h-full bg-[#E3E3E3] w-[103%] rounded-md absolute top-2 right-[-5]" />
                             <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" />
                             <View className="h-full bg-[#78C93C] w-full rounded-md absolute" />

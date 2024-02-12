@@ -1,27 +1,27 @@
 [
     {
       "question": "Which country hosted the 2016 Summer Olympics?",
-      "choices": ["USA", "Brazil", "China", "Russia"],
+      "choices": ["USA", "Brazil", "China"],
       "answer": "Brazil"
     },
     {
       "question": "In what year did the Berlin Wall fall?",
-      "choices": ["1985", "1989", "1991", "1995"],
+      "choices": ["1985", "1989", "1991"],
       "answer": "1989"
     },
     {
       "question": "Who was the first President of the United States?",
-      "choices": ["George Washington", "Thomas Jefferson", "John Adams", "Abraham Lincoln"],
+      "choices": ["George Washington", "Thomas Jefferson", "John Adams"],
       "answer": "George Washington"
     },
     {
       "question": "Which historic event is known as 'D-Day'?",
-      "choices": ["Attack on Pearl Harbor", "Fall of the Berlin Wall", "Invasion of Normandy", "Hiroshima bombing"],
+      "choices": ["Attack on Pearl Harbor", "Fall of the Berlin Wall", "Invasion of Normandy"],
       "answer": "Invasion of Normandy"
     },
     {
       "question": "Which country was the first to launch a human into space?",
-      "choices": ["USA", "Russia", "China", "Germany"],
+      "choices": ["USA", "Russia", "China"],
       "answer": "Russia"
     }
   ]

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "KGHappy";
+    src: url("./assets/fonts/KGHAPPY.ttf");
+}
+
+@font-face {
+    font-family: "Lexend";
+    src: url("./assets/fonts/Lexend-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Jost";
+    src: url("./assets/fonts/Jost-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Futura-Medium";
+    src: url("./assets/fonts/Futura-Medium.otf");
+}
+
+
+:root {
+    --gray-1: #B3B3B3;
+    --gray-2: #909090;
+    --gray-3: #646464;
+    --gray-4: #3D3D3D;
+    --light-yellow: #F6C443;
+    --dark-yellow: #E69535;
+    --light-red: #FAD1D1;
+    --dark-red: #EE807C;
+    --darker-red: #E95750;
+    --light-purple: #DED1E4;
+    --light-blue: #80C9FA;
+    --dark-blue: #53ADF0;
+    --light-green: #DEFEBF;
+    --dark-green: #78C93C;
+    --darker-green: #6BA530;
+}

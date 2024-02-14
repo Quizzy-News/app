@@ -17,6 +17,7 @@
     "expo": "~49.0.7",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
+    "firebase": "^10.7.2",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",

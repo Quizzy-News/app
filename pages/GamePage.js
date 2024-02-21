@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { Colors, Containers, Typography } from "../styles"
+import { StyledComponent } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'
@@ -116,7 +116,7 @@ export default function GamePage ( { navigation }) {
   }
 
   return (
-    <View style={styles.screen}>
+    <StyledComponent component={View} tw="bg-gray-100 flex flex-col justify-center"> 
       <Header 
         onTimeOut={handleTimeOut}
         onPressOut={() => handlePressOut(choice)}
@@ -125,11 +125,11 @@ export default function GamePage ( { navigation }) {
         page={page}
         />
 
-      <View style={styles.container1}>
+      <StyledComponent component={View} tw="bg-light-purple">
          <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
           
           {/* Write unique id for json  */}
-          <View style={styles.answerContainer}> 
+          <View className="bg-[light-purple]"> 
               {choices.map((choice, i) => {
                 return <ChoiceDisplay
                   key= {i} // Used by React under the hood.
@@ -141,26 +141,26 @@ export default function GamePage ( { navigation }) {
                 }
               )}
           </View>
-      </View>
-
+      
+      </StyledComponent>
       <Footer />
-    </View>
+      </StyledComponent>
   );
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    ...Containers.screenCenter
-  },
-  answerContainer: {
-    width: "100%",
-    display: "flex",
-    paddingBottom: 10,
-    alignItems: "stretch"
-  }, 
-  container1: {
-    ...Colors.backgroundColors.lightPurple,
-    ...Containers.contentContainerBetween
-  },
+// const styles = StyleSheet.create({
+//   screen: {
+//     ...Containers.screenCenter
+//   },
+//   answerContainer: {
+//     width: "100%",
+//     display: "flex",
+//     paddingBottom: 10,
+//     alignItems: "stretch"
+//   }, 
+//   container1: {
+//     ...Colors.backgroundColors.lightPurple,
+//     ...Containers.contentContainerBetween
+//   },
 
-});
+// });

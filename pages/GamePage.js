@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { StyledComponent } from 'nativewind';
+import { StyledComponent, styled } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 import Footer from "./GamePageChildren/Footer.js";
+
+const StyledView = styled(View);
 
 export default function GamePage ( { navigation }) {
 
@@ -116,7 +118,7 @@ export default function GamePage ( { navigation }) {
   }
 
   return (
-    <StyledComponent component={View} tw="bg-gray-100 flex flex-col justify-center"> 
+    <StyledView className="flex-1 flex-col items-center justify-center bg-grey-background">
       <Header 
         onTimeOut={handleTimeOut}
         onPressOut={() => handlePressOut(choice)}
@@ -125,26 +127,25 @@ export default function GamePage ( { navigation }) {
         page={page}
         />
 
-      <StyledComponent component={View} tw="bg-light-purple">
-         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />
-          
-         
-          <View> 
-              {choices.map((choice, i) => {
-                return <ChoiceDisplay
-                  key= {i} // Used by React under the hood.
-                  choice={choice}
-                  onPressIn={() => handlePressIn(choice)}
-                  onPressOut={() => handlePressOut(choice)}
-                  choiceState={choiceStates[i]}
-                />
-                }
-              )}
-          </View>
-      
-      </StyledComponent>
+      <StyledView className="bg-light-purple m-10 p-10 rounded-lg">
+        <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} /> 
+
+        <View> 
+            {choices.map((choice, i) => {
+              return <ChoiceDisplay
+                key= {i} // Used by React under the hood.
+                choice={choice}
+                onPressIn={() => handlePressIn(choice)}
+                onPressOut={() => handlePressOut(choice)}
+                choiceState={choiceStates[i]}
+              />
+              }
+            )}
+        </View>
+
+        </StyledView>
       <Footer />
-    </StyledComponent>
+    </StyledView>
   );
 };
 
@@ -157,7 +158,6 @@ export default function GamePage ( { navigation }) {
 //     alignItems: "stretch"
 //   }, 
 //   container1: {
-//     ...Colors.backgroundColors.lightPurple,
 //     ...Containers.contentContainerBetween
 //   },
 

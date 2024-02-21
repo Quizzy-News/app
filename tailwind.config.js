@@ -13,6 +13,7 @@ module.exports = {
         'futura-medium': ['Futura-Medium', 'sans-serif'],
       },
       colors: {
+        "grey-background": "#E5E7EB",
         "grey-1": "#B3B3B3",
         "grey-2": "#909090",
         "grey-3": "#646464",
@@ -32,5 +33,5 @@ module.exports = {
       },
     },
   },
-  plugins: [nativewind()],
+  plugins: [nativewind],
 };

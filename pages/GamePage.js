@@ -118,7 +118,7 @@ export default function GamePage ( { navigation }) {
   }
 
   return (
-    <StyledView className="flex-1 flex-col items-center justify-center bg-grey-background">
+    <StyledView className="flex-1 flex-col justify-center bg-grey-background">
       <Header 
         onTimeOut={handleTimeOut}
         onPressOut={() => handlePressOut(choice)}
@@ -127,10 +127,10 @@ export default function GamePage ( { navigation }) {
         page={page}
         />
 
-      <StyledView className="bg-light-purple m-10 p-10 rounded-lg">
+      <StyledView className="flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg">
         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} /> 
 
-        <View> 
+        <StyledView className="w-full flex pb-10"> 
             {choices.map((choice, i) => {
               return <ChoiceDisplay
                 key= {i} // Used by React under the hood.
@@ -141,25 +141,10 @@ export default function GamePage ( { navigation }) {
               />
               }
             )}
-        </View>
+        </StyledView>
 
         </StyledView>
       <Footer />
     </StyledView>
   );
 };
-
-// const styles = StyleSheet.create({
-
-//   answerContainer: {
-//     width: "100%",
-//     display: "flex",
-//     paddingBottom: 10,
-//     alignItems: "stretch"
-//   }, 
-//   container1: {
-//     ...Containers.contentContainerBetween
-//   },
-
-// });
-

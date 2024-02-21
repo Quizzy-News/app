@@ -126,10 +126,10 @@ export default function GamePage ( { navigation }) {
         />
 
       <StyledComponent component={View} tw="bg-light-purple">
-         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
+         <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} />
           
-          {/* Write unique id for json  */}
-          <View className="bg-[light-purple]"> 
+         
+          <View> 
               {choices.map((choice, i) => {
                 return <ChoiceDisplay
                   key= {i} // Used by React under the hood.
@@ -144,14 +144,12 @@ export default function GamePage ( { navigation }) {
       
       </StyledComponent>
       <Footer />
-      </StyledComponent>
+    </StyledComponent>
   );
 };
 
 // const styles = StyleSheet.create({
-//   screen: {
-//     ...Containers.screenCenter
-//   },
+
 //   answerContainer: {
 //     width: "100%",
 //     display: "flex",
@@ -164,3 +162,4 @@ export default function GamePage ( { navigation }) {
 //   },
 
 // });
+

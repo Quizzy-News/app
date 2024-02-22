@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { StyledComponent, styled } from 'nativewind';
+import { View } from "react-native";
+import { styled } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'

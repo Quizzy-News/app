@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Buttons, Colors, Typography } from "../../styles"
+import React from "react";
+import { styled } from 'nativewind';
+import { View, StyleSheet } from "react-native";
+import { Colors } from "../../styles"
 import Timer from './HeaderChildren/Timer.js';
 import ExitButton from './HeaderChildren/ExitButton.js'
 import PageCount from './HeaderChildren/PageCount.js'
 import ScoreCount from "./HeaderChildren/ScoreCount.js";
 
+const StyledView = styled(View);
+
 export default function Header({onTimeOut, score, navigation, onPressOut, page}) {
     return (
-        <View style={styles.header}>
+        <StyledView className="flex-row items-end justify-between p-10 mt-20 h-10pct">
             <ExitButton navigation={navigation} />
         
             <View style={styles.scoreHeader}>
@@ -16,20 +19,12 @@ export default function Header({onTimeOut, score, navigation, onPressOut, page})
                 <Timer initialCountdown={60} onTimeOut={onTimeOut}/>
                 <ScoreCount score={score}/>
             </View>
-        </View>
+        </StyledView>
     )
 }
 
 const styles = StyleSheet.create({
-    header: {
-        height: "10%",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-end",
-        justifyContent: "space-between",
-        padding: 10,
-        marginTop: 20,
-      },
+
 
       scoreHeader: {
         ...Colors.backgroundColors.gray2,

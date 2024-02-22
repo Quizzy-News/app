@@ -6,6 +6,9 @@ module.exports = {
   content: ["./App.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}", "./modals/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      height: {
+        '10pct': '10%',
+      },
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
         'lexend': ['Lexend', 'sans-serif'],

@@ -8,6 +8,10 @@ module.exports = {
     extend: {
       height: {
         '10pct': '10%',
+        'timer-height': '60px !important',
+      },
+      width: {
+          'timer-width': '60px !important',
       },
       boxShadow : {
         "exitButtonShadow" : "0 5px 0 rgba(61, 61, 61)",

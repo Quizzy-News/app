@@ -15,6 +15,9 @@ module.exports = {
       },
       boxShadow : {
         "exitButtonShadow" : "0 5px 0 rgba(61, 61, 61)",
+        "choiceDisplayButtonShadow": "0 5px 0 rgba(179,179,179)",
+        "correctChoiceDisplayButtonShadow" : "0 5px 0 rgb(107,165,48)",
+        "incorrectChoiceDisplayButtonShadow" : "0 5px 0 rgb(233,87,80)"
       },
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],

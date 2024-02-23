@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { styled } from "nativewind";
+import { Text, StyleSheet, Pressable } from "react-native";
 import { Buttons, Colors, Containers, Typography } from "../../styles"
-import { button } from "../../styles/buttons";
 
+const StyledText = styled(Text);
+const StyledPressable = styled(Pressable);
 
 // ChoiceDisplay is the container for individual choice elements.
 // This component will be mapped in GamePage.
@@ -10,15 +12,15 @@ import { button } from "../../styles/buttons";
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
   const getButtonStyle = () => {
     if (choiceState === "Active") {
-      return styles.buttonActive;
+      return "bg-light-blue m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else if (choiceState === "Disabled") {
-       return styles.buttonDisabled;
+       return "bg-grey-2 shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else if (choiceState === "Correct") {
-      return styles.answerCorrect;
+      return "bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else if (choiceState === "Incorrect") {
-      return styles.answerIncorrect;
+      return "bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else {
-      return styles.button;
+      return "bg-white shadow-choiceDisplayButtonShadow -top-5 m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     }
   }
 
@@ -37,15 +39,15 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
   }
   
   return (
-      <Pressable 
-          style={getButtonStyle()}
+      <StyledPressable 
+          className={getButtonStyle()}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
       >
-          <Text style={getTextStyle()}>
+          <StyledText className={getTextStyle()}>
               {choice}
-          </Text>
-      </Pressable>
+          </StyledText>
+      </StyledPressable>
   );
 };
 

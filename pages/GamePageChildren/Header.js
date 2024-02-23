@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from 'nativewind';
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import Timer from './HeaderChildren/Timer.js';
 import ExitButton from './HeaderChildren/ExitButton.js'
 import PageCount from './HeaderChildren/PageCount.js'

@@ -9,6 +9,9 @@ module.exports = {
       height: {
         '10pct': '10%',
       },
+      boxShadow : {
+        "exitButtonShadow" : "0 5px 0 rgba(61, 61, 61)",
+      },
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
         'lexend': ['Lexend', 'sans-serif'],

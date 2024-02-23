@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
         'lexend': ['Lexend', 'sans-serif'],
+        'lexend-bold': ['LexendBold', 'sans-serif'],
         'jost': ['Jost', 'sans-serif'],
         'futura-medium': ['Futura-Medium', 'sans-serif'],
       },

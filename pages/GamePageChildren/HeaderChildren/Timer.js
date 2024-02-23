@@ -30,9 +30,7 @@ export default function Timer({ initialCountdown, onTimeOut }) {
     }, [countdown, onTimeOut])
 
     return (
-      // <StyledView className="inline-block h-0 w-0">
         <StyledImage source={timerFrames[countdown]} className="h-timer-height w-timer-width"/>
-      // </StyledView>
     )
 
 }

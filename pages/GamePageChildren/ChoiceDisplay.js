@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "nativewind";
-import { Text, StyleSheet, Pressable } from "react-native";
-import { Buttons, Colors, Containers, Typography } from "../../styles"
+import { Text, Pressable } from "react-native";
 
 const StyledText = styled(Text);
 const StyledPressable = styled(Pressable);
@@ -26,15 +25,15 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
 
   const getTextStyle = () => {
     if (choiceState === "Active") {
-      return styles.answerTextActive;
+      return "font-futura-medium text-xl text-white";
     } else if (choiceState === "Disabled") {
-      return styles.answerTextDisabled
+      return "font-futura-medium text-xl text-grey-3";
     } else if (choiceState === "Correct") {
-      return styles.answerTextCorrect;
+      return "font-futura-medium text-xl text-light-green";
     } else if (choiceState === "Incorrect") {
-      return styles.answerTextIncorrect;
+      return "font-futura-medium text-xl text-light-red";
     } else {
-      return styles.answerTextIdle;
+      return "font-futura-medium text-xl text-grey-4";
     }
   }
   
@@ -50,73 +49,3 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
       </StyledPressable>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-      ...Colors.backgroundColors.white,
-      ...Colors.shadowColors.gray1,
-      ...Buttons.button,
-      top: -5,
-      margin: 10,
-      padding: 20,
-    },
-    buttonActive: {
-      ...Colors.backgroundColors.lightBlue,
-      ...Buttons.button,
-      margin: 10,
-      padding: 20,
-    },
-    buttonDisabled: {
-      ...Colors.backgroundColors.gray2,
-      ...Colors.shadowColors.gray3,
-      ...Buttons.button,
-      margin: 10,
-      padding: 20,
-    },
-    answerIdle: {
-      ...Buttons.answerButton,
-      ...Colors.backgroundColors.white,
-      shadowColor: "#00000015",
-    },
-    answerTextIdle: {
-      ...Typography.body3,
-      ...Colors.fontColors.gray4,
-    },
-    answerActive: {
-      ...Buttons.answerButtonActive,
-      ...Colors.backgroundColors.darkBlue,
-    },
-    answerTextActive: {
-      ...Typography.body3,
-      ...Colors.fontColors.white,
-    },
-    answerCorrect: {
-      ...Buttons.answerButton,
-      ...Colors.backgroundColors.darkGreen,
-      ...Colors.shadowColors.darkerGreen,
-    },
-    answerTextCorrect: {
-      ...Typography.body3,
-      ...Colors.fontColors.lightGreen,
-    },
-    answerIncorrect: {
-      ...Buttons.answerButton,
-      ...Colors.backgroundColors.darkRed,
-      ...Colors.shadowColors.darkerRed,
-    },
-    answerTextIncorrect: {
-      ...Typography.body3,
-      ...Colors.fontColors.lightRed,
-    },
-    answerDisabled: {
-      ...Buttons.answerButton,
-      ...Colors.backgroundColors.gray2,
-      ...Colors.shadowColors.gray3,
-    },
-    answerTextDisabled: {
-      ...Typography.body3,
-      ...Colors.fontColors.gray4,
-    },
-
-});
-

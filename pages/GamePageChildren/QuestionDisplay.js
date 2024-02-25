@@ -1,22 +1,16 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
-import { Colors, Typography } from "../../styles"
+import { styled } from "nativewind";
+import { Text } from "react-native";
 
+const StyledText = styled(Text);
 
 // QuestionDisplay is a container for the question text.
 
 export default function QuestionDisplay ({currentQuestion}) {
     return (
-        <Text style={styles.question}>
+        <StyledText className="text-grey-4 font-lexend-bold text-[22px]">
             {currentQuestion}
-        </Text>
+        </StyledText>
     );
 
 };
-
-const styles = StyleSheet.create({
-    question: {
-        ...Colors.fontColors.gray4,
-        ...Typography.body2
-    }
-});

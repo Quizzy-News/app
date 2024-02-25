@@ -1,41 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
-import { Buttons, Colors, Typography } from "../../styles"
+import React from "react";
+import { styled } from "nativewind";
+import { View, Text } from "react-native";
 
+const StyledView = styled(View);
+const StyledText = styled(Text);
 
 export default function Footer() {
     return (
-        <View style={styles.footer}>
-            <View style={styles.divider} />
-            <Text style={styles.footText1}>QUIZZY.NEWS</Text>
-            <Text style={styles.footText2}>Ⓒ 2022 EMISQWE</Text>
-        </View>
+        <StyledView className="mt-auto">
+            <StyledView className="bg-grey-2 mb-[10px] h-[1px]"/>
+            <StyledText className="font-lexend-bold text-grey-2 text-[12px] pl-[10px] pt-[5px]">QUIZZY.NEWS</StyledText>
+            <StyledText className="font-lexend text-grey-2 pl-[10px] pt-[5px] pb-[5px]">Ⓒ 2022 EMISQWE</StyledText>
+        </StyledView>
     )
 }
-
-
-const styles = StyleSheet.create({
-    divider: {
-        ...Colors.backgroundColors.gray2,
-        height: 1,
-        marginBottom: 10
-      },
-    footer: {
-        marginTop: "auto",
-    },
-    footText1: {
-        ...Typography.subH1,
-        ...Colors.fontColors.gray2,
-        fontSize: 16,
-        paddingLeft: 10,
-        paddingTop: 5,
-    },
-    footText2: {
-        ...Typography.subH2,
-        ...Colors.fontColors.gray2,
-        fontSize: 12,
-        paddingLeft: 10,
-        paddingTop: 5,
-        paddingBottom: 5,
-    },
-});

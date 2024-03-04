@@ -36,5 +36,8 @@ yarn-error.*
 *.tsbuildinfo
 .yarn/releases/yarn-1.22.19.cjs
 
-#json
-package-lock.json
+
+
+
+firebase/config.js
+

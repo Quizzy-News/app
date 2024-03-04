@@ -3,6 +3,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import MyStack from "./routes/MyStack";
 import { useFonts } from "expo-font";
+import "./nativewind-output";
 
 export default function App() {
 

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Image } from "react-native";
+import { View, Image } from "react-native";
+import { styled } from 'nativewind';
+
+const StyledImage = styled(Image);
+const StyledView = styled(View);
 
 // This component encapsulates timer/countdown logic.
 
@@ -26,14 +30,7 @@ export default function Timer({ initialCountdown, onTimeOut }) {
     }, [countdown, onTimeOut])
 
     return (
-        <Image source={timerFrames[countdown]} style={styles.timer}/>
+        <StyledImage source={timerFrames[countdown]} className="h-timer-height w-timer-width"/>
     )
 
 }
-
-const styles = StyleSheet.create({
-    timer: {
-      height: 60,
-      width: 60,
-    },
-  });

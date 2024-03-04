@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Colors, Containers, Typography } from "../styles"
+import { View } from "react-native";
+import { styled } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 import Footer from "./GamePageChildren/Footer.js";
 
-// GamePage is the container for questions and answer buttons. Handles game and points
+const StyledView = styled(View);
 
 export default function GamePage ( { navigation, route }) {
 
@@ -133,7 +133,7 @@ export default function GamePage ( { navigation, route }) {
   }
 
   return (
-    <View style={styles.screen}>
+    <StyledView className="flex-1 flex-col justify-center bg-grey-background">
       <Header 
         onTimeOut={handleTimeOut}
         onPressOut={() => handlePressOut(choice)}
@@ -142,42 +142,24 @@ export default function GamePage ( { navigation, route }) {
         page={page}
         />
 
-      <View style={styles.container1}>
-         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} />  {/* TODO: Make this dynamic; replace sampleQuiz */}
-          
-          {/* Write unique id for json  */}
-          <View style={styles.answerContainer}> 
-              {choices.map((choice, i) => {
-                return <ChoiceDisplay
-                  key= {i} // Used by React under the hood.
-                  choice={choice}
-                  onPressIn={() => handlePressIn(choice)}
-                  onPressOut={() => handlePressOut(choice)}
-                  choiceState={choiceStates[i]}
-                />
-                }
-              )}
-          </View>
-      </View>
+      <StyledView className="flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg">
+        <QuestionDisplay currentQuestion={sampleQuiz[currentQuestion].question} /> 
 
+        <StyledView className="w-full flex pb-10"> 
+            {choices.map((choice, i) => {
+              return <ChoiceDisplay
+                key= {i} // Used by React under the hood.
+                choice={choice}
+                onPressIn={() => handlePressIn(choice)}
+                onPressOut={() => handlePressOut(choice)}
+                choiceState={choiceStates[i]}
+              />
+              }
+            )}
+        </StyledView>
+
+        </StyledView>
       <Footer />
-    </View>
+    </StyledView>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    ...Containers.screenCenter
-  },
-  answerContainer: {
-    width: "100%",
-    display: "flex",
-    paddingBottom: 10,
-    alignItems: "stretch"
-  }, 
-  container1: {
-    ...Colors.backgroundColors.lightPurple,
-    ...Containers.contentContainerBetween
-  },
-
-});

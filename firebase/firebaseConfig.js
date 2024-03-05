@@ -24,18 +24,29 @@ const app = initializeApp(firebaseConfig);
 export async function getDailyQuiz() {
     const db = getFirestore(app);
     const date = todayFormatted
-    const q = query(collection(db, 'dailies', `${date}`, 'questions'), where("approved", "==", true));
-    const querySnapshot = await getDocs(q);
-    
-    const quiz = []
-    
-    querySnapshot.forEach((doc) => {
-        //console.log(doc.id, '=>', doc.data());
-        quiz.push(doc.data())
-    });
+    // const q = query(collection(db, 'dailies', `${date}`, 'questions'), where("approved", "==", true));
+    const q = query(doc(db, 'dailies', `${date}`));
+    const querySnapshot = await getDoc(q);
 
-    return quiz.slice(0,5);
+    
+    const quiz = querySnapshot.data();
+    
+    
+    return quiz;
     
 }
 
+
+export async function getDailyPixieQuiz() {
+    const db = getFirestore(app);
+    const date = '2024-02-28';
+
+    const q = query(doc(db, 'pixieBrix1', `${date}`));
+    const querySnapshot = await getDoc(q);
+
+    const quiz = querySnapshot.data();
+
+    return quiz;
+
+}
 

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Buttons, Colors, Typography } from "../../../styles";
+import { styled } from 'nativewind';
+import { View, Pressable } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const StyledView = styled(View);
+const StyledPressable = styled(Pressable);
 
 export default function ExitButton({ navigation }) {
   const [exitButton, setExitButton] = useState(false);
@@ -15,34 +18,19 @@ export default function ExitButton({ navigation }) {
   }
   
     return (
-      <View style={styles.exit}>
-        <Pressable
+      <StyledView className="pr-10">
+        <StyledPressable
             onPressIn={exitButtonActive}
             onPressOut={exitButtonInactive}
-            style={exitButton ? styles.buttonActive : styles.button}
+            className= { 
+              exitButton ? "bg-light-blue rounded-lg top-2" : " bg-light-blue rounded-lg shadow-exitButtonShadow"
+            }
         >
-            <MaterialCommunityIcons name="exit-to-app" size={36} color="white" />
-        </Pressable>
-      </View>
+            <MaterialCommunityIcons name="exit-to-app" size="4em" color="white" />
+        </StyledPressable>
+      </StyledView>
     )
 }
-
-const styles = StyleSheet.create({
-    button: {
-        ...Colors.backgroundColors.lightBlue,
-        ...Colors.shadowColors.darkBlue,
-        ...Buttons.smallButton,
-        top: -5,
-      },
-      buttonActive: {
-        ...Colors.backgroundColors.lightBlue,
-        ...Buttons.smallButtonActive,
-      },
-      exit: {
-        paddingRight: 10
-      },
- 
-});
 
 
 

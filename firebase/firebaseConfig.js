@@ -39,7 +39,8 @@ export async function getDailyQuiz() {
 
 export async function getDailyPixieQuiz() {
     const db = getFirestore(app);
-    const date = '2024-02-28';
+    const date = '2024-03-05';
+    // const date = todayFormatted;
 
     const q = query(doc(db, 'pixieBrix1', `${date}`));
     const querySnapshot = await getDoc(q);

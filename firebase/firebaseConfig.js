@@ -5,7 +5,7 @@ import { firebaseConfig } from "./config";
 
 const today = new Date();
 const todayFormatted = today.toISOString().split('T')[0];
-console.log(firebaseConfig);
+
 const app = initializeApp(firebaseConfig);
 
 

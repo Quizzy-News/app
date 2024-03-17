@@ -2,6 +2,7 @@
   "name": "quiznews",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://quizzy-news.github.io/app/",
   "scripts": {
     "start": "concurrently \"tailwindcss -i input.css --postcss.config.js --watch\" \"expo start\"",
     "android": "expo run:android",

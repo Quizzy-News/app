@@ -22,6 +22,19 @@ jobs:
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
+      - name: Create Firebase Config
+        run: | 
+          echo "module.exports = {" > firebase/config.js
+          echo "  apiKey: '${{ secrets.FIREBASEAPIKEY }}'," >> firebase/config.js
+          echo "  authDomain: '${{ secrets.FIREAUTHDOMAIN }}'," >> firebase/config.js
+          echo "  projectId: '${{ secrets.FIREBASEPROJECTID }}'," >> firebase/config.js
+          echo "  storageBucket: '${{ secrets.FIREBASESTORAGEBUCKET }}'," >> firebase/config.js
+          echo "  messagingSenderId: '${{ secrets.FIREBASEMESSAGINGSENDERID }}'," >> firebase/config.js
+          echo "  appId: '${{ secrets.FIREBASEAPPID }}'," >> firebase/config.js
+          echo "  measurementId: '${{ secrets.FIREBASEMEASUREMENTID }}'" >> firebase/config.js
+          echo "};" >> firebase/config.js
+          
+
       - name: Build Project
         run: expo build:web  # Or your build command
 

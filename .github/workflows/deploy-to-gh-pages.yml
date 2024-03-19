@@ -36,7 +36,7 @@ jobs:
           
 
       - name: Build Project
-        run: expo build:web  # Or your build command
+        run: expo export -p web  # Or your build command
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3

@@ -34,7 +34,7 @@ export default function ScorePage({ route, navigation }) {
             (item, index) => {
             return {
                 id: index + 1,
-                answer: item.correct_answer,
+                answer: item.answer,
                 link: item.url
             }
             }

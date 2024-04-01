@@ -14,13 +14,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '20.7.0'  # Use whatever node version your project requires
+          node-version: '20.x'  
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
 
       - name: Create Firebase Config
         run: | 
@@ -36,7 +34,7 @@ jobs:
           
 
       - name: Build Project
-        run: npx expo export
+        run: npx expo export --public-url https://quizzy-news.github.io/app
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3

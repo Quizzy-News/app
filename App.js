@@ -18,6 +18,7 @@ export default function App() {
   
 
   if (!loaded) {
+    console.log("Fonts did not load")
     return null;
   }
 

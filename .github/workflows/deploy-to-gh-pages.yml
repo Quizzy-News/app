@@ -36,12 +36,12 @@ jobs:
           
 
       - name: Build Project
-        run: expo export -p web  # Or your build command
+        run: npx expo export
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages  # The branch the action should deploy to.
-          FOLDER: build  # The folder the action should deploy.
+          FOLDER: dist  # The folder the action should deploy.
           CLEAN: true  # Automatically remove deleted files from the deploy branch

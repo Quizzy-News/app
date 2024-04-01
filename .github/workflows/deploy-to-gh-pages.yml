@@ -34,12 +34,12 @@ jobs:
           
 
       - name: Build Project
-        run: npx expo export --public-url https://quizzy-news.github.io/app
+        run: npx expo build:web
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages  # The branch the action should deploy to.
-          FOLDER: dist  # The folder the action should deploy.
+          FOLDER: web-build  # The folder the action should deploy.
           CLEAN: true  # Automatically remove deleted files from the deploy branch

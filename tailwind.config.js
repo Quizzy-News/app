@@ -21,11 +21,13 @@ module.exports = {
       },
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],
-        'lexend': ['Lexend', 'sans-serif'],
+        'lexend': ['LexendRegular', 'sans-serif'],
         'lexend-bold': ['LexendBold', 'sans-serif'],
+        'lexend-black': ['LexendBlack', 'sans-serif'], 
         'jost': ['Jost', 'sans-serif'],
-        'futura-medium': ['Futura-Medium', 'sans-serif'],
+        'futura-medium': ['FuturaMedium', 'sans-serif'],
       },
+      
       colors: {
         "grey-background": "#E5E7EB",
         "grey-1": "#B3B3B3",

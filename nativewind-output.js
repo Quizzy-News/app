@@ -402,10 +402,10 @@ _NativeWindStyleSheet.create({
       "paddingTop": 5
     },
     "font-futura-medium": {
-      "fontFamily": "Futura-Medium"
+      "fontFamily": "FuturaMedium"
     },
     "font-lexend": {
-      "fontFamily": "Lexend"
+      "fontFamily": "LexendRegular"
     },
     "font-lexend-bold": {
       "fontFamily": "LexendBold"

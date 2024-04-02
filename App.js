@@ -12,10 +12,13 @@ export default function App() {
     LexendRegular: require("./assets/fonts/Lexend-Regular.ttf"),
     LexendBold: require("./assets/fonts/Lexend-Bold.ttf"),
     LexendBlack: require("./assets/fonts/Lexend-Black.ttf"),
+    Jost: require("./assets/fonts/Jost-Regular.ttf"), 
     FuturaMedium: require("./assets/fonts/Futura-Medium.otf"),
   });
+  
 
   if (!loaded) {
+    console.log("Fonts did not load")
     return null;
   }
 

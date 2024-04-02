@@ -2,6 +2,9 @@
   "expo": {
     "name": "Quizzy.News",
     "slug": "quizzy-news",
+    "experiments" : {
+      "baseUrl" : "https://quizzy-news.github.io/app/"
+    },
     "version": "1.0.0",
     "owner": "Quizzy-News",
     "orientation": "portrait",

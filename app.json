@@ -2,19 +2,16 @@
   "expo": {
     "name": "Quizzy.News",
     "slug": "quizzy-news",
-    "experiments" : {
-      "baseUrl" : "https://quizzy-news.github.io/app/"
-    },
     "version": "1.0.0",
     "owner": "Quizzy-News",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./public/icons/icon.png",
     "web": {
       "bundler": "metro"
     },
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./public/icons/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -26,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./public/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },

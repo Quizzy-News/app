@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 const nativewind = require("nativewind/tailwind/css");
-const { platformSelect } = require("nativewind/dist/theme-functions");
 
 module.exports = {
+  corePlugins: {
+    preflight: false,
+  },
   content: ["./App.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}", "./modals/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -46,11 +48,6 @@ module.exports = {
         "darker-green": "#6BA530",
         "white": "#FFF"
       },
-      lineHeight: platformSelect({
-        "ios": "[24px]",
-        "android": "[24px]",
-        "web": "[24px]"
-      }),
     },
   },
   plugins: [nativewind],

@@ -6,6 +6,6 @@ const StyledText = styled(Text);
 
 export default function ScoreCount({ score }) {
     return (
-        <StyledText className="leading-web font-lexend-bold text-xl text-white m-3 p-1">{score}</StyledText>
+        <StyledText className="leading-6 font-lexend-bold text-xl text-white m-3 p-1">{score}</StyledText>
     )
 }

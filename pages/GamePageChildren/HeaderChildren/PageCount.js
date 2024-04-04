@@ -7,7 +7,7 @@ const StyledText = styled(Text);
 export default function PageCount({ page }) {
 
     return (
-        <StyledText className="font-lexend text-sm text-white m-3 p-1 leading-web" >
+        <StyledText className="font-lexend text-sm text-white m-3 p-1 leading-6" >
             {page}/5
         </StyledText>
     )

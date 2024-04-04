@@ -8,7 +8,7 @@ const StyledText = styled(Text);
 
 export default function QuestionDisplay ({currentQuestion}) {
     return (
-        <StyledText className="text-grey-4 font-lexend-bold text-[22px] leading-web">
+        <StyledText className="text-grey-4 font-lexend-bold text-[22px] leading-6">
             {currentQuestion}
         </StyledText>
     );

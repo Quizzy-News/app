@@ -381,7 +381,7 @@ _NativeWindStyleSheet.create({
       "backgroundColor": "rgba(128, 201, 250, 1)"
     },
     "bg-light-purple": {
-      "backgroundColor": "rgba(222, 209, 228, 1)"
+      "backgroundColor": "rgba(234, 214, 243, 1)"
     },
     "bg-white": {
       "backgroundColor": "rgba(255, 255, 255, 1)"
@@ -464,10 +464,25 @@ _NativeWindStyleSheet.create({
     },
     "underline": {
       "textDecorationLine": "underline"
+    },
+    "container@5": {
+      "maxWidth": 640
+    },
+    "container@6": {
+      "maxWidth": 768
+    },
+    "container@7": {
+      "maxWidth": 1024
+    },
+    "container@8": {
+      "maxWidth": 1280
+    },
+    "container@9": {
+      "maxWidth": 1536
     }
   },
   atRules: {
-    "container": [[["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]]]
+    "container": [[["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]], [["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]]]
   },
   topics: {
     "container": ["width"],

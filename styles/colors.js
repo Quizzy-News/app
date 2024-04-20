@@ -8,13 +8,14 @@ export const fontColors = {
     lightRed: {color: "#FAD1D1"},
     darkRed: {color: "#EE807C"},
     darkerRed: {color: "#E95750"},
-    lightPurple: {color: "#DED1E4"},
+    lightPurple: {color: "#EAD6F3"},
     lightBlue: {color: "#80C9FA"},
     darkBlue: {color: "#53ADF0"},
     lightGreen: {color: "#DEFEBF"},
     darkGreen: {color: "#78C93C"},
     darkerGreen: {color: "#6BA530"},
     white: { color: "#FFFFFF" },
+    
 
 };
 
@@ -28,13 +29,14 @@ export const backgroundColors = {
     lightRed: { backgroundColor: "#FAD1D1" },
     darkRed: { backgroundColor: "#EE807C" },
     darkerRed: { backgroundColor: "#E95750" },
-    lightPurple: { backgroundColor: "#DED1E4" },
+    lightPurple: { backgroundColor: "#EAD6F3" },
     lightBlue: { backgroundColor: "#80C9FA" },
     darkBlue: { backgroundColor: "#53ADF0" },
     lightGreen: { backgroundColor: "#DEFEBF" },
     darkGreen: { backgroundColor: "#78C93C" },
     darkerGreen: { backgroundColor: "#6BA530" },
     white: { backgroundColor: "#FFFFFF" },
+    homeBlue: { backgroundColor: '#ECF5FB'}
 };
 
 export const shadowColors = {

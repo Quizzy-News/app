@@ -29,6 +29,7 @@ module.exports = {
       },
       
       colors: {
+        "home-blue": "#ECF5FB",
         "grey-background": "#E5E7EB",
         "grey-1": "#B3B3B3",
         "grey-2": "#909090",
@@ -39,7 +40,7 @@ module.exports = {
         "light-red": "#FAD1D1",
         "dark-red": "#EE807C",
         "darker-red": "#E95750",
-        "light-purple": "#DED1E4",
+        "light-purple": "#EAD6F3",
         "light-blue": "#80C9FA",
         "dark-blue": "#53ADF0",
         "light-green": "#DEFEBF",

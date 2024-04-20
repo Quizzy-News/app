@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 // import { useFonts } from 'expo-font';
 // import * as Sharing from 'expo-sharing';
-import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
+
+//import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
+import { Feather, AntDesign } from '@expo/vector-icons';
 import { getDailyQuiz } from '../firebase/firebaseConfig';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
 export default function ScorePage({ route, navigation }) {
+
+    const Ionicons = require('@expo/vector-icons/Ionicons').default;
     // const [finalScore, setFinalScore] = useState(score)
     const [score, setScore] = useState(route.params.score);
     // const [record, setRecord] = useState(route.params.record);
@@ -35,7 +39,7 @@ export default function ScorePage({ route, navigation }) {
             return {
                 id: index + 1,
                 answer: item.answer,
-                link: item.url
+                link: item.source.url
             }
             }
         )

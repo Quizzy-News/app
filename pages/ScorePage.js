@@ -4,13 +4,15 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 // import * as Sharing from 'expo-sharing';
 
 //import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
-import { Feather, AntDesign } from '@expo/vector-icons';
+//import { Feather, AntDesign } from '@expo/vector-icons';
 import { getDailyQuiz } from '../firebase/firebaseConfig';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 
 export default function ScorePage({ route, navigation }) {
 
     const Ionicons = require('@expo/vector-icons/Ionicons').default;
+    const Feather = require('@expo/vector-icons/Feather').default;
+    const AntDesign = require('@expo/vector-icons/AntDesign').default;
     // const [finalScore, setFinalScore] = useState(score)
     const [score, setScore] = useState(route.params.score);
     // const [record, setRecord] = useState(route.params.record);

@@ -15,17 +15,16 @@ export default function ScorePage({ route, navigation }) {
     const AntDesign = require('@expo/vector-icons/AntDesign').default;
     // const [finalScore, setFinalScore] = useState(score)
     const [score, setScore] = useState(route.params.score);
-    // const [record, setRecord] = useState(route.params.record);
+    const [record, setRecord] = useState(route.params.record);
     const [time, setTime] = useState(route.params.time);
     const [quiz, setQuiz] = useState(route.params.quiz);
 
-    //
-    const [record,setRecord] = useState(route.params.record);
+    
 
     useEffect(() => {
         setQuiz(route.params.quiz);
         setScore(route.params.score);
-        // setRecord(route.params.record);
+        setRecord(route.params.record);
         setTime(route.params.time);
 
         console.log(score);
@@ -34,6 +33,26 @@ export default function ScorePage({ route, navigation }) {
         console.log(record);
         console.log(quiz);
     }, [route.params.score,  route.params.time, route.params.record, route.params.quiz])
+
+    const formattedScore = score.toString().padStart(3, '0');
+
+    const scoreComment = (score) => {
+        if (score >= 250) {
+            return "Perfect"
+        } else if (score >= 200) {
+            return "Magnificent"
+        } else if (score >= 150) {
+            return "Impressive"
+        } else if (score >= 100) {
+            return "Splendid"
+        } else if (score >= 50) {
+            return "Great"
+        }
+          else {
+            return "Phew"
+          }
+        }
+
 
     const results = [
         ...quiz.map(
@@ -45,32 +64,6 @@ export default function ScorePage({ route, navigation }) {
             }
             }
         )
-        
-        // {
-        //     id: 1,
-        //     answer: "France",
-        //     link: "https://www.google.com/"
-        // },
-        // {
-        //     id: 2,
-        //     answer: "China",
-        //     link: "https://www.google.com/"
-        // },
-        // {
-        //     id: 3,
-        //     answer: "Taylor Swift",
-        //     link: "https://www.google.com/"
-        // },
-        // {
-        //     id: 4,
-        //     answer: "Mauna Loa",
-        //     link: "https://www.google.com/"
-        // },
-        // {
-        //     id: 5,
-        //     answer: "Mpox",
-        //     link: "https://www.google.com/"
-        // },
     ]
     
     return (
@@ -79,26 +72,32 @@ export default function ScorePage({ route, navigation }) {
                 QUIZZY.NEWS
             </Text>
             <Text className="pt-5 text-xl font-lexend font-bold uppercase">
-                Wow! You're getting there!
+                {`${scoreComment(score)}`}
             </Text>
             <View className="pt-5 flex items-center">
                 {console.log(score)}
-                <Text className="text-4xl font-lexend font-bold">{score}</Text>
+                <Text className="text-4xl font-lexend font-bold">{formattedScore}</Text>
                 <Text>Total Score</Text>
             </View>
             <View className="w-full pt-12 flex items-center ">
                 <Text className="text-xl font-lexend font-bold">Question Review</Text>
                 <Text className="pb-3 text-sm font-lexend">Click on the answers to read more about each story.</Text>
-                {results.map(result => {
+                {results.map((result,idx) => {
                     return (
                         <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" 
                             onPress={()=> window.open(result.link)}
                         key={result.id}>
                             <View className="h-full bg-[#E3E3E3] w-[103%] rounded-md absolute top-2 right-[-5]" />
-                            <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" />
-                            <View className="h-full bg-[#78C93C] w-full rounded-md absolute" />
+                            <View className={`${record[idx] === 'correct' ?
+                                "h-full bg-[#6BA530] w-full rounded-md absolute top-1" :
+                                "h-full bg-darker-red w-full rounded-md absolute top-1"}`} />
+                            {/* <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" /> */}
+                            <View className={`${record[idx] === 'correct' ?
+                             "h-full bg-[#78C93C] w-full rounded-md absolute" :
+                             "h-full bg-dark-red w-full rounded-md absolute"}`} />
+                            {/* <View className="h-full bg-[#78C93C] w-full rounded-md absolute" /> */}
                             <Text className="pl-2 text-sm font-lexend font-bold text-white">{result.id}</Text>
-                            <Text className="text-lg font-lexend font-bold text-white underline">{result.answer}</Text>
+                            <Text className="text-lg font-lexend font-bold text-white underline grow-3 text-left">{result.answer}</Text>
                             <View className="pr-2">
                                 <Ionicons name="exit-outline" size={24} color="white" />
                             </View>

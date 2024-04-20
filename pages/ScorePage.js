@@ -88,12 +88,15 @@ export default function ScorePage({ route, navigation }) {
                 <Text className="text-xl font-lexend font-bold">Question Review</Text>
                 <Text className="pb-3 text-sm font-lexend">Click on the answers to read more about each story.</Text>
                 {results.map(result => {
+                    const isCorrect = result.answer === 'Correct answer'
+                    const backgroundColor = isCorrect ? '#6BA530' : '#FF0000'; 
+
                     return (
                         <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" 
                             onPress={()=> window.open(result.link)}
                         key={result.id}>
-                            <View className="h-full bg-[#E3E3E3] w-[103%] rounded-md absolute top-2 right-[-5]" />
-                            <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" />
+                            style={{ backgroundColor: backgroundColor }}
+                            <View className="h-full bg-[#E3E3E3] w-full rounded-md absolute top-2 left-[5] right-[5]"/>                            <View className="h-full bg-[#6BA530] w-full rounded-md absolute top-1" />
                             <View className="h-full bg-[#78C93C] w-full rounded-md absolute" />
                             <Text className="pl-2 text-sm font-lexend font-bold text-white">{result.id}</Text>
                             <Text className="text-lg font-lexend font-bold text-white underline">{result.answer}</Text>

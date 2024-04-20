@@ -1,9 +1,10 @@
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Colors, Buttons, Typography } from "../styles"
-import { AntDesign } from '@expo/vector-icons';
+//import { AntDesign } from '@expo/vector-icons';
 
 export default function AboutModal({ navigation }) {
+    const AntDesign = require('@expo/vector-icons/AntDesign').default;
 
     return (
         <View style={styles.screen}>

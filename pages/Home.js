@@ -30,6 +30,8 @@ export default function Home({ navigation }) {
           }}
           style={buttonActive ? styles.buttonActive : styles.button}
         >
+          <View style={styles.shadowLayer} />
+          <View style={styles.topLayer} />
           <Text style={styles.buttonText}>Play</Text>
         </Pressable>
       </View>
@@ -65,17 +67,40 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Colors.shadowColors.darkBlue,
-    ...Buttons.button,
-    height: 50,
+    backgroundColor: '#77C7F4', // Main blue color as a fallback
+    height: 70,
     marginTop: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative', // Required for absolute positioning of layers
   },
   buttonActive: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Buttons.buttonActive,
-    height: 50,
+    // Active state configuration
+    backgroundColor: '#77C7F4',
+    height: 70,
     marginTop: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shadowLayer: {
+    backgroundColor: '#70A5FE', // Slightly darker for the shadow effect
+    position: 'absolute',
+    top: 1,
+    left: 0,
+    right: 0,
+    bottom: -15,
+    borderRadius: 8,
+  },
+  topLayer: {
+    backgroundColor: '#77C7F4', // Main blue color for the button
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 8,
   },
   divider: {
     ...Colors.backgroundColors.homeBlue,
@@ -117,4 +142,4 @@ const styles = StyleSheet.create({
   container3: {
     ...Colors.backgroundColors.homeBlue,
   },
-});
+}); 

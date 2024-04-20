@@ -8,12 +8,12 @@ import "./nativewind-output";
 export default function App() {
 
   const [loaded] = useFonts({
-    KGHappy: require("./assets/fonts/KGHAPPY.ttf"),
-    LexendRegular: require("./assets/fonts/Lexend-Regular.ttf"),
-    LexendBold: require("./assets/fonts/Lexend-Bold.ttf"),
-    LexendBlack: require("./assets/fonts/Lexend-Black.ttf"),
-    Jost: require("./assets/fonts/Jost-Regular.ttf"), 
-    FuturaMedium: require("./assets/fonts/Futura-Medium.otf"),
+    KGHappy: require("./public/fonts/KGHAPPY.ttf"),
+    LexendRegular: require("./public/fonts/Lexend-Regular.ttf"),
+    LexendBold: require("./public/fonts/Lexend-Bold.ttf"),
+    LexendBlack: require("./public/fonts/Lexend-Black.ttf"),
+    Jost: require("./public/fonts/Jost-Regular.ttf"), 
+    FuturaMedium: require("./public/fonts/Futura-Medium.otf"),
   });
   
 

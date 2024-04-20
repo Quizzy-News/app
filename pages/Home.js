@@ -1,4 +1,4 @@
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { Pressable, Text, View, StyleSheet, } from "react-native";
 import { useState } from "react";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 
@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
           }}
           onPressOut={() => {
             setButtonActive(false);
-            navigation.navigate("CountDownPage");
+            navigation.navigate("LoadingPage");
           }}
           style={buttonActive ? styles.buttonActive : styles.button}
         >
@@ -38,10 +38,9 @@ export default function Home({ navigation }) {
         <Text
           onPress={() => navigation.navigate('AboutModal')}
           style={styles.subH2}
-        >ABOUT</Text>
-        <Text style={styles.subH2}>QUIZZY.NEWS</Text>
+        >About this game</Text>
         <Text style={styles.footer}>
-          Ⓒ 2022 EMISQWE
+          Ⓒ 2024 EMISQWE
         </Text>
       </View>
     </View >
@@ -53,14 +52,17 @@ const styles = StyleSheet.create({
     ...Typography.title,
     ...Colors.fontColors.gray4,
     paddingTop: 20,
+    textAlign: 'center'
   },
   subH1: {
     ...Typography.subH1,
-    ...Colors.fontColors.gray4
+    ...Colors.fontColors.gray4,
+    textAlign: 'center',
   },
   h2: {
     ...Typography.h2,
-    ...Colors.fontColors.gray4
+    ...Colors.fontColors.gray4,
+    textAlign: 'center',
   },
   button: {
     ...Colors.backgroundColors.lightBlue,
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   divider: {
-    ...Colors.backgroundColors.gray2,
+    ...Colors.backgroundColors.homeBlue,
     height: 1,
     marginBottom: 10
   },
@@ -86,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 10,
     paddingTop: 5,
+    textAlign: 'center',
   },
   footer: {
     ...Typography.subH2,
@@ -94,20 +97,24 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 15,
+    textAlign: 'center',
   },
   buttonText: {
     ...Typography.buttonText,
     color: "white",
   },
   screen: {
-    ...Containers.screenBetween
+    ...Containers.screenBetween,
+    ...Colors.backgroundColors.homeBlue
   },
   container1: {
-    padding: 10
+    padding: 10,
+    ...Colors.backgroundColors.homeBlue,
   },
   container2: {
     padding: 10,
   },
   container3: {
+    ...Colors.backgroundColors.homeBlue,
   },
 });

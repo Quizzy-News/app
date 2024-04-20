@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../pages/Home';
 import CountDownPage from '../pages/CountDownPage';
+import LoadingPage from '../pages/LoadingPage';
 import GamePage from '../pages/GamePage';
 import ScorePage from '../pages/ScorePage';
 import AboutModal from '../modals/About';
@@ -17,6 +18,7 @@ function MyStack() {
       }}>
       <Stack.Group>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="LoadingPage" component={LoadingPage} />
         <Stack.Screen name="CountDownPage" component={CountDownPage} />
         <Stack.Screen name="GamePage" component={GamePage} />
         <Stack.Screen name="ScorePage" component={ScorePage} />

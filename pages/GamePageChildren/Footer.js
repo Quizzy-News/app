@@ -9,8 +9,8 @@ export default function Footer() {
     return (
         <StyledView className="mt-auto">
             <StyledView className="bg-grey-2 mb-[10px] h-[1px]"/>
-            <StyledText className="font-lexend-bold text-grey-2 text-[12px] pl-[10px] pt-[5px]">QUIZZY.NEWS</StyledText>
-            <StyledText className="font-lexend text-grey-2 pl-[10px] pt-[5px] pb-[5px]">Ⓒ 2022 EMISQWE</StyledText>
+            <StyledText className="font-lexend-bold text-grey-2 text-[12px] pl-[10px] pt-[5px] leading-web">QUIZZY.NEWS</StyledText>
+            <StyledText className="font-lexend text-grey-2 pl-[10px] pt-[5px] pb-[5px] leading-web">Ⓒ 2022 EMISQWE</StyledText>
         </StyledView>
     )
 }

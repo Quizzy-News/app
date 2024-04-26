@@ -84,7 +84,7 @@ export default function GamePage ( { navigation, route }) {
     const newChoiceState = choice === question.answer ? "Correct" : "Incorrect";
 
     handleRecord(newChoiceState === "Correct" ? "correct" : "incorrect");
-    handleScore(newChoiceState === "Correct" ? score + 1 : score);
+    handleScore(newChoiceState === "Correct" ? score + 50 : score);
 
 
     setChoiceStates((previousChoiceStates) => { 
@@ -100,7 +100,7 @@ export default function GamePage ( { navigation, route }) {
       setCurrentQuestion(nextQuestion);
       resetChoices();
     } else { 
-      navigation.navigate("ScorePage", {score: score, record: userRecord, time: countdown, quiz: quiz});
+      setInProgress(false);
     }; 
   }
 
@@ -133,7 +133,7 @@ export default function GamePage ( { navigation, route }) {
   }
 
   return (
-    <StyledView className="flex-1 flex-col justify-center bg-grey-background">
+    <StyledView className="flex-1 flex-col justify-center bg-light-purple">
       <Header 
         onTimeOut={handleTimeOut}
         onPressOut={() => handlePressOut(choice)}
@@ -159,7 +159,7 @@ export default function GamePage ( { navigation, route }) {
         </StyledView>
 
         </StyledView>
-      <Footer />
+      {/* <Footer /> */}
     </StyledView>
   );
 };

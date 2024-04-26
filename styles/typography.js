@@ -9,6 +9,12 @@ export const countdownText = {
     fontSize: 250,
 };
 
+export const getReadyText = {
+    fontFamily: "LexendBold",
+    fontSize: 48,
+    color: "#FFFFFF"
+};
+
 export const h1 = {
     fontFamily: "LexendBold",
     fontSize: 48,

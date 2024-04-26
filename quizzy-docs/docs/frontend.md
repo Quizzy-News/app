@@ -3,7 +3,7 @@
 ## File System Overview
 
     App.js    # The main component responsible for rendering the entire application.
-    assets/   # Contains fonts, timer images, and icons.
+    public/   # Contains fonts, timer images, and icons.
     modals/
         About.js    
         ClickBackMidGame.js

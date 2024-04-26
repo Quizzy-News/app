@@ -25,6 +25,9 @@ _NativeWindStyleSheet.create({
     "absolute": {
       "position": "absolute"
     },
+    "relative": {
+      "position": "relative"
+    },
     "right-[-5]": {
       "right": -5
     },
@@ -132,17 +135,17 @@ _NativeWindStyleSheet.create({
     "bg-dark-red": {
       "backgroundColor": "rgba(238, 128, 124, 1)"
     },
+    "bg-darker-red": {
+      "backgroundColor": "rgba(233, 87, 80, 1)"
+    },
     "bg-grey-2": {
       "backgroundColor": "rgba(144, 144, 144, 1)"
-    },
-    "bg-grey-background": {
-      "backgroundColor": "rgba(229, 231, 235, 1)"
     },
     "bg-light-blue": {
       "backgroundColor": "rgba(128, 201, 250, 1)"
     },
     "bg-light-purple": {
-      "backgroundColor": "rgba(222, 209, 228, 1)"
+      "backgroundColor": "rgba(234, 214, 243, 1)"
     },
     "bg-white": {
       "backgroundColor": "rgba(255, 255, 255, 1)"
@@ -162,11 +165,14 @@ _NativeWindStyleSheet.create({
     "pt-[5px]": {
       "paddingTop": 5
     },
+    "text-left": {
+      "textAlign": "left"
+    },
     "font-futura-medium": {
-      "fontFamily": "Futura-Medium"
+      "fontFamily": "FuturaMedium"
     },
     "font-lexend": {
-      "fontFamily": "Lexend"
+      "fontFamily": "LexendRegular"
     },
     "font-lexend-bold": {
       "fontFamily": "LexendBold"

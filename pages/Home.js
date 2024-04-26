@@ -1,4 +1,4 @@
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { Pressable, Text, View, StyleSheet, } from "react-native";
 import { useState } from "react";
 import { Buttons, Colors, Containers, Typography } from "../styles"
 
@@ -26,10 +26,12 @@ export default function Home({ navigation }) {
           }}
           onPressOut={() => {
             setButtonActive(false);
-            navigation.navigate("CountDownPage");
+            navigation.navigate("LoadingPage");
           }}
           style={buttonActive ? styles.buttonActive : styles.button}
         >
+          <View style={styles.shadowLayer} />
+          <View style={styles.topLayer} />
           <Text style={styles.buttonText}>Play</Text>
         </Pressable>
       </View>
@@ -38,10 +40,9 @@ export default function Home({ navigation }) {
         <Text
           onPress={() => navigation.navigate('AboutModal')}
           style={styles.subH2}
-        >ABOUT</Text>
-        <Text style={styles.subH2}>QUIZZY.NEWS</Text>
+        >About this game</Text>
         <Text style={styles.footer}>
-          Ⓒ 2022 EMISQWE
+          Ⓒ 2024 EMISQWE
         </Text>
       </View>
     </View >
@@ -53,30 +54,56 @@ const styles = StyleSheet.create({
     ...Typography.title,
     ...Colors.fontColors.gray4,
     paddingTop: 20,
+    textAlign: 'center'
   },
   subH1: {
     ...Typography.subH1,
-    ...Colors.fontColors.gray4
+    ...Colors.fontColors.gray4,
+    textAlign: 'center',
   },
   h2: {
     ...Typography.h2,
-    ...Colors.fontColors.gray4
+    ...Colors.fontColors.gray4,
+    textAlign: 'center',
   },
   button: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Colors.shadowColors.darkBlue,
-    ...Buttons.button,
-    height: 50,
+    backgroundColor: '#77C7F4', // Main blue color as a fallback
+    height: 70,
     marginTop: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative', // Required for absolute positioning of layers
   },
   buttonActive: {
-    ...Colors.backgroundColors.lightBlue,
-    ...Buttons.buttonActive,
-    height: 50,
+    // Active state configuration
+    backgroundColor: '#77C7F4',
+    height: 70,
     marginTop: 20,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  shadowLayer: {
+    backgroundColor: '#70A5FE', // Slightly darker for the shadow effect
+    position: 'absolute',
+    top: 1,
+    left: 0,
+    right: 0,
+    bottom: -15,
+    borderRadius: 8,
+  },
+  topLayer: {
+    backgroundColor: '#77C7F4', // Main blue color for the button
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 8,
   },
   divider: {
-    ...Colors.backgroundColors.gray2,
+    ...Colors.backgroundColors.homeBlue,
     height: 1,
     marginBottom: 10
   },
@@ -86,6 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 10,
     paddingTop: 5,
+    textAlign: 'center',
   },
   footer: {
     ...Typography.subH2,
@@ -94,20 +122,24 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 5,
     paddingBottom: 15,
+    textAlign: 'center',
   },
   buttonText: {
     ...Typography.buttonText,
     color: "white",
   },
   screen: {
-    ...Containers.screenBetween
+    ...Containers.screenBetween,
+    ...Colors.backgroundColors.homeBlue
   },
   container1: {
-    padding: 10
+    padding: 10,
+    ...Colors.backgroundColors.homeBlue,
   },
   container2: {
     padding: 10,
   },
   container3: {
+    ...Colors.backgroundColors.homeBlue,
   },
-});
+}); 

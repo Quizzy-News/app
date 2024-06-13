@@ -1,0 +1,45 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - ci-cd  # Or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20.x'  
+
+      - name: Install Dependencies
+        run: npm install
+
+
+      - name: Create Firebase Config
+        run: | 
+          echo "module.exports = {" > firebase/config.js
+          echo "  apiKey: '${{ secrets.FIREBASEAPIKEY }}'," >> firebase/config.js
+          echo "  authDomain: '${{ secrets.FIREAUTHDOMAIN }}'," >> firebase/config.js
+          echo "  projectId: '${{ secrets.FIREBASEPROJECTID }}'," >> firebase/config.js
+          echo "  storageBucket: '${{ secrets.FIREBASESTORAGEBUCKET }}'," >> firebase/config.js
+          echo "  messagingSenderId: '${{ secrets.FIREBASEMESSAGINGSENDERID }}'," >> firebase/config.js
+          echo "  appId: '${{ secrets.FIREBASEAPPID }}'," >> firebase/config.js
+          echo "  measurementId: '${{ secrets.FIREBASEMEASUREMENTID }}'" >> firebase/config.js
+          echo "};" >> firebase/config.js
+          
+
+      - name: Build Project
+        run: npx expo export --platform web
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages  # The branch the action should deploy to.
+          FOLDER: dist # The folder the action should deploy.
+          CLEAN: true  # Automatically remove deleted files from the deploy branch

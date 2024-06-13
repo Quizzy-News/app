@@ -25,15 +25,15 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
 
   const getTextStyle = () => {
     if (choiceState === "Active") {
-      return "font-futura-medium text-xl text-white";
+      return "font-futura-medium text-xl text-white leading-6";
     } else if (choiceState === "Disabled") {
-      return "font-futura-medium text-xl text-grey-3";
+      return "font-futura-medium text-xl text-grey-3 leading-6";
     } else if (choiceState === "Correct") {
-      return "font-futura-medium text-xl text-light-green";
+      return "font-futura-medium text-xl text-light-green leading-6";
     } else if (choiceState === "Incorrect") {
-      return "font-futura-medium text-xl text-light-red";
+      return "font-futura-medium text-xl text-light-red leading-6";
     } else {
-      return "font-futura-medium text-xl text-grey-4";
+      return "font-futura-medium text-xl text-grey-4 leading-6";
     }
   }
   

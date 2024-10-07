@@ -25,17 +25,11 @@ const app = initializeApp(firebaseConfig);
 
 export async function getDailyQuiz() {
     const db = getFirestore(app);
-    const date = todayFormatted
-    const q = query(collection(db, 'dailies', `${date}`, 'questions'), where("approved", "==", true));
-    // const q = query(doc(db, 'dailies', `${date}`));
+    const date = todayFormatted;
+    const q = query(doc(db, 'dailies', `${date}`));
     const querySnapshot = await getDoc(q);
 
-    
-    const quiz = querySnapshot.data();
-    
-    
-    return quiz;
-    
+    return querySnapshot.data().quiz;    
 }
 
 

@@ -44,6 +44,7 @@ module.exports = {
         "dark-red": "#EE807C",
         "darker-red": "#E95750",
         "light-purple": "#EAD6F3",
+        "medium-purple": "#B67DD0",
         "light-blue": "#80C9FA",
         "dark-blue": "#53ADF0",
         "light-green": "#DEFEBF",

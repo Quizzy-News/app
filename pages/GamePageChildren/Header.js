@@ -13,7 +13,7 @@ export default function Header({onTimeOut, score, navigation, onPressOut, page})
         <StyledView className="flex-row items-end justify-between p-10 mt-20 h-10pct">
             {/* <ExitButton navigation={navigation} /> */}
         
-            <StyledView className="bg-grey-2 flex-1 flex-row items-center justify-between rounded-lg">
+            <StyledView className="bg-medium-purple flex-1 flex-row items-center justify-between rounded-lg">
                 <PageCount onPressOut={onPressOut} page={page}/>
                 <Timer initialCountdown={60} onTimeOut={onTimeOut}/>
                 <ScoreCount score={score}/>

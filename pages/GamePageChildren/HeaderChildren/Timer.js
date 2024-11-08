@@ -196,10 +196,12 @@ const styles = StyleSheet.create({
 
 //     }, [countdown, onTimeOut])
 
+
 //     return (
 //       <>
 //         <StyledImage source={timerFrames[countdown]} className="h-timer-height w-timer-width"/>
 //       </>
 //     )
+
 
 // }

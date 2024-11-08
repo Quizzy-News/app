@@ -27,14 +27,13 @@ const app = initializeApp(firebaseConfig);
 
 export async function getDailyQuiz() {
     const db = getFirestore(app);
-    const date = todayFormatted //hard-coded right now. Otherwise: todayFormatted
 
+    const date = todayFormatted;
     const q = query(doc(db, 'dailies', `${date}`));
-
     const querySnapshot = await getDoc(q);
 
-    return querySnapshot.data().quiz;
-    
+    return querySnapshot.data().quiz;    
+
 }
 
 // export async function getDailyQuiz() {

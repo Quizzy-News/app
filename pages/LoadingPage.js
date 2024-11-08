@@ -41,9 +41,11 @@ export default function LoadingPage({navigation}){
     const load = async () => {
       
       const fbRes = await getDailyQuiz();
+
       console.log("Res: ", fbRes)
       const quiz = fbRes.slice(0, 5);
       console.log("Quiz: ", quiz);
+
       setQuiz(quiz);
       setTimeout(()=> {setLoaded(true)},1250);
       //setLoaded(true);

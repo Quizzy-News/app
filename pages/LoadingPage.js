@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet, Image } from "react-native";
+import { styled } from 'nativewind';
 import { Colors, Containers, Typography } from "../styles"
 // import { getDaily } from "../qz-service/get";
 import { testFb, getDailyQuiz, getDailyPixieQuiz } from "../firebase/firebaseConfig.js"
 
 // import Spinner from '../public/Spinner.png';
+const StyledView = styled(View);
+
 
 export default function LoadingPage({navigation}){
 
-    const Spinner= require('../public/Spinner.png');
+    // const Spinner= require('../public/Spinner.png');
     
 
     const [quiz, setQuiz] = useState([]);
@@ -65,15 +68,20 @@ export default function LoadingPage({navigation}){
   })
 
     return (
-        <View style={styles.screen}>
-        <View style={styles.container1}>
+      <>
+      <StyledView className={`flex-1 flex-col items-center justify-center bg-light-purple`}>
+       
+        
           <View style={styles.circle}>
             <Text style={styles.circleText}>
               GET READY!
             </Text>
           </View>
-        </View>
-      </View>
+       
+      
+        </StyledView>
+        </>
+        
     );
     
 };

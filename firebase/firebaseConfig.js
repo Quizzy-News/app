@@ -29,6 +29,7 @@ export async function getDailyQuiz() {
     const db = getFirestore(app);
 
     const date = todayFormatted;
+    // const date = '2024-09-26'//test date for testing
     const q = query(doc(db, 'dailies', `${date}`));
     const querySnapshot = await getDoc(q);
 

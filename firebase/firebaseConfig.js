@@ -33,7 +33,7 @@ export async function getDailyQuiz() {
     const q = query(doc(db, 'dailies', `${date}`));
     const querySnapshot = await getDoc(q);
 
-    return querySnapshot.data().quiz;    
+    return querySnapshot.data().quiz.filter((question) => question.approved);    
 
 }
 

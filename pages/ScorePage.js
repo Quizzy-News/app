@@ -57,6 +57,9 @@ export default function ScorePage({ route, navigation }) {
     const results = [
         ...quiz.map(
             (item, index) => {
+                if (item.answer.length > 30) {
+                    item.answer = item.answer.slice(0, 25) + "...";
+                }
             return {
                 id: index + 1,
                 answer: item.answer,

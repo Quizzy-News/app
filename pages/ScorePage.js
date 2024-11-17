@@ -71,12 +71,7 @@ export default function ScorePage({ route, navigation }) {
     
     return (
         <View className="h-screen p-5 flex items-center bg-white">
-            <Text className="pt-5 self-start font-lexend font-bold text-[#909090] uppercase">
-                QUIZZY.NEWS
-            </Text>
-            <Text className="pt-5 text-xl font-lexend font-bold uppercase">
-                {`${scoreComment(score)}`}
-            </Text>
+            
             <View className="pt-5 flex items-center">
                 {console.log(score)}
                 <Text className="text-4xl font-lexend font-bold">{formattedScore}</Text>

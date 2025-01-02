@@ -17,7 +17,7 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
     } else if (choiceState === "Incorrect") {
       return "bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else {
-      return "bg-white shadow-choiceDisplayButtonShadow -top-5 m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+      return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     }
   }
 

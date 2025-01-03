@@ -4,7 +4,7 @@ import { getFirestore, collection, doc, getDocs, getDoc, query, where } from "fi
 import { firebaseConfig } from "./config";
 
 const today = new Date();
-const todayFormatted = today.toISOString().split('T')[0];
+export const todayFormatted = today.toISOString().split('T')[0];
 
 const app = initializeApp(firebaseConfig);
 
@@ -29,11 +29,11 @@ export async function getDailyQuiz() {
     const db = getFirestore(app);
 
     const date = todayFormatted;
-    // const date = '2024-09-26'//test date for testing
+    // const date = '2025-01-02'//test date for testing or if past 3pm PST when testing?
     const q = query(doc(db, 'dailies', `${date}`));
     const querySnapshot = await getDoc(q);
 
-    return querySnapshot.data().quiz.filter((question) => question.approved);    
+    return querySnapshot.data().quiz.filter((/** @type {{ approved: any; }} */ question) => question.approved);    
 
 }
 

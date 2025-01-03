@@ -3,7 +3,7 @@ import { Pressable, Text, View, StyleSheet, Image } from "react-native";
 import { styled } from 'nativewind';
 import { Colors, Containers, Typography } from "../styles"
 // import { getDaily } from "../qz-service/get";
-import { testFb, getDailyQuiz, getDailyPixieQuiz } from "../firebase/firebaseConfig.js"
+import { getDailyQuiz, getDailyPixieQuiz, todayFormatted } from "../firebase/firebaseConfig.js"
 
 // import Spinner from '../public/Spinner.png';
 const StyledView = styled(View);
@@ -43,6 +43,7 @@ export default function LoadingPage({navigation}){
   useEffect(() => {
     const load = async () => {
       
+      console.log("Date: ", todayFormatted)
       const fbRes = await getDailyQuiz();
 
       console.log("Res: ", fbRes)

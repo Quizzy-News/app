@@ -234,10 +234,40 @@ _NativeWindStyleSheet.create({
     },
     "underline": {
       "textDecorationLine": "underline"
+    },
+    "container@5": {
+      "maxWidth": 640
+    },
+    "container@6": {
+      "maxWidth": 768
+    },
+    "container@7": {
+      "maxWidth": 1024
+    },
+    "container@8": {
+      "maxWidth": 1280
+    },
+    "container@9": {
+      "maxWidth": 1536
+    },
+    "container@10": {
+      "maxWidth": 640
+    },
+    "container@11": {
+      "maxWidth": 768
+    },
+    "container@12": {
+      "maxWidth": 1024
+    },
+    "container@13": {
+      "maxWidth": 1280
+    },
+    "container@14": {
+      "maxWidth": 1536
     }
   },
   atRules: {
-    "container": [[["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]]]
+    "container": [[["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]], [["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]], [["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]]]
   },
   topics: {
     "container": ["width"],

@@ -26,13 +26,13 @@ export const h2 = {
 };
 
 export const subH1 = {
-    fontFamily: "LexendBold",
-    fontSize: 14,
+    fontFamily: "LexendRegular",
+    fontSize: 22,
 };
 
 export const subH2 = {
-    fontFamily: "LexendRegular",
-    fontSize: 14,
+    fontFamily: "LexendBold",
+    fontSize: 22,
 };
 
 export const body1 = {

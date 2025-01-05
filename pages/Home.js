@@ -42,7 +42,7 @@ export default function Home({ navigation }) {
           style={styles.subH2}
         >About this game</Text>
         <Text style={styles.footer}>
-          Ⓒ 2024 EMISQWE
+          Ⓒ 2025 EMISQWE
         </Text>
       </View>
     </View >

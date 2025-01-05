@@ -12,8 +12,8 @@ export default function Home({ navigation }) {
       <View style={styles.container1}>
         <Text style={styles.title}>Quizzy.News</Text>
         <Text style={styles.subH1}>
-          a daily quiz game on current events{"\n"}
-          from stories published very recently
+          A daily quiz game{"\n"}
+          based on current events
         </Text>
       </View>
       <View style={styles.container2}>
@@ -42,7 +42,7 @@ export default function Home({ navigation }) {
           style={styles.subH2}
         >About this game</Text>
         <Text style={styles.footer}>
-          Ⓒ 2024 EMISQWE
+          Ⓒ 2025 EMISQWE
         </Text>
       </View>
     </View >
@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   title: {
     ...Typography.title,
     ...Colors.fontColors.gray4,
-    paddingTop: 20,
+    paddingTop: 80,
+    paddingBottom: 30,
     textAlign: 'center'
   },
   subH1: {
@@ -62,9 +63,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   h2: {
-    ...Typography.h2,
+    ...Typography.subH2,
     ...Colors.fontColors.gray4,
     textAlign: 'center',
+    paddingBottom: 17,
+    fontSize: 24,
   },
   button: {
     backgroundColor: '#77C7F4', // Main blue color as a fallback
@@ -74,6 +77,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative', // Required for absolute positioning of layers
+    marginRight: 10,
+    marginLeft: 10,
   },
   buttonActive: {
     // Active state configuration
@@ -108,20 +113,20 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   subH2: {
-    ...Typography.subH1,
-    ...Colors.fontColors.gray2,
+    ...Typography.subH2,
+    color: 'black',
     fontSize: 16,
     paddingLeft: 10,
     paddingTop: 5,
     textAlign: 'center',
   },
   footer: {
-    ...Typography.subH2,
-    ...Colors.fontColors.gray2,
-    fontSize: 12,
+    ...Typography.subH1,
+    color: 'black',
+    fontSize: 13,
     paddingLeft: 10,
-    paddingTop: 5,
-    paddingBottom: 15,
+    paddingTop: 20,
+    paddingBottom: 30,
     textAlign: 'center',
   },
   buttonText: {

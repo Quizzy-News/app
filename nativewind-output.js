@@ -147,6 +147,9 @@ _NativeWindStyleSheet.create({
     "bg-light-purple": {
       "backgroundColor": "rgba(234, 214, 243, 1)"
     },
+    "bg-medium-purple": {
+      "backgroundColor": "rgba(182, 125, 208, 1)"
+    },
     "bg-white": {
       "backgroundColor": "rgba(255, 255, 255, 1)"
     },
@@ -214,11 +217,11 @@ _NativeWindStyleSheet.create({
     "text-[#909090]": {
       "color": "rgba(144, 144, 144, 1)"
     },
+    "text-grey-1": {
+      "color": "rgba(179, 179, 179, 1)"
+    },
     "text-grey-2": {
       "color": "rgba(144, 144, 144, 1)"
-    },
-    "text-grey-3": {
-      "color": "rgba(100, 100, 100, 1)"
     },
     "text-grey-4": {
       "color": "rgba(61, 61, 61, 1)"
@@ -264,11 +267,87 @@ _NativeWindStyleSheet.create({
     },
     "container@14": {
       "maxWidth": 1536
+    },
+    "container@15": {
+      "maxWidth": 640
+    },
+    "container@16": {
+      "maxWidth": 768
+    },
+    "container@17": {
+      "maxWidth": 1024
+    },
+    "container@18": {
+      "maxWidth": 1280
+    },
+    "container@19": {
+      "maxWidth": 1536
+    },
+    "container@20": {
+      "maxWidth": 640
+    },
+    "container@21": {
+      "maxWidth": 768
+    },
+    "container@22": {
+      "maxWidth": 1024
+    },
+    "container@23": {
+      "maxWidth": 1280
+    },
+    "container@24": {
+      "maxWidth": 1536
+    },
+    "container@25": {
+      "maxWidth": 640
+    },
+    "container@26": {
+      "maxWidth": 768
+    },
+    "container@27": {
+      "maxWidth": 1024
+    },
+    "container@28": {
+      "maxWidth": 1280
+    },
+    "container@29": {
+      "maxWidth": 1536
+    },
+    "container@30": {
+      "maxWidth": 640
+    },
+    "container@31": {
+      "maxWidth": 768
+    },
+    "container@32": {
+      "maxWidth": 1024
+    },
+    "container@33": {
+      "maxWidth": 1280
+    },
+    "container@34": {
+      "maxWidth": 1536
+    },
+    "container@35": {
+      "maxWidth": 640
+    },
+    "container@36": {
+      "maxWidth": 768
+    },
+    "container@37": {
+      "maxWidth": 1024
+    },
+    "container@38": {
+      "maxWidth": 1280
+    },
+    "container@39": {
+      "maxWidth": 1536
     }
   },
   atRules: {
     "container": [[["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]], [["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]], [["media", "(min-width: 640px)"]], [["media", "(min-width: 768px)"]], [["media", "(min-width: 1024px)"]], [["media", "(min-width: 1280px)"]], [["media", "(min-width: 1536px)"]]]
-  },
+
+    },
   topics: {
     "container": ["width"],
     "h-screen": ["height"]

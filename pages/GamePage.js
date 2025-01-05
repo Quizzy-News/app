@@ -20,6 +20,8 @@ export default function GamePage ( { navigation, route }) {
   const [inProgress, setInProgress] = useState(true);
   const [choiceStates, setChoiceStates] = useState(["Idle", "Idle", "Idle"]); // Each element in choiceStates corresponds to a choice button.
 
+  const [desaturated, setDesaturated] = useState(false);
+
   const [timeoutId, setTimeoutId] = useState(null);
   const [page, setPage] = useState(1);
 
@@ -46,16 +48,20 @@ export default function GamePage ( { navigation, route }) {
   // Ensure that state variables are sync'd before navigating away from the gamepage
   useEffect(() => {
     if(!inProgress){
-      navigation.navigate("ScorePage", {
-        score, record: userRecord, time: countdown, quiz: quiz
-      })
+      setDesaturated(true);
+      setTimeout(()=> {
+        navigation.navigate("ScorePage", {
+          score, record: userRecord, time: countdown, quiz: quiz
+        });
+      }, 1000); 
+
     }
   }, [inProgress, navigation, score, userRecord, countdown, quiz])
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
       setInProgress(false);
-      navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0, quiz: quiz})
+      // navigation.navigate("ScorePage", {score: score, record: userRecord, time: 0, quiz: quiz})
   }
 
   // == end: REDIRECT TO SCOREPAGE ==
@@ -131,18 +137,19 @@ export default function GamePage ( { navigation, route }) {
   if (!question) {  
     return <Text>Loading...</Text>;
   }
-
+  
+  /* onPressOut={() => handlePressOut(choice)} was in header */
   return (
-    <StyledView className="flex-1 flex-col justify-center bg-light-purple">
+    <>
+    <StyledView className={`flex-1 flex-col justify-center bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
       <Header 
         onTimeOut={handleTimeOut}
-        onPressOut={() => handlePressOut(choice)}
         score={score} 
         navigation={navigation}
         page={page}
         />
 
-      <StyledView className="flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg">
+      <StyledView className={`flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg `} >
         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} /> 
 
         <StyledView className="w-full flex pb-10"> 
@@ -161,5 +168,6 @@ export default function GamePage ( { navigation, route }) {
         </StyledView>
       {/* <Footer /> */}
     </StyledView>
+    </>
   );
 };

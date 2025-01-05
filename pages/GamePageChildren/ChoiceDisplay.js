@@ -10,24 +10,20 @@ const StyledPressable = styled(Pressable);
 
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
   const getButtonStyle = () => {
-    if (choiceState === "Active") {
-      return "bg-light-blue m-[10px] p-[20px] flex items-center justify-center rounded-lg";
-    } else if (choiceState === "Disabled") {
-       return "bg-grey-2 shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+    if (choiceState === "Disabled") {
+       return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else if (choiceState === "Correct") {
       return "bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else if (choiceState === "Incorrect") {
       return "bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     } else {
-      return "bg-white shadow-choiceDisplayButtonShadow -top-5 m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+      return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     }
   }
 
   const getTextStyle = () => {
-    if (choiceState === "Active") {
-      return "font-futura-medium text-xl text-white leading-6";
-    } else if (choiceState === "Disabled") {
-      return "font-futura-medium text-xl text-grey-3 leading-6";
+    if (choiceState === "Disabled") {
+      return "font-futura-medium text-xl text-grey-1 leading-6";
     } else if (choiceState === "Correct") {
       return "font-futura-medium text-xl text-light-green leading-6";
     } else if (choiceState === "Incorrect") {

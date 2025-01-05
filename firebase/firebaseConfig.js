@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 
-import { getFirestore, collection, doc, getDoc, query } from "firebase/firestore";
+import { getFirestore, collection, doc, getDocs, getDoc, query, where } from "firebase/firestore";
 import { firebaseConfig } from "./config";
 
 const today = new Date();
@@ -23,20 +23,33 @@ const app = initializeApp(firebaseConfig);
 
 // }
 
+
+
 export async function getDailyQuiz() {
     const db = getFirestore(app);
-    const date = todayFormatted
-    const q = query(collection(db, 'dailies', `${date}`, 'questions'), where("approved", "==", true));
-    // const q = query(doc(db, 'dailies', `${date}`));
+
+    const date = todayFormatted;
+    // const date = '2024-09-26'//test date for testing
+    const q = query(doc(db, 'dailies', `${date}`));
     const querySnapshot = await getDoc(q);
 
-    
-    const quiz = querySnapshot.data();
-    
-    
-    return quiz;
-    
+    return querySnapshot.data().quiz.filter((question) => question.approved);    
+
 }
+
+// export async function getDailyQuiz() {
+//     const db = getFirestore(app);
+//     const date = '2024-09-26'//todayFormatted
+//     console.log("Date: ", date)
+//     // const q = query(collection(db, 'dailies', `${date}`, 'quiz'), where("approved", "==", true));
+//     const q = query(doc(db, 'dailies', `${date}`));
+//     const querySnapshot = await getDoc(q);
+    
+//     const quiz = querySnapshot.data();
+
+//     return quiz;
+//   }
+
 
 
 export async function getDailyPixieQuiz() {

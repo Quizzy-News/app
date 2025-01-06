@@ -16,7 +16,8 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "**/*",
+      "node_modules/@expo/vector-icons/**/*"
     ],
     "ios": {
       "supportsTablet": true

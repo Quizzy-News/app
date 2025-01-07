@@ -141,7 +141,7 @@ export default function GamePage ( { navigation, route }) {
   /* onPressOut={() => handlePressOut(choice)} was in header */
   return (
     <>
-    <StyledView className={`h-screen flex-1 flex-col justify-center bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
+    <StyledView className={`flex-1 flex-col justify-center bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
       <Header 
         onTimeOut={handleTimeOut}
         score={score} 

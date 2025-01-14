@@ -78,7 +78,7 @@ export default function ScorePage({ route, navigation }) {
         alert('Link copied to clipboard');
         }
         await copyToClipboard();
-        console.log('Copied to clipboard ',shareText);
+        //console.log('Copied to clipboard ',shareText);
 
     }
     

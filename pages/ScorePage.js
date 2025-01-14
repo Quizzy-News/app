@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 // import { useFonts } from 'expo-font';
 // import * as Sharing from 'expo-sharing';
-
+import * as Clipboard from 'expo-clipboard'
 //import { Feather, AntDesign, Ionicons } from '@expo/vector-icons';
 //import { Feather, AntDesign } from '@expo/vector-icons';
 import { getDailyQuiz } from '../firebase/firebaseConfig';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
+
 
 export default function ScorePage({ route, navigation }) {
 
@@ -28,11 +29,11 @@ export default function ScorePage({ route, navigation }) {
         setRecord(route.params.record);
         setTime(route.params.time);
 
-        console.log(score);
+        // console.log(score);
         // console.log(record);
-        console.log(time);
-        console.log(record);
-        console.log(quiz);
+        // console.log(time);
+        // console.log(record);
+        // console.log(quiz);
     }, [route.params.score,  route.params.time, route.params.record, route.params.quiz])
 
     const formattedScore = (score != 0) ? score.toString().padStart(3, '0'): score.toString();
@@ -69,6 +70,17 @@ export default function ScorePage({ route, navigation }) {
             }
         )
     ]
+
+    const handleShare = async () => {
+        const shareText = 'https://www.quizzy.news';
+        const copyToClipboard = async () => {
+        await Clipboard.setStringAsync(shareText);
+        alert('Link copied to clipboard');
+        }
+        await copyToClipboard();
+        console.log('Copied to clipboard ',shareText);
+
+    }
     
     return (
         <View className="h-screen p-5 flex justify-center items-center bg-white ">
@@ -123,7 +135,7 @@ export default function ScorePage({ route, navigation }) {
                     </View>
                     <Text className="pt-1 text-lg font-lexend font-bold text-[#909090] uppercase">About</Text>
                 </Pressable>
-                <Pressable className="flex flex-col items-center">
+                <Pressable className="flex flex-col items-center" onPress={() => handleShare()}>
                     <View className="w-16 h-9 flex flex-col items-center justify-center">
                         <View className="h-full bg-[#53ADF0] w-full rounded-md absolute top-1" />
                         <View className="h-full bg-[#80C9FA] w-full rounded-md absolute" />

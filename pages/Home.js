@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
           }}
           style={buttonActive ? styles.buttonActive : styles.button}
         >
-          <View style={styles.shadowLayer} />
+          <View style={buttonActive ? '':styles.shadowLayer} />
           <View style={styles.topLayer} />
           <Text style={styles.buttonText}>Play</Text>
         </Pressable>
@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
     position: 'relative', // Required for absolute positioning of layers
     marginRight: 10,
     marginLeft: 10,
-  },
+    transition: 'transform 0.25s linear', // Smoothly move the button down when active
+    },
   buttonActive: {
     // Active state configuration
     backgroundColor: '#77C7F4',
@@ -88,6 +89,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 10,
+    marginLeft: 10,
+    transform: [{ translateY: 15 }], // Slightly move the button down
   },
   shadowLayer: {
     backgroundColor: '#70A5FE', // Slightly darker for the shadow effect

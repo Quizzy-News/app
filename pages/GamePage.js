@@ -85,12 +85,13 @@ export default function GamePage ( { navigation, route }) {
   }
 
   const isCorrect = (choice) => {
+    // riddled with side-effects
     let index = choices.indexOf(choice);
+    const correctness = choice === question.answer ? true : false;
+    const newChoiceState = correctness ? "Pressed Correct" : "Pressed Incorrect";
 
-    const newChoiceState = choice === question.answer ? "Correct" : "Incorrect";
-
-    handleRecord(newChoiceState === "Correct" ? "correct" : "incorrect");
-    handleScore(newChoiceState === "Correct" ? score + 50 : score);
+    handleRecord(correctness ? "correct" : "incorrect");
+    handleScore(correctness ? score + 50 : score);
 
 
     setChoiceStates((previousChoiceStates) => { 

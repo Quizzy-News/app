@@ -8,14 +8,14 @@ import ScoreCount from "./HeaderChildren/ScoreCount.js";
 
 const StyledView = styled(View);
 
-export default function Header({onTimeOut, score, navigation, onPressOut, page}) {
+export default function Header({onTimeOut, score, navigation, onPressOut, page, countdown, setCountdown, inProgress}) {
     return (
         
            
         
             <StyledView className="bg-medium-purple flex-1 flex-row items-center justify-between rounded-lg">
                 <PageCount onPressOut={onPressOut} page={page}/>
-                <Timer initialCountdown={60} onTimeOut={onTimeOut}/>
+                <Timer countdown={countdown} setCountdown = {setCountdown} onTimeOut={onTimeOut} inProgress={inProgress}/>
                 <ScoreCount score={score}/>
             </StyledView>
         

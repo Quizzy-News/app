@@ -16,7 +16,7 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
 
        return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
     } else if (choiceState.includes("Correct")){
-      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5 text-white' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
+      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
     } else if (choiceState.includes("Incorrect")) {
       return `min-h-95px bg-dark-red  ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex rounded-lg `;
     } else {

@@ -11,25 +11,25 @@ const StyledPressable = styled(Pressable);
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
   const getButtonStyle = () => {
     if (choiceState === "Disabled") {
-       return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+       return "min-h-10pct bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
     } else if (choiceState === "Correct") {
-      return "bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+      return "min-h-10pct bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
     } else if (choiceState === "Incorrect") {
-      return "bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+      return "min-h-10pct bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex rounded-lg ";
     } else {
-      return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+      return "min-h-10pct bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
     }
   }
 
   const getTextStyle = () => {
     if (choiceState === "Disabled") {
-      return "font-futura-medium text-xl text-grey-1 leading-6";
+      return "font-futura-medium text-xl text-grey-1 leading-6 text-left";
     } else if (choiceState === "Correct") {
-      return "font-futura-medium text-xl text-light-green leading-6";
+      return "font-futura-medium text-xl text-light-green leading-6 text-left";
     } else if (choiceState === "Incorrect") {
-      return "font-futura-medium text-xl text-light-red leading-6";
+      return "font-futura-medium text-xl text-light-red leading-6 text-left";
     } else {
-      return "font-futura-medium text-xl text-grey-4 leading-6";
+      return "font-futura-medium text-xl text-grey-4 leading-6 text-left";
     }
   }
   

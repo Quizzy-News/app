@@ -155,12 +155,12 @@ export default function GamePage ( { navigation, route }) {
         navigation={navigation}
         page={page}
         />
+      </StyledView>
 
       <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
         <StyledView className="h1/3 justify-center w-full px-2">
-
         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} /> 
-
+        </StyledView>
 
         <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 
 
@@ -179,6 +179,7 @@ export default function GamePage ( { navigation, route }) {
         </StyledView>
       {/* <Footer /> */}
     </StyledView>
-    </>
+    
+    
   );
 };

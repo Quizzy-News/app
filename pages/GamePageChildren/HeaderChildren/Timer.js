@@ -17,7 +17,7 @@ export default function Timer({ onTimeOut, countdown, setCountdown, inProgress }
     const interval = setInterval(() => {
       setCountdown((prevMinute) => {
         let m = (prevMinute + 1);
-        console.log("GameTimer: ", m);
+        // console.log("GameTimer: ", m);
         return m;
       }); // Keep minute between 0 and 59
     }, 1000);

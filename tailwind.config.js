@@ -24,6 +24,7 @@ module.exports = {
         '10pct' : '10%',
       },
       height: {
+        '5' : '0.3125rem',
         '9pct': '9%',
         '10pct': '10%',
         'timer-height': '60px !important',
@@ -32,13 +33,13 @@ module.exports = {
           'timer-width': '60px !important',
       },
       boxShadow : {
-        "exitButtonShadow" : "0 5px 0 rgba(61, 61, 61)",
-        "choiceDisplayButtonShadow": "0 5px 0 rgba(179,179,179)",
-        "correctChoiceDisplayButtonShadow" : "0 5px 0 rgb(107,165,48)",
-        "incorrectChoiceDisplayButtonShadow" : "0 5px 0 rgb(233,87,80)"
+        "exitButtonShadow" : "0 0.3125rem 0 rgba(61, 61, 61)",
+        "choiceDisplayButtonShadow": "0 0.3125rem 0 rgba(179,179,179)",
+        "correctChoiceDisplayButtonShadow" : "0 0.3125rem 0 rgb(107,165,48)",
+        "incorrectChoiceDisplayButtonShadow" : "0 0.3125rem 0 rgb(233,87,80)"
       },
       translate : {
-        "5" : "5px"
+        "5" : "0.3125rem"
       },
       fontFamily: {
         'kghappy': ['KGHappy', 'sans-serif'],

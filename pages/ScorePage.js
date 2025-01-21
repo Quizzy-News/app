@@ -93,7 +93,7 @@ export default function ScorePage({ route, navigation }) {
                         <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-items-start items-center" 
                             onPress={()=> window.open(result.link)}
                         key={result.id}>
-                            <View className=" bg-[#E3E3E3] w-[100%] rounded-md absolute top-2 right-[-5]" />
+                            <View className="h-5 bg-[#E3E3E3] w-[100%] rounded-md absolute top-2 right-[-5]" />
                             <View className={`${record[idx] === 'correct' ?
                                 "h-full bg-[#6BA530] w-full rounded-md absolute" :
                                 "h-full bg-darker-red w-full rounded-md absolute"}`} />

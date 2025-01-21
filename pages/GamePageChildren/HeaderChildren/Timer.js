@@ -7,30 +7,33 @@ import Svg, { Path } from "react-native-svg";
 // const StyledView = styled(View);
 
 // This component encapsulates timer/countdown logic.
+export default function Timer({ onTimeOut, countdown, setCountdown, inProgress }) {
 
-export default function Timer({ onTimeOut }) {
-
-  const [minute, setMinute] = useState(0);
+  //const [minute, setMinute] = useState(0);
 
   // Increment the minute every second
   useEffect(() => {
+    if (!inProgress) return; // Only run the interval if inProgress is true
     const interval = setInterval(() => {
-      setMinute((prevMinute) => {
+      setCountdown((prevMinute) => {
         let m = (prevMinute + 1);
-        console.log("m: ", m);
+        console.log("GameTimer: ", m);
         return m;
       }); // Keep minute between 0 and 59
     }, 1000);
 
     // Clear interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      clearInterval(interval);
+      
+    }
+  }, [inProgress]);
 
-  const sliceAngle = minute * 6; // Convert minute to angle
-  console.log("sa: ", sliceAngle);
+  const sliceAngle = countdown * 6; // Convert countdown to angle
+  //console.log("sa: ", sliceAngle);
   // Convert degrees to radians
   const radians = (Math.PI / 180) * sliceAngle;
-  console.log("rad: ", radians);
+  //console.log("rad: ", radians);
 
   // Keep both pizza slice and background circle with the same radius
   const radius = 50;
@@ -55,13 +58,13 @@ export default function Timer({ onTimeOut }) {
   
     useEffect(() => {
 
-        if (minute === 61) {
+        if (countdown === 61) {
           console.log('at 61')
             onTimeOut(); // See GamePage.js
             return;
           }
 
-    }, [minute, onTimeOut])
+    }, [countdown, onTimeOut])
 
     return (
       <View style={styles.container} className="h-timer-height w-timer-width">

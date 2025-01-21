@@ -88,10 +88,10 @@ export default function ScorePage({ route, navigation }) {
                 <Text className="pb-3 text-sm font-lexend">Click on the answers to read more about each story.</Text>
                 {results.map((result,idx) => {
                     return (
-                        <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-between items-center" 
+                        <Pressable className="w-full h-9 mb-[10px] flex flex-row justify-items-start items-center" 
                             onPress={()=> window.open(result.link)}
                         key={result.id}>
-                            <View className="h-full bg-[#E3E3E3] w-[100%] rounded-md absolute top-2 right-[-5]" />
+                            <View className=" bg-[#E3E3E3] w-[100%] rounded-md absolute top-2 right-[-5]" />
                             <View className={`${record[idx] === 'correct' ?
                                 "h-full bg-[#6BA530] w-full rounded-md absolute top-1" :
                                 "h-full bg-darker-red w-full rounded-md absolute top-1"}`} />
@@ -100,15 +100,15 @@ export default function ScorePage({ route, navigation }) {
                              "h-full bg-[#78C93C] w-full rounded-md absolute" :
                              "h-full bg-dark-red w-full rounded-md absolute"}`} />
                             {/* <View className="h-full bg-[#78C93C] w-full rounded-md absolute" /> */}
-                            <Text className="pl-2 text-sm font-lexend font-bold text-white">{result.id}</Text>
-                            <Text className="text-lg font-lexend font-bold text-white underline grow-4 text-center">{result.answer}</Text>
-                            <View className="pr-1">
+                            <Text className="px-125 text-lg font-lexend font-bold text-white">{result.id}</Text>
+                            <Text className="text-lg font-lexend font-bold text-white no-underline grow-4 text-left mr-auto">{result.answer}</Text>
+                            <View className="pr-1 justify-self-end">
                                 <Ionicons name="exit-outline" size={24} color="white" />
                             </View>
                         </Pressable>
                     )
                 })}
-                <Text className="pt-2 text-lg font-lexend">
+                <Text className="pt-01 text-lg font-lexend">
                     Next news quiz in <Text className="font-bold">12:19:00</Text>
                 </Text>
             </View>

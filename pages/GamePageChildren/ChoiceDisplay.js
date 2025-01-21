@@ -11,13 +11,13 @@ const StyledPressable = styled(Pressable);
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
   const getButtonStyle = () => {
     if (choiceState === "Disabled") {
-       return "min-h-10pct bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
+       return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
     } else if (choiceState === "Correct") {
-      return "min-h-10pct bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
+      return "min-h-95px bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
     } else if (choiceState === "Incorrect") {
-      return "min-h-10pct bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex rounded-lg ";
+      return "min-h-95px bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex rounded-lg ";
     } else {
-      return "min-h-10pct bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
+      return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
     }
   }
 

@@ -9,13 +9,16 @@ const StyledPressable = styled(Pressable);
 // This component will be mapped in GamePage.
 
 export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceState}) {
+  let pressed = ((choiceState.includes("Pressed"))) ? true : false
+
   const getButtonStyle = () => {
     if (choiceState === "Disabled") {
+
        return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
-    } else if (choiceState === "Correct") {
-      return "min-h-95px bg-dark-green shadow-correctChoiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
-    } else if (choiceState === "Incorrect") {
-      return "min-h-95px bg-dark-red shadow-incorrectChoiceDisplayButtonShadow  m-[10px] p-[20px] flex rounded-lg ";
+    } else if (choiceState.includes("Correct")){
+      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
+    } else if (choiceState.includes("Incorrect")) {
+      return `min-h-95px bg-dark-red  ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex rounded-lg `;
     } else {
       return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
     }
@@ -32,6 +35,8 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
       return "font-futura-medium text-xl text-grey-4 leading-6 text-left";
     }
   }
+
+  
   
   return (
       <StyledPressable 

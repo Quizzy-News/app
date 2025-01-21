@@ -11,7 +11,7 @@ const StyledView = styled(View);
 
 export default function GamePage ( { navigation, route }) {
 
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0); // int represents index 
   const [question, setQuestion] = useState(route.params.quiz); // sampleQuiz is an array of objects
   const [score, setScore] = useState(0);
@@ -26,15 +26,19 @@ export default function GamePage ( { navigation, route }) {
   const [page, setPage] = useState(1);
 
   const [quiz, setQuiz] = useState(route.params.quiz);
+  const [questionStartTime, setQuestionStartTime] = useState(0);
 
 
-  
+  // Loading question
   useEffect(() => {
     console.log(quiz[currentQuestion]["question"]);
     setQuestion(quiz[currentQuestion]);
     setChoices([...quiz[currentQuestion].choices]);
+    setQuestionStartTime(countdown)
   }, [currentQuestion]);
 
+
+ 
   // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
   useEffect(() => {
     return () => {
@@ -49,6 +53,7 @@ export default function GamePage ( { navigation, route }) {
   useEffect(() => {
     if(!inProgress){
       setDesaturated(true);
+      // clear intervals
       setTimeout(()=> {
         navigation.navigate("ScorePage", {
           score, record: userRecord, time: countdown, quiz: quiz
@@ -101,9 +106,13 @@ export default function GamePage ( { navigation, route }) {
 
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
+    const timeElapsed = countdown - questionStartTime ;
+    // console.log('time elapsed: ', timeElapsed);
 
     if (nextQuestion < quiz.length) {
+      incrementPage();
       setCurrentQuestion(nextQuestion);
+      setQuestionStartTime(countdown);
       resetChoices();
     } else { 
       setInProgress(false);
@@ -118,7 +127,7 @@ export default function GamePage ( { navigation, route }) {
   };
 
   const incrementPage = () => {
-    if (page < 5) {
+    if (page < 5 && inProgress) {
         setPage(page + 1);
     }
 }
@@ -127,11 +136,12 @@ export default function GamePage ( { navigation, route }) {
   const handlePressOut = (choice) => { 
     isCorrect(choice);
 
-    const newTimeoutId = setTimeout(() => {
+   setTimeout(() => {
       getNextQuestion();
     }, 500);
-    setTimeout(newTimeoutId);
-    incrementPage();
+   
+    //setTimeout(newTimeoutId);
+    //incrementPage();
   };
 
   if (!question) {  
@@ -147,6 +157,9 @@ export default function GamePage ( { navigation, route }) {
         score={score} 
         navigation={navigation}
         page={page}
+        countdown={countdown}
+        setCountdown={setCountdown}
+        inProgress = {inProgress}
         />
 
       <StyledView className={`flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg `} >

@@ -142,10 +142,10 @@ export default function GamePage ( { navigation, route }) {
   return (
     
     <StyledView className={`h-screen flex-1 flex-col bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
-      <StyledView className="h-10pct">
+      <StyledView className="h-125">
 
       </StyledView>
-      <StyledView className="flex-row items-end justify-between mx-21 pb-3 h-10pct w-full">
+      <StyledView className="flex-row items-end justify-between mx-125 pb-3 h-10pct ">
       <Header 
         onTimeOut={handleTimeOut}
         score={score} 
@@ -155,11 +155,11 @@ export default function GamePage ( { navigation, route }) {
         </StyledView>
 
       <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
-        <StyledView className="h1/3 justify-center w-full px-1">
+        <StyledView className="h1/3 justify-center w-full px-2">
         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} /> 
         </StyledView>
 
-        <StyledView className="h-30pct pb-10 w-full justify-evenly mx-28"> 
+        <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 
             {choices.map((choice, i) => {
               return <ChoiceDisplay
                 key= {i} // Used by React under the hood.

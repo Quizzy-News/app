@@ -13,26 +13,25 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
 
   const getButtonStyle = () => {
     if (choiceState === "Disabled") {
-
-       return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
-    } else if (choiceState.includes("Correct")){
-      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
+       return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
+    } else if (choiceState.includes("Correct")) {
+      return `bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex items-center justify-center rounded-lg`;
     } else if (choiceState.includes("Incorrect")) {
-      return `min-h-95px bg-dark-red  ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex rounded-lg `;
+      return `bg-dark-red ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex items-center justify-center rounded-lg`;
     } else {
-      return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
+      return "bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex items-center justify-center rounded-lg";
     }
   }
 
   const getTextStyle = () => {
     if (choiceState === "Disabled") {
-      return "font-futura-medium text-xl text-grey-1 leading-6 text-left";
+      return "font-futura-medium text-xl text-grey-1 leading-6";
     } else if (choiceState === "Correct") {
-      return "font-futura-medium text-xl text-light-green leading-6 text-left";
+      return "font-futura-medium text-xl text-light-green leading-6";
     } else if (choiceState === "Incorrect") {
-      return "font-futura-medium text-xl text-light-red leading-6 text-left";
+      return "font-futura-medium text-xl text-light-red leading-6";
     } else {
-      return "font-futura-medium text-xl text-grey-4 leading-6 text-left";
+      return "font-futura-medium text-xl text-grey-4 leading-6";
     }
   }
 

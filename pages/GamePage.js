@@ -141,14 +141,8 @@ export default function GamePage ( { navigation, route }) {
   
   /* onPressOut={() => handlePressOut(choice)} was in header */
   return (
-
-    
-    <StyledView className={`h-screen flex-1 flex-col bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
-      <StyledView className="h-125">
-
-      </StyledView>
-      <StyledView className="flex-row items-end justify-between mx-125 pb-3 h-10pct ">
-
+    <>
+    <StyledView className={`flex-1 flex-col justify-center bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
       <Header 
         onTimeOut={handleTimeOut}
         score={score} 
@@ -156,14 +150,10 @@ export default function GamePage ( { navigation, route }) {
         page={page}
         />
 
-      <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
-        <StyledView className="h1/3 justify-center w-full px-2">
-
+      <StyledView className={`flex-1 items-center justify-between bg-light-purple m-10 p-10 rounded-lg `} >
         <QuestionDisplay currentQuestion={quiz[currentQuestion].question} /> 
 
-
-        <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 
-
+        <StyledView className="w-full flex pb-10"> 
             {choices.map((choice, i) => {
               return <ChoiceDisplay
                 key= {i} // Used by React under the hood.

@@ -4,22 +4,26 @@
 
 @font-face {
     font-family: "KGHappy";
-    src: url("public/fonts/KGHAPPY.ttf") format('truetype');
+    src: url("public/fonts/KGHAPPY.ttf")
+    format('truetype');
 }
 
 @font-face {
     font-family: "Lexend";
-    src: url("public/fonts/Lexend-VariableFont_wght.ttf") format('truetype');
+    src: url("public/fonts/Lexend-VariableFont_wght.ttf")
+    format('truetype');
 }
 
 @font-face {
     font-family: "Jost";
-    src: url("public/fonts/Jost-VariableFont_wght.ttf") format('truetype');
+    src: url("public/fonts/Jost-VariableFont_wght.ttf")
+    format('truetype');
 }
 
 @font-face {
     font-family: "Futura-Medium";
-    src: url("public/fonts/Futura-Medium.otf") format('embedded-opentype');
+    src: url("public/fonts/Futura-Medium.otf")
+    format('embedded-opentype');
 }
 
 
@@ -40,5 +44,5 @@
     --light-green: #DEFEBF;
     --dark-green: #78C93C;
     --darker-green: #6BA530;   
-}
+};
 

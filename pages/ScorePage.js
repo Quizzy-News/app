@@ -11,6 +11,7 @@ import { getDailyQuiz } from '../firebase/firebaseConfig';
 // import { scoreAnalysis } from '../utilities/scoreAnalysis'
 import {badge0, badge50, badge100, badge150, badge200, badge250} from './ScorePageAssets/Badges';
 import { StringFormat } from '../node_modules/expo-clipboard/build/Clipboard.types';
+import NextQuizComponent from './ScorePageAssets/NextQuizComponent';
 
 export default function ScorePage({ route, navigation }) {
 
@@ -71,7 +72,7 @@ export default function ScorePage({ route, navigation }) {
     const results = [
         ...quiz.map(
             (item, index) => {
-                if (item.answer.length > 30) {
+                if (item.answer.length > 27) {
                     item.answer = item.answer.slice(0, 25) + "...";
                 }
             return {
@@ -148,9 +149,7 @@ export default function ScorePage({ route, navigation }) {
                         </Pressable>
                     )
                 })}
-                <Text className="pt-01 text-lg font-lexend">
-                    Next news quiz in <Text className="font-bold">12:19:00</Text>
-                </Text>
+                <NextQuizComponent />
             </View>
 
             <View

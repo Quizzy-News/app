@@ -16,7 +16,7 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
 
        return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
     } else if (choiceState.includes("Correct")){
-      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
+      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5 text-white' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
     } else if (choiceState.includes("Incorrect")) {
       return `min-h-95px bg-dark-red  ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex rounded-lg `;
     } else {
@@ -27,9 +27,9 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
   const getTextStyle = () => {
     if (choiceState === "Disabled") {
       return "font-futura-medium text-xl text-grey-1 leading-6 text-left";
-    } else if (choiceState === "Correct") {
-      return "font-futura-medium text-xl text-light-green leading-6 text-left";
-    } else if (choiceState === "Incorrect") {
+    } else if (choiceState.includes("Correct")) {
+      return "font-futura-medium text-xl text-white leading-6 text-left";
+    } else if (choiceState.includes("Incorrect")) {
       return "font-futura-medium text-xl text-light-red leading-6 text-left";
     } else {
       return "font-futura-medium text-xl text-grey-4 leading-6 text-left";

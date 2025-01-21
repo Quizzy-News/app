@@ -9,7 +9,22 @@ module.exports = {
   content: ["./App.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}", "./modals/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        'sm' : '360px',
+        'md' : '834px',
+        'lg' : '1512px',
+      },
+      spacing: {
+        '01' : '.01rem',
+        '2' : '2rem',
+        '21' : '0.05vw',
+        '37' : '0.10vw',
+        '28' : '0.07vw',
+        '125' : '1.25rem',
+        '10pct' : '10%',
+      },
       height: {
+        '9pct': '9%',
         '10pct': '10%',
         'timer-height': '60px !important',
       },

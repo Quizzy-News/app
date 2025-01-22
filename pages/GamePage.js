@@ -28,7 +28,7 @@ export default function GamePage ( { navigation, route }) {
   const [quiz, setQuiz] = useState(route.params.quiz);
   const [questionStartTime, setQuestionStartTime] = useState(0);
 
-  const [lastPoints, setLastPoints] = useState(0);
+  const [lastPoints, setLastPoints] = useState(undefined);
 
 
   // Loading question
@@ -37,6 +37,7 @@ export default function GamePage ( { navigation, route }) {
     setQuestion(quiz[currentQuestion]);
     setChoices([...quiz[currentQuestion].choices]);
     setQuestionStartTime(countdown)
+    setLastPoints(undefined);
   }, [currentQuestion]);
 
 
@@ -95,20 +96,8 @@ export default function GamePage ( { navigation, route }) {
     // riddled with side-effects
     let index = choices.indexOf(choice);
     const correctness = choice === question.answer;
-    const points = correctness ? 50 : 0;
-
-    setLastPoints(points);
-    const newChoiceState = correctness ? "Pressed Correct" : "Pressed Incorrect";
-
-    handleRecord(correctness ? "correct" : "incorrect");
-    handleScore(correctness ? score + points : score);
-
-
-    setChoiceStates((previousChoiceStates) => { 
-      return previousChoiceStates.map((previousChoiceStates, i) => i === index ? newChoiceState : "Disabled" ); 
-    });
-
-  };
+    return {correctness, index };
+  }
 
   const getNextQuestion = () => {  
     const nextQuestion = currentQuestion + 1;
@@ -140,11 +129,26 @@ export default function GamePage ( { navigation, route }) {
   // == end: HELPER FUNCTIONS FOR handlePressOut ==
 
   const handlePressOut = (choice) => { 
-    isCorrect(choice);
+    
+    const {correctness, index} = isCorrect(choice);
+    const points = correctness ? 50 : 0;
+
+    setLastPoints(points);
+    const newChoiceState = correctness ? "Pressed Correct" : "Pressed Incorrect";
+
+    handleRecord(correctness ? "correct" : "incorrect");
+    
+
+
+    setChoiceStates((previousChoiceStates) => { 
+      return previousChoiceStates.map((previousChoiceStates, i) => i === index ? newChoiceState : "Disabled" ); 
+    });
+
 
    setTimeout(() => {
-      getNextQuestion();
-    }, 500);
+    handleScore(correctness ? score + points : score);
+    getNextQuestion();
+    }, 750);
    
     //setTimeout(newTimeoutId);
     //incrementPage();
@@ -187,8 +191,8 @@ export default function GamePage ( { navigation, route }) {
               return <ChoiceDisplay
                 key= {i} // Used by React under the hood.
                 choice={choice}
-                onPressIn={() => handlePressIn(choice)}
-                onPressOut={() => handlePressOut(choice)}
+                onPressIn={() => (inProgress) ? handlePressIn(choice) : ''}
+                onPressOut={() => (inProgress) ? handlePressOut(choice) : ''}
                 choiceState={choiceStates[i]}
               />
               }

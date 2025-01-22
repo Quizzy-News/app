@@ -14,25 +14,25 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
   const getButtonStyle = () => {
     if (choiceState === "Disabled") {
 
-       return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex rounded-lg ";
+       return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex row rounded-lg ";
     } else if (choiceState.includes("Correct")){
-      return `min-h-95px bg-dark-green ${pressed ? 'translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex  rounded-lg `;
+      return `min-h-95px bg-dark-green transition-all duration-100 ease-linear ${pressed ? ' translate-y-5' : 'shadow-correctChoiceDisplayButtonShadow'} m-[10px] p-[20px] flex row rounded-lg `;
     } else if (choiceState.includes("Incorrect")) {
-      return `min-h-95px bg-dark-red  ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex rounded-lg `;
+      return `min-h-95px bg-dark-red transition-all duration-100 ease-linear   ${pressed ? 'translate-y-5' : 'shadow-incorrectChoiceDisplayButtonShadow'}  m-[10px] p-[20px] flex row rounded-lg `;
     } else {
-      return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex  rounded-lg ";
+      return "min-h-95px bg-white shadow-choiceDisplayButtonShadow m-[10px] p-[20px] flex row  rounded-lg ";
     }
   }
 
   const getTextStyle = () => {
     if (choiceState === "Disabled") {
-      return "font-futura-medium text-xl text-grey-1 leading-6 text-left";
+      return "font-futura-medium text-xl text-grey-1 ";
     } else if (choiceState.includes("Correct")) {
-      return "font-futura-medium text-xl text-white leading-6 text-left";
+      return "font-futura-medium text-xl text-white ";
     } else if (choiceState.includes("Incorrect")) {
-      return "font-futura-medium text-xl text-light-red leading-6 text-left";
+      return "font-futura-medium text-xl text-light-red ";
     } else {
-      return "font-futura-medium text-xl text-grey-4 leading-6 text-left";
+      return "font-futura-medium text-xl text-grey-4 ";
     }
   }
 
@@ -44,9 +44,10 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
           onPressIn={onPressIn}
           onPressOut={onPressOut}
       >
-          <StyledText className={getTextStyle()}>
-              {choice}
+          <StyledText className={`${getTextStyle()} + leading-6 text-left inline-block`}>
+              {choice} <StyledText className="justify-self-end">{`${pressed ? choiceState.includes('Correct') ? '✔' : '✘' : ''}`}</StyledText>
           </StyledText>
+          
       </StyledPressable>
   );
 };

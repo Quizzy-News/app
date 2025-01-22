@@ -28,6 +28,8 @@ export default function GamePage ( { navigation, route }) {
   const [quiz, setQuiz] = useState(route.params.quiz);
   const [questionStartTime, setQuestionStartTime] = useState(0);
 
+  const [lastPoints, setLastPoints] = useState(0);
+
 
   // Loading question
   useEffect(() => {
@@ -92,11 +94,14 @@ export default function GamePage ( { navigation, route }) {
   const isCorrect = (choice) => {
     // riddled with side-effects
     let index = choices.indexOf(choice);
-    const correctness = choice === question.answer ? true : false;
+    const correctness = choice === question.answer;
+    const points = correctness ? 50 : 0;
+
+    setLastPoints(points);
     const newChoiceState = correctness ? "Pressed Correct" : "Pressed Incorrect";
 
     handleRecord(correctness ? "correct" : "incorrect");
-    handleScore(correctness ? score + 50 : score);
+    handleScore(correctness ? score + points : score);
 
 
     setChoiceStates((previousChoiceStates) => { 
@@ -167,6 +172,7 @@ export default function GamePage ( { navigation, route }) {
         countdown={countdown}
         setCountdown={setCountdown}
         inProgress = {inProgress}
+        lastPoints={lastPoints}
         />
       </StyledView>
 

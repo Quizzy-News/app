@@ -1,37 +1,34 @@
-import React, { useEffect } from 'react';
-import { Animated, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Animated, Text, View } from 'react-native';
+import { styled } from 'nativewind';
+
+const StyledText = styled(Text);
 
 export default function ScoreAnimation({ points }) {
-    const translateY = new Animated.Value(0);
-    const opacity = new Animated.Value(1);
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        Animated.parallel([
-            Animated.timing(translateY, {
-                toValue: -30,
-                duration: 1000,
-                useNativeDriver: true,
-            }),
-            Animated.timing(opacity, {
-                toValue: 0,
-                duration: 1000,
-                useNativeDriver: true,
-            })
-        ]).start();
+        setIsVisible(true);
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+        }, (points > 0 ? 650 : 750));
+        return () => clearTimeout(timer);
     }, [points]);
 
     return (
-        <Animated.Text 
-            style={{
-                position: 'absolute',
-                transform: [{ translateY }],
-                right: 0,
-                opacity,
-                color: points > 0 ? '#4CAF50' : '#F44336',
-                fontWeight: 'bold'
-            }}
-        >
+        <View className={`justify-self-end ${points > 0 ? '-rotate-6' : '' } absolute right-4`}>
+
+        <StyledText 
+            className={` font-bold text-lg transition-all 
+                
+                ${isVisible ? 
+                    points > 0 ? 
+                    'ease-in-out duration-250 text-green-500 -translate-y-[1.35rem] opacity-100 ' :
+                    'ease-linear duration-750  text-red-500 translate-y-[1.20rem] opacity-[45]' :
+                    'opacity-0'}`}
+                    >
             {points > 0 ? '+50' : '+0'}
-        </Animated.Text>
+        </StyledText>
+        </View>
     );
 }

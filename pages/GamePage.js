@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View } from "react-native";
 import { styled } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
@@ -25,17 +25,19 @@ export default function GamePage ( { navigation, route }) {
   const [timeoutId, setTimeoutId] = useState(null);
   const [page, setPage] = useState(1);
 
-  const [quiz, setQuiz] = useState(route.params.quiz);
+  // const [quiz, setQuiz] = useState(route.params.quiz);
   const [questionStartTime, setQuestionStartTime] = useState(0);
 
   const [lastPoints, setLastPoints] = useState(undefined);
 
+  const quiz = useRef(route.params.quiz)
+
 
   // Loading question
   useEffect(() => {
-    console.log(quiz[currentQuestion]["question"]);
-    setQuestion(quiz[currentQuestion]);
-    setChoices([...quiz[currentQuestion].choices]);
+    console.log(quiz.current[currentQuestion]["question"]);
+    setQuestion(quiz.current[currentQuestion]);
+    setChoices([...quiz.current[currentQuestion].choices]);
     setQuestionStartTime(countdown)
     setLastPoints(undefined);
   }, [currentQuestion]);
@@ -59,12 +61,12 @@ export default function GamePage ( { navigation, route }) {
       // clear intervals
       setTimeout(()=> {
         navigation.navigate("ScorePage", {
-          score, record: userRecord, time: countdown, quiz: quiz
+          score, record: userRecord, time: countdown, quiz: quiz.current
         });
       }, 1000); 
 
     }
-  }, [inProgress, navigation, score, userRecord, countdown, quiz])
+  }, [inProgress, navigation, score, userRecord, countdown])
 
   // == start: REDIRECT TO SCOREPAGE ==
   const handleTimeOut = () => {
@@ -104,7 +106,7 @@ export default function GamePage ( { navigation, route }) {
     const timeElapsed = countdown - questionStartTime ;
     // console.log('time elapsed: ', timeElapsed);
 
-    if (nextQuestion < quiz.length) {
+    if (nextQuestion < quiz.current.length) {
       incrementPage();
       setCurrentQuestion(nextQuestion);
       setQuestionStartTime(countdown);
@@ -115,7 +117,7 @@ export default function GamePage ( { navigation, route }) {
   }
 
   const resetChoices = () => {
-    setChoices([...quiz[currentQuestion].choices]);
+    setChoices([...quiz.current[currentQuestion].choices]);
     setChoiceStates((previousStates) => {
       return previousStates.map(() =>  "Idle")
     });
@@ -182,7 +184,7 @@ export default function GamePage ( { navigation, route }) {
 
       <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
         <StyledView className="h1/3 justify-center w-full px-2">
-        <QuestionDisplay currentQuestion={quiz[currentQuestion].question} /> 
+        <QuestionDisplay currentQuestion={quiz.current[currentQuestion].question} /> 
         </StyledView>
 
         <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 

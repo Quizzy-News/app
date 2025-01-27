@@ -2,70 +2,37 @@ import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet, Image } from "react-native";
 import { styled } from 'nativewind';
 import { Colors, Containers, Typography } from "../styles"
-// import { getDaily } from "../qz-service/get";
-import { testFb, getDailyQuiz, getDailyPixieQuiz } from "../firebase/firebaseConfig.js"
 
-// import Spinner from '../public/Spinner.png';
+
+
+import { useQuiz } from "./hooks/useQuiz";
+
+
 const StyledView = styled(View);
 
 
 export default function LoadingPage({navigation}){
 
-    // const Spinner= require('../public/Spinner.png');
+
+  const {quiz, loaded, dayString, error} = useQuiz();
+
+  useEffect(() => {
     
-
-    const [quiz, setQuiz] = useState([]);
-    const [loaded, setLoaded] = useState(false);
-    const doOnce = true;
-
-    // [Start] Load Pixie Quiz
-  //////////////////////////
-  // useEffect(() => {
-  //   const load = async () => {
-  //     //const quiz = await testFb();
-
-  //     const fbRes = await getDailyPixieQuiz();
-  //     const quiz = fbRes.quiz;
-  //     // for (let i = 0; i < quiz.length; i++) { 
-  //     //   console.log(quiz[i])
-  //     // }
-  //     console.log(quiz);
-  //     setQuiz(quiz);
-  //     setLoaded(true);
-  //   }
-  //   load();
-  // }, [doOnce])
-  ///////////////////////////
-  // [End] Load Pixie Quiz
-
-  // // [Start] Load Gemini Quiz
-  // //////////////////////////////
-  useEffect(() => {
-    const load = async () => {
-      
-      const fbRes = await getDailyQuiz();
-
-      console.log("Res: ", fbRes)
-      const quiz = fbRes.slice(0, 5);
-      console.log("Quiz: ", quiz);
-
-      setQuiz(quiz);
-      setTimeout(()=> {setLoaded(true)},1250);
-      //setLoaded(true);
-    }
-    load();
-  }, [doOnce, loaded])
-  // ////////////////////////////////
-  // // [End] Load Gemini Quiz
-
-  useEffect(() => {
     if(!loaded) {
         return // 404/ error loading page
     }
-    if (loaded) {
-        navigation.navigate('CountDownPage', { quiz })
+    if (loaded && quiz.length > 0) {
+      console.log("loaded quiz: " + dayString);
+      const timeoutId = setTimeout(() =>navigation.navigate('CountDownPage', { quiz }), 1000);
+      return () => {
+        clearTimeout(timeoutId);
+      }
     }
-  })
+
+  }, [loaded, quiz])
+
+
+
 
     return (
       <>

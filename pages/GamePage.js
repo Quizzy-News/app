@@ -31,6 +31,14 @@ export default function GamePage ( { navigation, route }) {
   const [lastPoints, setLastPoints] = useState(undefined);
 
   const quiz = useRef(route.params.quiz)
+  const record = useRef()
+
+  const qRecord = {
+    correctness: 0,
+    timeElapsed: 0,
+    id: question.id,
+    index: page,
+  }
 
 
   // Loading question
@@ -45,13 +53,13 @@ export default function GamePage ( { navigation, route }) {
 
  
   // See isCorrect and handlePressOut; this is for determining if item is correct or incorrect
-  useEffect(() => {
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    }
-  },[timeoutId])
+  // useEffect(() => {
+  //   return () => {
+  //     if (timeoutId) {
+  //       clearTimeout(timeoutId);
+  //     }
+  //   }
+  // },[timeoutId])
 
 
   // Ensure that state variables are sync'd before navigating away from the gamepage
@@ -59,11 +67,14 @@ export default function GamePage ( { navigation, route }) {
     if(!inProgress){
       setDesaturated(true);
       // clear intervals
-      setTimeout(()=> {
+      let navWithDelay = setTimeout(()=> {
         navigation.navigate("ScorePage", {
           score, record: userRecord, time: countdown, quiz: quiz.current
         });
       }, 1000); 
+      return () => {
+        clearTimeout(navWithDelay);
+      }
 
     }
   }, [inProgress, navigation, score, userRecord, countdown])

@@ -3,7 +3,12 @@
     "jsx": "react-jsx",
     "target": "es6",
     "checkJs": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "*.ios", "*.android"]
+    }
   },
   "exclude": ["node_modules"]
 }

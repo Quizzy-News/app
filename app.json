@@ -8,9 +8,9 @@
     "icon": "./public/icons/icon.png",
     "web": {
       "bundler": "metro",
-      "favicon": "./public/favicon.ico",
+      "favicon": "./public/icons/favicon.png",
       "shortcut": {
-        "favicon": "./public/favicon.ico"
+        "favicon": "./public/icons/favicon.png"
       }
     },
     "userInterfaceStyle": "light",

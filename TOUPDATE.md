@@ -26,7 +26,8 @@
     TO ENSURE FUNCTIONALITY:
 
     -[ ] Nativewind v4 Compliance [update docs](https://www.nativewind.dev/blog/announcement-nativewind-v4#the-updated-architecture)
-    -[ ] Fonts are being handled consistently with Expo Font
+    -[ ] Fonts are being handled consistently with Expo Font and/or Tailwind (https://v3.tailwindcss.com/docs/font-family#using-custom-values) (https://docs.expo.dev/versions/latest/sdk/font/)
+    -[ ] is possible that using Tailwind and expo font is redundant
     -[ ] Tailwind stays at v3.4.17 (NW is not compatible with v4)
     -[ ] Pivot to Expo-router and remove react-navigation
     

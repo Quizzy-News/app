@@ -1,9 +1,8 @@
 import React from "react";
-import { styled } from "nativewind";
+
 import { Text, Pressable } from "react-native";
 
-const StyledText = styled(Text);
-const StyledPressable = styled(Pressable);
+
 
 // ChoiceDisplay is the container for individual choice elements.
 // This component will be mapped in GamePage.
@@ -39,15 +38,15 @@ export default function ChoiceDisplay ({choice, onPressIn, onPressOut, choiceSta
   
   
   return (
-      <StyledPressable 
+      <Pressable 
           className={getButtonStyle()}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
       >
-          <StyledText className={`${getTextStyle()} + leading-6 text-left inline-block`}>
-              {choice} <StyledText className="justify-self-end">{`${pressed ? choiceState.includes('Correct') ? '✔' : '✘' : ''}`}</StyledText>
-          </StyledText>
+          <Text className={`${getTextStyle()} + leading-6 text-left inline-block`}>
+              {choice} <Text className="justify-self-end">{`${pressed ? choiceState.includes('Correct') ? '✔' : '✘' : ''}`}</Text>
+          </Text>
           
-      </StyledPressable>
+      </Pressable>
   );
 };

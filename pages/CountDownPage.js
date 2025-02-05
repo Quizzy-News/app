@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native";
-import { styled } from 'nativewind';
 import { Colors, Containers, Typography } from "../styles"
 // import { getDaily } from "../qz-service/get";
 import { testFb, getDailyQuiz, getDailyPixieQuiz } from "../firebase/firebaseConfig.js"
 
-const StyledView = styled(View);
+
 
 export default function CountDownPage({ navigation, route }) {
   const [countdown, setCountdown] = useState(3);
@@ -68,7 +67,7 @@ export default function CountDownPage({ navigation, route }) {
 
   return (
     <>
-    <StyledView className={`flex-1 flex-col items-center justify-center bg-light-purple`}>
+    <View className={`flex-1 flex-col items-center justify-center bg-light-purple`}>
       
         <View style={styles.circle}>
           <Text style={styles.circleText}>
@@ -77,7 +76,7 @@ export default function CountDownPage({ navigation, route }) {
         </View>
       
 
-    </StyledView>
+    </View>
     </>
   );
 };

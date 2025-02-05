@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View } from "react-native";
-import { styled } from 'nativewind';
+
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
 import Header from './GamePageChildren/Header.js'
 import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 import Footer from "./GamePageChildren/Footer.js";
 
-const StyledView = styled(View);
+
 
 export default function GamePage ( { navigation, route }) {
 
@@ -175,11 +175,11 @@ export default function GamePage ( { navigation, route }) {
   return (
 
     
-    <StyledView className={`h-screen flex-1 flex-col bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
-      <StyledView className="h-125">
+    <View className={`h-screen flex-1 flex-col bg-light-purple ${desaturated ? 'grayscale' : ''} `}>
+      <View className="h-125">
 
-      </StyledView>
-      <StyledView className="flex-row items-end justify-between mx-125 pb-3 h-10pct ">
+      </View>
+      <View className="flex-row items-end justify-between mx-125 pb-3 h-10pct ">
 
       <Header 
         onTimeOut={handleTimeOut}
@@ -191,14 +191,14 @@ export default function GamePage ( { navigation, route }) {
         inProgress = {inProgress}
         lastPoints={lastPoints}
         />
-      </StyledView>
+      </View>
 
-      <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
-        <StyledView className="h1/3 justify-center w-full px-2">
+      <View className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
+        <View className="h1/3 justify-center w-full px-2">
         <QuestionDisplay currentQuestion={quiz.current[currentQuestion].question} /> 
-        </StyledView>
+        </View>
 
-        <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 
+        <View className="h-2/3 pb-10pct w-full justify-center px-125"> 
 
             {choices.map((choice, i) => {
               return <ChoiceDisplay
@@ -210,11 +210,11 @@ export default function GamePage ( { navigation, route }) {
               />
               }
             )}
-        </StyledView>
+        </View>
 
-        </StyledView>
+        </View>
       {/* <Footer /> */}
-    </StyledView>
+    </View>
     
     
   );

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
-import { styled } from 'nativewind';
 
-const StyledText = styled(Text);
+
+
 
 export default function ScoreAnimation({ points }) {
     const [isVisible, setIsVisible] = useState(false);
@@ -18,7 +18,7 @@ export default function ScoreAnimation({ points }) {
     return (
         <View className={`justify-self-end ${points > 0 ? '-rotate-6' : '' } absolute right-4`}>
 
-        <StyledText 
+        <Text 
             className={` font-bold text-lg transition-all 
                 
                 ${isVisible ? 
@@ -28,7 +28,7 @@ export default function ScoreAnimation({ points }) {
                     'opacity-0'}`}
                     >
             {points > 0 ? '+50' : '+0'}
-        </StyledText>
+        </Text>
         </View>
     );
 }

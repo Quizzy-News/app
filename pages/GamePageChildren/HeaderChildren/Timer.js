@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, StyleSheet } from "react-native";
-import { styled } from 'nativewind';
+
 import Svg, { Path } from "react-native-svg";
 
-// const StyledImage = styled(Image);
-// const StyledView = styled(View);
+
 
 // This component encapsulates timer/countdown logic.
 export default function Timer({ onTimeOut, countdown, setCountdown, inProgress }) {
@@ -170,10 +169,10 @@ const styles = StyleSheet.create({
 
 // import React, { useState, useEffect } from "react";
 // import { View, Image } from "react-native";
-// import { styled } from 'nativewind';
+// import {  } from 'nativewind';
 
-// const StyledImage = styled(Image);
-// const StyledView = styled(View);
+// const Image = (Image);
+// const View = (View);
 
 // // This component encapsulates timer/countdown logic.
 
@@ -202,7 +201,7 @@ const styles = StyleSheet.create({
 
 //     return (
 //       <>
-//         <StyledImage source={timerFrames[countdown]} className="h-timer-height w-timer-width"/>
+//         <Image source={timerFrames[countdown]} className="h-timer-height w-timer-width"/>
 //       </>
 //     )
 

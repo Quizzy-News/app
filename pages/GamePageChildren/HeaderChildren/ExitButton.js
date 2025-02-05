@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { styled } from 'nativewind';
+
 import { View, Pressable } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const StyledView = styled(View);
-const StyledPressable = styled(Pressable);
+
 
 export default function ExitButton({ navigation }) {
   const [exitButton, setExitButton] = useState(false);
@@ -18,8 +17,8 @@ export default function ExitButton({ navigation }) {
   }
   
     return (
-      <StyledView className="pr-10">
-        <StyledPressable
+      <View className="pr-10">
+        <Pressable
             onPressIn={exitButtonActive}
             onPressOut={exitButtonInactive}
             className= { 
@@ -27,8 +26,8 @@ export default function ExitButton({ navigation }) {
             }
         >
             <MaterialCommunityIcons name="exit-to-app" size="4em" color="white" />
-        </StyledPressable>
-      </StyledView>
+        </Pressable>
+      </View>
     )
 }
 

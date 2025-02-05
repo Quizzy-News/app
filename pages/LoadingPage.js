@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View, StyleSheet, Image } from "react-native";
-import { styled } from 'nativewind';
 import { Colors, Containers, Typography } from "../styles"
 
 
@@ -8,7 +7,6 @@ import { Colors, Containers, Typography } from "../styles"
 import { useQuiz } from "./hooks/useQuiz";
 
 
-const StyledView = styled(View);
 
 
 export default function LoadingPage({navigation}){
@@ -36,7 +34,7 @@ export default function LoadingPage({navigation}){
 
     return (
       <>
-      <StyledView className={`flex-1 flex-col items-center justify-center bg-light-purple`}>
+      <View className={`flex-1 flex-col items-center justify-center bg-light-purple`}>
        
         
           <View style={styles.circle}>
@@ -46,7 +44,7 @@ export default function LoadingPage({navigation}){
           </View>
        
       
-        </StyledView>
+        </View>
         </>
         
     );

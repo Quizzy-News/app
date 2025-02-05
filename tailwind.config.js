@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 
-const nativewind = require("nativewind/tailwind/css");
+// const nativewind = require("nativewind/tailwind/css");
 
 module.exports = {
   corePlugins: {
     preflight: false,
   },
   content: ["./App.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}", "./modals/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
   theme: {
     extend: {
       screens: {
@@ -72,6 +73,5 @@ module.exports = {
         "white": "#FFF"
       },
     },
-  },
-  plugins: [nativewind],
+  }
 };

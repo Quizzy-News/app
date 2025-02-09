@@ -14,6 +14,7 @@ export default function App() {
     LexendBlack: require("./public/fonts/Lexend-Black.ttf"),
     Jost: require("./public/fonts/Jost-Regular.ttf"), 
     FuturaMedium: require("./public/fonts/Futura-Medium.otf"),
+    FuturaBold: require("./public/fonts/Futura-Bold.otf"),
   });
   
 

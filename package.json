@@ -22,6 +22,8 @@
     "@rneui/themed": "^4.0.0-rc.8",
     "css": "^3.0.0",
     "expo": "^51.0.32",
+    "expo-asset": "~10.0.10",
+    "expo-clipboard": "~6.0.3",
     "expo-font": "~11.10.3",
     "expo-splash-screen": "~0.26.4",
     "expo-status-bar": "~1.11.1",

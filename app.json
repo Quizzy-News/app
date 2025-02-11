@@ -7,7 +7,11 @@
     "orientation": "portrait",
     "icon": "./public/icons/icon.png",
     "web": {
-      "bundler": "metro"
+      "bundler": "metro",
+      "favicon": "./public/icons/favicon.png",
+      "shortcut": {
+        "favicon": "./public/icons/favicon.png"
+      }
     },
     "userInterfaceStyle": "light",
     "splash": {
@@ -16,7 +20,7 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "**/*",
+     
       "node_modules/@expo/vector-icons/**/*"
     ],
     "ios": {
@@ -28,6 +32,8 @@
         "backgroundColor": "#ffffff"
       }
     },
-    "plugins": []
+    "plugins": [
+      "expo-asset"
+    ]
   }
 }

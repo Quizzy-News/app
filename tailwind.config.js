@@ -48,6 +48,7 @@ module.exports = {
         'lexend-black': ['LexendBlack', 'sans-serif'], 
         'jost': ['Jost', 'sans-serif'],
         'futura-medium': ['FuturaMedium', 'sans-serif'],
+        'futura-bold': ['FuturaBold', 'sans-serif'],
       },
       
       colors: {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { styled } from 'nativewind';
 import sampleQuiz from "../sampleQuiz.json";
 import ChoiceDisplay from './GamePageChildren/ChoiceDisplay';
@@ -8,6 +8,28 @@ import QuestionDisplay from "./GamePageChildren/QuestionDisplay.js";
 import Footer from "./GamePageChildren/Footer.js";
 
 const StyledView = styled(View);
+
+// Shown when the quiz being played is not today's, so users aren't misled
+// into thinking archived questions are current news.
+function formatQuizDate(dateString) {
+  const [y, m, d] = String(dateString).split("-").map(Number);
+  if (!y || !m || !d) return dateString;
+  const months = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+  return `${months[m - 1]} ${d}, ${y}`;
+}
+
+const archiveStyles = StyleSheet.create({
+  badge: {
+    fontFamily: "LexendRegular",
+    fontSize: 11,
+    color: "#5B5B5B",
+    textAlign: "center",
+    marginBottom: 6,
+    textTransform: "uppercase",
+    letterSpacing: 0.5,
+  },
+});
 
 export default function GamePage ( { navigation, route }) {
 
@@ -30,8 +52,18 @@ export default function GamePage ( { navigation, route }) {
 
   const [lastPoints, setLastPoints] = useState(undefined);
 
-  const quiz = useRef(route.params.quiz)
+  // Defensive: only ever hold questions the game can actually render.
+  // Previously this trusted route.params.quiz blindly, so the [0,0,0,0,0,0]
+  // placeholder that useQuiz used to emit reached the spread below and threw
+  // "undefined is not iterable".
+  const quiz = useRef(
+    (Array.isArray(route.params?.quiz) ? route.params.quiz : []).filter(
+      (q) => q && typeof q === "object" && Array.isArray(q.choices) && q.question
+    )
+  );
   const record = useRef()
+  const isArchive = route.params?.isArchive ?? false;
+  const quizDate = route.params?.quizDate ?? null;
 
   const qRecord = {
     correctness: 0,
@@ -43,9 +75,15 @@ export default function GamePage ( { navigation, route }) {
 
   // Loading question
   useEffect(() => {
-    console.log(quiz.current[currentQuestion]["question"]);
-    setQuestion(quiz.current[currentQuestion]);
-    setChoices([...quiz.current[currentQuestion].choices]);
+    const current = quiz.current[currentQuestion];
+    if (!current) {
+      // Ran off the end of a short or empty quiz — end the round cleanly
+      // rather than crashing.
+      setInProgress(false);
+      return;
+    }
+    setQuestion(current);
+    setChoices([...current.choices]);
     setQuestionStartTime(countdown)
     setLastPoints(undefined);
   }, [currentQuestion]);
@@ -128,7 +166,7 @@ export default function GamePage ( { navigation, route }) {
   }
 
   const resetChoices = () => {
-    setChoices([...quiz.current[currentQuestion].choices]);
+    setChoices([...(quiz.current[currentQuestion]?.choices ?? [])]);
     setChoiceStates((previousStates) => {
       return previousStates.map(() =>  "Idle")
     });
@@ -195,7 +233,12 @@ export default function GamePage ( { navigation, route }) {
 
       <StyledView className={`flex-1 items-center justify-between bg-light-purple mx-37 rounded-lg `} >
         <StyledView className="h1/3 justify-center w-full px-2">
-        <QuestionDisplay currentQuestion={quiz.current[currentQuestion].question} /> 
+        {isArchive && !!quizDate && (
+          <Text style={archiveStyles.badge}>
+            {`Quiz from ${formatQuizDate(quizDate)}`}
+          </Text>
+        )}
+        <QuestionDisplay currentQuestion={quiz.current[currentQuestion]?.question ?? ""} />
         </StyledView>
 
         <StyledView className="h-2/3 pb-10pct w-full justify-center px-125"> 

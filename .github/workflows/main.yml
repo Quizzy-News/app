@@ -1,31 +1,53 @@
-name: Build and Deploy to GitHub Pages
+name: Test and Deploy
 
+# Previously this triggered on a `ci-cd` branch that does not exist in the
+# repository, so it never ran once — every deploy since has been manual.
 on:
   push:
-    branches:
-      - ci-cd  # Or your default branch
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20.7.0'  # Use whatever node version your project requires
+          node-version: '20'
+      - name: Quiz selection tests
+        run: node tests/selection.test.mjs
+      - name: Generator tests
+        working-directory: functions
+        run: node --test test/*.test.js
 
-      - name: Install Dependencies
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
         run: npm install
 
-      - name: Build Project
-        run: npx expo start  # Or your build command
+      - name: Create Firebase config
+        run: cp firebase/config.example.js firebase/config.js
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      # `npx expo start` was used here before — it starts a dev server and
+      # never exits, so the job could only ever time out. `export` is the build.
+      - name: Build web bundle
+        run: npx expo export --platform web
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages  # The branch the action should deploy to.
-          FOLDER: build  # The folder the action should deploy.
-          CLEAN: true  # Automatically remove deleted files from the deploy branch
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_QZ_NEWS }}
+          channelId: live
+          projectId: qz-news

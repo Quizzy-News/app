@@ -1,0 +1,17 @@
+{
+  "name": "quizzy-functions",
+  "description": "Daily quiz generator and health endpoint for Quizzy.News",
+  "main": "index.js",
+  "engines": { "node": "20" },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "serve": "firebase emulators:start --only functions",
+    "logs": "firebase functions:log",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.1.0"
+  },
+  "private": true
+}

@@ -55,7 +55,12 @@ export default function CountDownPage({ navigation, route }) {
       return
     }
     if (countdown === 0) {
-      navigation.navigate("GamePage", { quiz });;
+      navigation.navigate("GamePage", {
+        quiz,
+        quizDate: route.params?.quizDate ?? null,
+        isArchive: route.params?.isArchive ?? false,
+        reviewed: route.params?.reviewed ?? true,
+      });
       return;
     }
 

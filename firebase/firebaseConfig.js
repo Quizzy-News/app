@@ -1,90 +1,114 @@
 import { initializeApp } from "firebase/app";
-
-import { getFirestore, collection, doc, getDocs, getDoc, query, where } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+  where,
+  documentId,
+} from "firebase/firestore";
 import { firebaseConfig } from "./config";
-
-const today = new Date();
-const todayFormatted = today.toISOString().split('T')[0];
-function formatDay(date) {
-    return date.toISOString().split('T')[0];
-}
+import {
+  QUIZ_CONFIG,
+  formatDay,
+  shiftDay,
+  normalizeQuestion,
+  selectQuestions,
+} from "./quizSelection";
 
 const app = initializeApp(firebaseConfig);
 
+// Re-exported so callers keep importing from one place, while the pure logic
+// stays testable on its own (see firebase/quizSelection.js + npm run test:selection).
+export { QUIZ_CONFIG, formatDay, shiftDay, normalizeQuestion, selectQuestions };
 
-//export const firestore = getFirestore(app);
-
-// export async function testFb() {
-//     const db = getFirestore(app);
-//     const date = todayFormatted
-//     const querySnapshot = await getDocs(collection(db, 'dailies', `${date}`, 'questions'));
-//     // querySnapshot.forEach((doc) => {
-//     //     console.log(doc.id, '=>', doc.data());
-//     // });
-//     return [...querySnapshot.docs.map(doc => {doc.data()})]
-    
-
-// }
-
-
-
+/**
+ * Fetch a single named day. Kept because it is the cheapest possible request
+ * and the common case (today has a quiz) should not pay for a range query.
+ */
 export async function getDailyQuiz(day) {
-    const db = getFirestore(app);
+  const db = getFirestore(app);
+  const date = day || formatDay(new Date());
+  const snapshot = await getDoc(doc(db, "dailies", date));
 
-    const date = day ? day : todayFormatted;
-    // const date = '2024-09-26'//test date for testing
-    const q = query(doc(db, 'dailies', `${date}`));
-    const querySnapshot = await getDoc(q);
+  if (!snapshot.exists()) {
+    return { quiz: [], quizDate: date, found: false, reviewed: true };
+  }
 
-    return {
-    quiz: querySnapshot.data()?.quiz?.filter((question) => question.approved) || [] 
-    }    
-
+  const { questions, reviewed } = selectQuestions(snapshot.data()?.quiz);
+  return { quiz: questions, quizDate: date, found: questions.length > 0, reviewed };
 }
 
-// export async function getDailyQuiz() {
-//     const db = getFirestore(app);
-//     const date = '2024-09-26'//todayFormatted
-//     console.log("Date: ", date)
-//     // const q = query(collection(db, 'dailies', `${date}`, 'quiz'), where("approved", "==", true));
-//     const q = query(doc(db, 'dailies', `${date}`));
-//     const querySnapshot = await getDoc(q);
-    
-//     const quiz = querySnapshot.data();
+/**
+ * Find the most recent playable quiz at or before `day`.
+ *
+ * WHY THE QUERY LOOKS LIKE THIS: the obvious version —
+ *   where(documentId(), "<=", today) + orderBy(documentId(), "desc")
+ * — needs a composite Firestore index that does not exist on this project, and
+ * fails at runtime with FAILED_PRECONDITION ("The query requires an index").
+ * Any DESCENDING order on __name__ needs one. Ascending order on __name__ is
+ * always available, so we query ascending from a cutoff date and reverse the
+ * results in memory. No index, no setup, works on a fresh project.
+ *
+ * The lookback widens in stages so the common case stays cheap: if today's
+ * quiz is fine, `getDailyQuiz` already answered and none of this runs.
+ */
+export async function getLatestQuiz(day) {
+  const db = getFirestore(app);
+  const today = day || formatDay(new Date());
+  let inspected = 0;
 
-//     return quiz;
-//   }
+  for (const daysBack of QUIZ_CONFIG.LOOKBACK_STAGES) {
+    const cutoff = shiftDay(today, -daysBack);
 
+    const q = query(
+      collection(db, "dailies"),
+      where(documentId(), ">=", cutoff),
+      orderBy(documentId(), "asc"),
+      limit(QUIZ_CONFIG.MAX_DOCS_PER_QUERY)
+    );
 
+    const snapshot = await getDocs(q);
+
+    // Ascending from the cutoff; walk it newest-first and ignore any document
+    // dated in the future (the generator can write tomorrow's row early).
+    const candidates = snapshot.docs
+      .filter((d) => d.id <= today)
+      .sort((a, b) => (a.id < b.id ? 1 : -1));
+
+    for (const document of candidates) {
+      inspected += 1;
+      const { questions, reviewed } = selectQuestions(document.data()?.quiz);
+      if (questions.length >= QUIZ_CONFIG.MIN_QUESTIONS) {
+        return {
+          quiz: questions,
+          quizDate: document.id,
+          isArchive: document.id !== today,
+          reviewed,
+          found: true,
+          inspected,
+        };
+      }
+    }
+  }
+
+  return {
+    quiz: [],
+    quizDate: null,
+    isArchive: false,
+    reviewed: true,
+    found: false,
+    inspected,
+  };
+}
 
 export async function getDailyPixieQuiz() {
-    const db = getFirestore(app);
-    const date = '2024-03-05';
-    // const date = todayFormatted;
-
-    const q = query(doc(db, 'pixieBrix1', `${date}`));
-    const querySnapshot = await getDoc(q);
-
-    const quiz = querySnapshot.data();
-
-    return quiz;
-
+  const db = getFirestore(app);
+  const date = "2024-03-05";
+  const snapshot = await getDoc(doc(db, "pixieBrix1", date));
+  return snapshot.data();
 }
-
-// MONICA'S NOTES
-// getDailyQuiz() is async because it is waiting for data to be fetched from Firestor (see db).
-// The function returns quiz, which is an object containing the data fetched from the specified document in the dailies collection for the given date.
-    // db: Initializes a connection to the database
-    // date: Accesses the date from todayFormatted
-    // q:   Creates a query for a document that is based on date from the dailies collection
-            // QUESTION: Are we getting a single document? From ChatGPT:
-                //  It's worth noting that this code snippet directly creates a document reference 
-                // using doc()and then unnecessarily wraps it withquery(). 
-                // For fetching a single document, doc()would suffice withoutquery()`. 
-    // querySnapshot: Retrieves the document that q is pointing to. Because accessing Firestore involves network requests (which are asynchronous operations), 
-    // await is used to wait for the operation to complete.
-
-    // quiz: Processes the fetched data. querySnapshot.data() extracts the data from q.
-    //  This returns an object The data() method returns the document's data as an object where the document's field names are keys, 
-    // and the document's field values are the values of those keys.
-    // 

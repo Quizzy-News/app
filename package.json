@@ -11,7 +11,9 @@
     "deploy-gh": "gh-pages -d dist",
     "predeploy": "expo export -p web",
     "deploy-firebase": "firebase deploy --only hosting",
-    "test": "npx serve dist --single"
+    "test": "npm run test:selection",
+    "test:selection": "node tests/selection.test.mjs",
+    "serve-dist": "npx serve dist --single"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.3",
